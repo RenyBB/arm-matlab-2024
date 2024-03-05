@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Reading and writing data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Lincoln Colling, Reny Baykova" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon-1.4.1/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain-0.2.6/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain-0.2.6/shareagain.js"></script>
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Reading and writing data
+]
+.subtitle[
+## Getting data in and out of <code>Matlab</code>
+]
+.author[
+### Lincoln Colling, Reny Baykova
+]
+
+---
+
+
+&lt;!-- 
+vim: set ft=markdown tw=80 spell spelllang=en_gb:
+vim: set conceallevel=0 foldlevel=1:
+--&gt;
+
+
+
+
+
+
+
+
+
+
+
+# Data formats
+
+When it comes to reading/writing data in `Matlab`, there are a few options.
+
+**Matlab-specific formats**  
+
+- `.mat` files
+
+**Domain-specific formats**  
+
+- Data formats specific to certain applications: e.g., EEG data, fMRI data, Eye
+  tracking data
+
+- Cognitive neuroscience science-specific formats: e.g., BIDS (Brain Imaging
+  Data Structure)
+
+
+**General data formats**
+
+- `.csv` (comma-separated values)
+
+- `.json` (JavaScript Object Notation)
+
+The different formats have different advantages and disadvantages. Sometimes
+you'll have a choice in the format you use, and sometimes you won't. 
+
+---
+
+# `Matlab` specific format
+
+The easiest format to use in `Matlab` is the `.mat` format
+
+```matlab
+% first we'll create some data and then we'll save it
+
+dummy_data = struct;
+dummy_data.matrix = randn(10, 10);
+dummy_data.cells = {'A cell', 'Another cell'};
+some_more_data = randi(10,10);
+
+save my_data; % save entire workspace into a file called my_data.mat
+```
+
+With the `save` command, you can quickly and easily save the entire workspace.
+
+
+```matlab
+% clear the workspace and then load some data
+%clear 
+load my_data % load the file called my_data.mat
+```
+
+And with the `load` command, you can quickly load a `.mat` file into the
+workspace.
+
+---
+
+## `.mat` files
+
+Using `save` and `load` to save and load `.mat` files is quick and easy, but
+there are a few downsides 
+
+- Saves the **entire** workspace, which could be **HUGE** (many gigabytes if
+  you're working with imaging data)
+
+- Loads **all** the saved data at once (again, possibly **HUGE**), which can
+  overwrite variables (without warning) if you have naming conflicts.
+
+- It's not easy to work with `.mat` files in other languages (e.g., it's
+  **extremely** slow to open them in `R`—on the order of minutes, even for
+  relatively small files).
+
+---
+
+## Selectively saving and loading
+
+Instead of saving the entire workspace, we can use the `save` function to save
+particular variables. 
+
+You just need to list the **names** of the variables you want to save.
+
+**Saving specific variables**  
+
+```matlab
+var1 = 1: 10
+var2 = struct
+var2.content = {'a','b'}
+var3 = 'A string!'
+save('my_data.mat','var1','var3')
+
+```
+
+---
+
+## Selectively saving and loading
+
+You can also selectively load variables in a `.mat` file.
+
+Again, you just need to list the **names** of the variables you want to load.
+
+**Loading specific variables**  
+
+```matlab
+load('my_data.mat', 'var1');
+```
+
+Alternately, in case there are naming conflicts, you can load the content of a
+`.mat` file into a variable
+
+**Loading into a variable**  
+
+```matlab
+my_data = load('my_data.mat');
+```
+
+---
+
+
+## Domain-specific formats
+
+**Typically**, you'll be working with domain-specific formats.
+
+- Formats specific to EEGLab or FieldTrip 
+
+- NIfTI/DICOM for MRI data
+
+However, there's also a generic format for storing all stored to cognitive
+neuroscience data called [BIDS](https://bids.neuroimaging.io)
+
+- MRI Data
+
+- M/EEG
+
+- iEEG
+
+- Behavioural data
+
+- Genetic data
+
+I think the usage of the BIDS format will become more and more common because it
+doesn't lock you into any specific programming platform (e.g., `Matlab` or
+`Python`) or any specific analysis toolbox (e.g., SPM, FieldTrip, EEGlab)
+
+---
+
+## General data formats
+
+Finally, there are a few general-purpose data formats that you'll be familiar
+with from using, e.g., `R` and `Python`.
+
+**CSV files**  
+
+- `.csv` files are good for storing matrices of numbers
+
+- They're easy to import into `R`, `Python` and `SPSS`
+
+However, matrices in `Matlab` don't have column headers (e.g., they're not
+tables) so column headers will be missing when you read the data in to `R`
+
+`Matlab` has some build in functions for reading data from `.csv` files into
+matrices and for writing matrices into `.csv` files that we'll use in the
+activities, but we'll also look at some alternatives.
+
+
+---
+
+**Tips for working with `.csv` files**
+
+- Check out the `Matlab` **file exchange** for [a simple
+  function](https://uk.mathworks.com/matlabcentral/fileexchange/29933-csv-with-column-headers)
+  for writing `.csv` files with headers. You'll need a matrix that holds the
+  data and another cell array that holds the header
+
+- Convert the matrix to a **table** (tables are `Matlab`'s version of a
+  data.frame).
+
+- Or organise your data as a `struct` array and use the `writeStruct2csv`
+  function included in the notes. I think this is a good approach for working
+  with behavioural data from PsychToolbox because the resulting data will
+  be easy to analyse in `R`, `Python`, or SPSS.
+
+
+---
+
+
+Sometimes we want to store more complex data:
+
+A typical use case for this might be for saving `struct`s
+
+Here, we can see an example of creating a `struct` for storing some data about
+a participant: 
+
+```matlab
+SubjectInfo = struct;
+SubjectInfo.age = 19
+SubjectInfo.Handedness = 'Left'
+```
+
+Because this data isn't matrix (or at least some kind of table) it's not
+suitable for storing in a `.csv` file. 
+
+We need an alternative. One alternative is to use `.json` files.
+
+**JSON files**
+
+- `.json` files are good for storing non-matrix data
+
+- They're easy to import into `R` and `Python`
+
+To save data as a `.json` file, you first need to **encode** it, and then you
+can save it.
+
+---
+
+**Working with JSON files**
+
+The first step to save data as a `.json` file is to encode the variable as JSON.
+
+You can then write the data to a file using `fopen`, `fprintf`, and `fclose`.
+
+Here is an example:
+```matlab
+JSONFile= 'example.json'
+SubjectInfo_json = jsonencode(SubjectInfo);
+fid = fopen(JSONFile, 'w');
+fprintf(fid, SubjectInfo_json);
+fclose(fid);
+```
+
+This is a good example of something you might want to write a function for! This
+is what it might look like:
+
+
+```matlab
+function writeJSON(filename, variable)
+  encoded_variable = jsonencode(variable);
+  fid = fopen(filename, 'w');
+  fprintf(fid, encoded_variable);
+  fclose(fid);
+end
+
+```
+
+---
+
+### Working with JSON files in other languages
+
+The big advantage of `.json` files is that they allow us to import structured
+data into other programming languages
+
+**Reading a JSON file into `R`**
+
+```r
+jsonlite::fromJSON('example.json')
+```
+
+**Reading a JSON file into `Python`**
+
+```python
+import json
+with open('example.json') as f:
+  data = json.load(f)
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

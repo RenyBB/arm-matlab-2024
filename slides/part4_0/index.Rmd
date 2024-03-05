@@ -1,0 +1,367 @@
+---
+title: "Reading and writing data"
+subtitle: "Getting data in and out of `Matlab`"
+author: "Lincoln Colling, Reny Baykova"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    selt_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true 
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+<!-- 
+vim: set ft=markdown tw=80 spell spelllang=en_gb:
+vim: set conceallevel=0 foldlevel=1:
+-->
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+```{r, echo=FALSE, eval=TRUE}
+library(xaringanthemer)
+
+style_duo_accent(
+ primary_color = "#003b49",
+secondary_color = "#1d4289",
+header_font_google = google_font("Cabin"),
+text_font_google   = google_font("Noto Sans", "300", "300i"),
+code_font_google   = google_font("Fira Mono"),
+colors = c(
+red = "#d3273e",
+purple = "#5d3754s",
+orange = "#dc582a",
+green = "#007a78",
+white = "#FFFFFF",
+blue = "#1d4289"
+)
+)
+xaringanthemer::style_extra_css(
+  list(".title-slide" = list(
+   # "background-image" =
+   #   "url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/University_of_Sussex_Logo.svg/480px-University_of_Sussex_Logo.svg.png)",
+  "background-position" =  "95% 95%",
+ "background-size" = "180px",
+  "border" = "10px solid #013035",
+  "background-color" = "#FFFFFF"
+  ),
+ ".title-slide h1" = list(
+  "padding-top" = "0px",
+  "font-size" = "60px",
+  "text-align" = "left",
+  "padding-bottom" = "18px",
+  "margin-bottom" = "18px",
+  "margin-top" = "0px",
+  "color" = "#003b49"
+ ),
+ ".title-slide h2" = list(
+   "font-size" = "40px",
+   "text-align" = "left",
+   "padding-top" = "10px",
+   "margin-top" = "0px",
+   "color" = "#003b49"
+ ),
+ ".title-slide h3" = list(
+   "font-size" = "30px",
+   "color" = "#26272A",
+   "text-align" = "left",
+   "text-shadow" = "none",
+   "padding" = "0px",
+   "margin" = "0px",
+   "line-height" = "1"),
+   ".midpage h3" = list(
+   "font-size" = ".6em",
+   "margin-bottom" = ".2em"),
+ ".footnote" = list(
+   "font-size" = ".6em"
+ ),
+   ".section h1" = list(
+    "padding" = "auto",
+    "display" = "block",
+    "margin-left" = "auto",
+    "margin-right" = "auto",
+    "padding-top" = "250px",
+    "vertical-align" = "auto",
+    "align-items" = "center",
+    "font-size" = "40px"
+   ),
+".section .remark-slide-number" = list(
+   "display" = "none"),
+   "pre" = list("border-style" = "solid",
+   "border-width" = "1px",
+   "border-color" = "lightgrey",
+   "padding" = "5px",
+   "border-radius" = "3px")
+))
+
+```
+
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+xaringanExtra::use_share_again()
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons"))
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+# I'll add some meta data later
+# library(metathis)
+# meta() %>%
+#   meta_description(desc)
+```
+
+# Data formats
+
+When it comes to reading/writing data in `Matlab`, there are a few options.
+
+**Matlab-specific formats**  
+
+- `.mat` files
+
+**Domain-specific formats**  
+
+- Data formats specific to certain applications: e.g., EEG data, fMRI data, Eye
+  tracking data
+
+- Cognitive neuroscience science-specific formats: e.g., BIDS (Brain Imaging
+  Data Structure)
+
+
+**General data formats**
+
+- `.csv` (comma-separated values)
+
+- `.json` (JavaScript Object Notation)
+
+The different formats have different advantages and disadvantages. Sometimes
+you'll have a choice in the format you use, and sometimes you won't. 
+
+---
+
+# `Matlab` specific format
+
+The easiest format to use in `Matlab` is the `.mat` format
+
+```matlab
+`r paste0(xfun::read_utf8("../../code/part3/save_data.m"), collapse="\n")`
+```
+
+With the `save` command, you can quickly and easily save the entire workspace.
+
+
+```matlab
+`r paste0(xfun::read_utf8("../../code/part3/load_data.m"), collapse="\n")`
+```
+
+And with the `load` command, you can quickly load a `.mat` file into the
+workspace.
+
+---
+
+## `.mat` files
+
+Using `save` and `load` to save and load `.mat` files is quick and easy, but
+there are a few downsides 
+
+- Saves the **entire** workspace, which could be **HUGE** (many gigabytes if
+  you're working with imaging data)
+
+- Loads **all** the saved data at once (again, possibly **HUGE**), which can
+  overwrite variables (without warning) if you have naming conflicts.
+
+- It's not easy to work with `.mat` files in other languages (e.g., it's
+  **extremely** slow to open them in `R`—on the order of minutes, even for
+  relatively small files).
+
+---
+
+## Selectively saving and loading
+
+Instead of saving the entire workspace, we can use the `save` function to save
+particular variables. 
+
+You just need to list the **names** of the variables you want to save.
+
+**Saving specific variables**  
+
+```matlab
+`r paste0(xfun::read_utf8("../../code/part3/create_many_save_few.m"), collapse="\n")`
+```
+
+---
+
+## Selectively saving and loading
+
+You can also selectively load variables in a `.mat` file.
+
+Again, you just need to list the **names** of the variables you want to load.
+
+**Loading specific variables**  
+
+```matlab
+`r paste0(xfun::read_utf8("../../code/part3/load_few.m"), collapse="\n")`
+```
+
+Alternately, in case there are naming conflicts, you can load the content of a
+`.mat` file into a variable
+
+**Loading into a variable**  
+
+```matlab
+`r paste0(xfun::read_utf8("../../code/part3/load_into_var.m"), collapse="\n")`
+```
+
+---
+
+
+## Domain-specific formats
+
+**Typically**, you'll be working with domain-specific formats.
+
+- Formats specific to EEGLab or FieldTrip 
+
+- NIfTI/DICOM for MRI data
+
+However, there's also a generic format for storing all stored to cognitive
+neuroscience data called [BIDS](https://bids.neuroimaging.io)
+
+- MRI Data
+
+- M/EEG
+
+- iEEG
+
+- Behavioural data
+
+- Genetic data
+
+I think the usage of the BIDS format will become more and more common because it
+doesn't lock you into any specific programming platform (e.g., `Matlab` or
+`Python`) or any specific analysis toolbox (e.g., SPM, FieldTrip, EEGlab)
+
+---
+
+## General data formats
+
+Finally, there are a few general-purpose data formats that you'll be familiar
+with from using, e.g., `R` and `Python`.
+
+**CSV files**  
+
+- `.csv` files are good for storing matrices of numbers
+
+- They're easy to import into `R`, `Python` and `SPSS`
+
+However, matrices in `Matlab` don't have column headers (e.g., they're not
+tables) so column headers will be missing when you read the data in to `R`
+
+`Matlab` has some build in functions for reading data from `.csv` files into
+matrices and for writing matrices into `.csv` files that we'll use in the
+activities, but we'll also look at some alternatives.
+
+
+---
+
+**Tips for working with `.csv` files**
+
+- Check out the `Matlab` **file exchange** for [a simple
+  function](https://uk.mathworks.com/matlabcentral/fileexchange/29933-csv-with-column-headers)
+  for writing `.csv` files with headers. You'll need a matrix that holds the
+  data and another cell array that holds the header
+
+- Convert the matrix to a **table** (tables are `Matlab`'s version of a
+  data.frame).
+
+- Or organise your data as a `struct` array and use the `writeStruct2csv`
+  function included in the notes. I think this is a good approach for working
+  with behavioural data from PsychToolbox because the resulting data will
+  be easy to analyse in `R`, `Python`, or SPSS.
+
+
+---
+
+
+Sometimes we want to store more complex data:
+
+A typical use case for this might be for saving `struct`s
+
+Here, we can see an example of creating a `struct` for storing some data about
+a participant: 
+
+```matlab
+SubjectInfo = struct;
+SubjectInfo.age = 19
+SubjectInfo.Handedness = 'Left'
+```
+
+Because this data isn't matrix (or at least some kind of table) it's not
+suitable for storing in a `.csv` file. 
+
+We need an alternative. One alternative is to use `.json` files.
+
+**JSON files**
+
+- `.json` files are good for storing non-matrix data
+
+- They're easy to import into `R` and `Python`
+
+To save data as a `.json` file, you first need to **encode** it, and then you
+can save it.
+
+---
+
+**Working with JSON files**
+
+The first step to save data as a `.json` file is to encode the variable as JSON.
+
+You can then write the data to a file using `fopen`, `fprintf`, and `fclose`.
+
+Here is an example:
+```matlab
+JSONFile= 'example.json'
+SubjectInfo_json = jsonencode(SubjectInfo);
+fid = fopen(JSONFile, 'w');
+fprintf(fid, SubjectInfo_json);
+fclose(fid);
+```
+
+This is a good example of something you might want to write a function for! This
+is what it might look like:
+
+
+```matlab
+function writeJSON(filename, variable)
+  encoded_variable = jsonencode(variable);
+  fid = fopen(filename, 'w');
+  fprintf(fid, encoded_variable);
+  fclose(fid);
+end
+
+```
+
+---
+
+### Working with JSON files in other languages
+
+The big advantage of `.json` files is that they allow us to import structured
+data into other programming languages
+
+**Reading a JSON file into `R`**
+
+```r
+jsonlite::fromJSON('example.json')
+```
+
+**Reading a JSON file into `Python`**
+
+```python
+import json
+with open('example.json') as f:
+  data = json.load(f)
+```

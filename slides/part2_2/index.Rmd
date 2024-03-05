@@ -1,0 +1,307 @@
+---
+title: "Flow control and loops"
+subtitle: "Controlling program flow and looping"
+author: "Lincoln Colling, Reny Baykova"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    selt_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true 
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+<!-- 
+vim: set ft=markdown tw=80 spell spelllang=en_gb:
+vim: set conceallevel=0 foldlevel=1:
+-->
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+```{r, echo=FALSE, eval=TRUE}
+library(xaringanthemer)
+
+style_duo_accent(
+ primary_color = "#003b49",
+secondary_color = "#1d4289",
+header_font_google = google_font("Cabin"),
+text_font_google   = google_font("Noto Sans", "300", "300i"),
+code_font_google   = google_font("Fira Mono"),
+colors = c(
+red = "#d3273e",
+purple = "#5d3754s",
+orange = "#dc582a",
+green = "#007a78",
+white = "#FFFFFF",
+blue = "#1d4289"
+)
+)
+xaringanthemer::style_extra_css(
+  list(".title-slide" = list(
+   # "background-image" =
+   #   "url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/University_of_Sussex_Logo.svg/480px-University_of_Sussex_Logo.svg.png)",
+  "background-position" =  "95% 95%",
+ "background-size" = "180px",
+  "border" = "10px solid #013035",
+  "background-color" = "#FFFFFF"
+  ),
+ ".title-slide h1" = list(
+  "padding-top" = "0px",
+  "font-size" = "60px",
+  "text-align" = "left",
+  "padding-bottom" = "18px",
+  "margin-bottom" = "18px",
+  "margin-top" = "0px",
+  "color" = "#003b49"
+ ),
+ ".title-slide h2" = list(
+   "font-size" = "40px",
+   "text-align" = "left",
+   "padding-top" = "10px",
+   "margin-top" = "0px",
+   "color" = "#003b49"
+ ),
+ ".title-slide h3" = list(
+   "font-size" = "30px",
+   "color" = "#26272A",
+   "text-align" = "left",
+   "text-shadow" = "none",
+   "padding" = "0px",
+   "margin" = "0px",
+   "line-height" = "1"),
+ ".footnote" = list(
+   "font-size" = ".6em"
+ ),
+   ".section h1" = list(
+    "padding" = "auto",
+    "display" = "block",
+    "margin-left" = "auto",
+    "margin-right" = "auto",
+    "padding-top" = "250px",
+    "vertical-align" = "auto",
+    "align-items" = "center",
+    "font-size" = "40px"
+   ),
+".section .remark-slide-number" = list(
+   "display" = "none"),
+   "pre" = list("border-style" = "solid",
+   "border-width" = "1px",
+   "border-color" = "lightgrey",
+   "padding" = "5px",
+   "border-radius" = "3px"),
+ "larger" = list("font-size" = "2em")))
+```
+
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+xaringanExtra::use_share_again()
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons"))
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+# I'll add some meta data later
+# library(metathis)
+# meta() %>%
+#   meta_description(desc)
+```
+
+# <small>Flow Control</small>
+
+It's common to want to write a program (a script or a function) that will do
+something different depending on whether some condition is met. That is, 
+an **IF A THEN B** rule.
+
+- In `Matlab`, we can do this with an `if` statement
+
+```matlab
+birthyear = 2005
+if birthyear <  2002
+    disp('You are old enough to buy beer')
+end % notice that we put end when we've finished the rule
+```
+
+If the condition `birthyear < 1999` produces a logical `1`, then the path is
+followed:
+
+```matlab
+>> birthyear = 2015;
+>> birthyear < 2005
+
+ans =
+
+  logical
+
+   1
+```
+
+---
+
+## `if` then `else`
+
+You can also use `else` to specify what to do if the condition _isn't_ met:
+
+```matlab
+if birthyear < 2005
+    disp('You are old enough to buy beer')
+else
+    disp('You are not old enough to buy beer!')
+end
+```
+
+Or `elseif` for more complex branching:
+
+```matlab
+if birthyear < 2005
+    disp('You are old enough to buy beer')
+elseif birthyear == 2005 
+    disp('You might be old enough to buy beer')
+else 
+    disp('You are not old enough to buy beer!')
+end
+```
+
+---
+
+## `switch` and `case`
+
+If you need to check through **many** conditions, then there's a more efficient
+way than stringing together a bunch of `if`, and `elseif` statements.
+
+Instead, you can use `switch` and `case`:
+
+```matlab
+n = 10 % set n to a number
+
+switch n 
+  case 1
+      disp('one')
+  case 2
+      disp('two')
+  otherwise 
+      disp('I can only count to two')
+end
+```
+
+---
+
+
+## `switch` and `case`
+
+`switch` and `case` also works with strings (`chars`)
+
+```matlab
+n = 'one'
+
+switch n
+  case 'one'
+      disp('1')
+  case 'two'
+      disp('2')
+  case {'three','four'}
+      disp('more than 2 less than 5')
+end
+```
+
+---
+
+# Loops
+
+Loops allow us to run a bit of code over and over.
+
+- Loops are extremely useful in, e.g., PsychToolbox where we present multiple trials,
+  or in data analysis where we might want to process multiple data files.
+
+`Matlab` has **two** basic forms of loops:
+
+- The `for` loop, which loops a certain number of times.
+
+- The `while` loop, which loops continuously as long as some condition is met.
+
+Whether you use a `while` loop or `for` loop will depend on the **problem you
+want to solve** or how you **structure your solution**. 
+
+---
+
+## The `for` loop
+
+- The simplest **loop** is the `for` loop.
+
+- If we pass a range of values (e.g., a vector or cell array) to a `for`
+  statement, then one value of that range will be available on each iteration of
+  the loop
+
+An example with a vector of numbers:
+
+```matlab
+for i = 1 : 10
+    disp(num2str(i))
+end
+```
+
+An example with a cell array:
+
+```matlab
+for n = {'one','two','three'}
+    disp(n)
+end
+```
+
+---
+
+## The `while` loop
+
+- `for` loops loop over some series of values.
+
+- `while` loops, on the other hand, loop continuously as long as some condition
+  is met.
+
+```matlab
+x = 1
+y = 0
+while y < 100
+    y = x^2
+    disp(['x squared is ' num2str(y)])
+    x = x + 1
+end 
+```
+
+This means `while` loops are useful when we don't know how long we have to loop
+for.
+
+```matlab
+% read lines from a file
+% carry on looping while you're not at the end of the file
+while ~feof(fid)
+    fgetl(fid)
+end
+```
+
+<!--
+/* --- */
+
+## Alternatives to loops<sup>1</sup>
+
+If you've used `map`-style functional syntax in `R` (either through `purrr::map()` or `apply()`) or `python` (either with `map()` or a list-comprehension with a lambda)
+
+- In `Matlab` you can use `arrayfun` and `cellfun` to **apply** a function to every element of a 1-D matrix or 1-D cell array
+
+```matlab
+>> list_of_numbers = [1 6 8 12 12];
+>> logs = arrayfun(@(x) log(x), list_of_numbers)
+
+logs =
+
+         0    1.7918    2.0794    2.4849    2.4849
+```
+
+
+.footnote[<sup>1</sup>Knowing this isn't vitally important, but if you like using functional style programming in `R` or `python` then you might want to do the same in `Matlab`]
+
+-->
