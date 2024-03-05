@@ -1,0 +1,2532 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Matlab: Part 3</title>
+
+
+
+  <meta name="article:author" content="Lincoln Colling"/>
+  <meta name="article:author" content="Reny Baykova"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Matlab: Part 3"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:site_name" content="Matlab"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Matlab: Part 3"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","subtitle","de:cription","output","author"]}},"value":[{"type":"character","attributes":{},"value":["Part 3"]},{"type":"character","attributes":{},"value":["`Matlab`"]},{"type":"character","attributes":{},"value":["In this section we'll cover the basics of `PsychToolbox` in `Matlab`\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name"]}},"value":[{"type":"character","attributes":{},"value":["Lincoln"]},{"type":"character","attributes":{},"value":["Colling"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Reny"]},{"type":"character","attributes":{},"value":["Baykova"]},{"type":"character","attributes":{},"value":["Canvas site"]},{"type":"character","attributes":{},"value":["https://canvas.sussex.ac.uk/courses/26267"]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  <!--radix_placeholder_navigation_in_header-->
+  <meta name="distill:offset" content=""/>
+
+  <script type="application/javascript">
+
+    window.headroom_prevent_pin = false;
+
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+
+      // initialize headroom for banner
+      var header = $('header').get(0);
+      var headerHeight = header.offsetHeight;
+      var headroom = new Headroom(header, {
+        tolerance: 5,
+        onPin : function() {
+          if (window.headroom_prevent_pin) {
+            window.headroom_prevent_pin = false;
+            headroom.unpin();
+          }
+        }
+      });
+      headroom.init();
+      if(window.location.hash)
+        headroom.unpin();
+      $(header).addClass('headroom--transition');
+
+      // offset scroll location for banner on hash change
+      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+      window.addEventListener("hashchange", function(event) {
+        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+      });
+
+      // responsive menu
+      $('.distill-site-header').each(function(i, val) {
+        var topnav = $(this);
+        var toggle = topnav.find('.nav-toggle');
+        toggle.on('click', function() {
+          topnav.toggleClass('responsive');
+        });
+      });
+
+      // nav dropdowns
+      $('.nav-dropbtn').click(function(e) {
+        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+        $(this).parent().siblings('.nav-dropdown')
+           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $("body").click(function(e){
+        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $(".nav-dropdown").click(function(e){
+        e.stopPropagation();
+      });
+    });
+  </script>
+
+  <style type="text/css">
+
+  /* Theme (user-documented overrideables for nav appearance) */
+
+  .distill-site-nav {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #0F2E3D;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .distill-site-nav a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .distill-site-nav a:hover {
+    color: white;
+  }
+
+  @media print {
+    .distill-site-nav {
+      display: none;
+    }
+  }
+
+  .distill-site-header {
+
+  }
+
+  .distill-site-footer {
+
+  }
+
+
+  /* Site Header */
+
+  .distill-site-header {
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 3;
+  }
+
+  .distill-site-header .nav-left {
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header .nav-left {
+      margin-left: 0;
+    }
+  }
+
+
+  .distill-site-header .nav-right {
+    float: right;
+    margin-right: 8px;
+  }
+
+  .distill-site-header a,
+  .distill-site-header .title {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 10px 14px 10px;
+  }
+
+  .distill-site-header .title {
+    font-size: 18px;
+    min-width: 150px;
+  }
+
+  .distill-site-header .logo {
+    padding: 0;
+  }
+
+  .distill-site-header .logo img {
+    display: none;
+    max-height: 20px;
+    width: auto;
+    margin-bottom: -4px;
+  }
+
+  .distill-site-header .nav-image img {
+    max-height: 18px;
+    width: auto;
+    display: inline-block;
+    margin-bottom: -3px;
+  }
+
+
+
+  @media screen and (min-width: 1000px) {
+    .distill-site-header .logo img {
+      display: inline-block;
+    }
+    .distill-site-header .nav-left {
+      margin-left: 20px;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 20px;
+    }
+    .distill-site-header .title {
+      padding-left: 12px;
+    }
+  }
+
+
+  .distill-site-header .nav-toggle {
+    display: none;
+  }
+
+  .nav-dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+  .nav-dropdown .nav-dropbtn {
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 16px 10px;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    margin-top: 1px;
+    z-index: 2;
+  }
+
+  .nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index: 1;
+    margin-top: 2px;
+    white-space: nowrap;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .nav-dropdown-content hr {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-dropdown-active {
+    display: block;
+  }
+
+  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+    color: black;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .nav-dropdown-content .nav-dropdown-header {
+    display: block;
+    padding: 5px 24px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #999999;
+    white-space: nowrap;
+  }
+
+  .nav-dropdown:hover .nav-dropbtn {
+    color: white;
+  }
+
+  .nav-dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .nav-right .nav-dropdown-content {
+    margin-left: -45%;
+    right: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+    .distill-site-header a.nav-toggle {
+      float: right;
+      display: block;
+    }
+    .distill-site-header .title {
+      margin-left: 0;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 0;
+    }
+    .distill-site-header {
+      overflow: hidden;
+    }
+    .nav-right .nav-dropdown-content {
+      margin-left: 0;
+    }
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header.responsive {position: relative; min-height: 500px; }
+    .distill-site-header.responsive a.nav-toggle {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .distill-site-header.responsive a,
+    .distill-site-header.responsive .nav-dropdown {
+      display: block;
+      text-align: left;
+    }
+    .distill-site-header.responsive .nav-left,
+    .distill-site-header.responsive .nav-right {
+      width: 100%;
+    }
+    .distill-site-header.responsive .nav-dropdown {float: none;}
+    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  /* Site Footer */
+
+  .distill-site-footer {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 3;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+
+  /* Headroom */
+
+  d-title {
+    padding-top: 6rem;
+  }
+
+  @media print {
+    d-title {
+      padding-top: 4rem;
+    }
+  }
+
+  .headroom {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .headroom--transition {
+    transition: all .4s ease-in-out;
+  }
+
+  .headroom--unpinned {
+    top: -100px;
+  }
+
+  .headroom--pinned {
+    top: 0;
+  }
+
+  /* adjust viewport for navbar height */
+  /* helps vertically center bootstrap (non-distill) content */
+  .min-vh-100 {
+    min-height: calc(100vh - 100px) !important;
+  }
+
+  </style>
+
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet"/>
+  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+  <script type="application/javascript">
+
+  function getMeta(metaName) {
+    var metas = document.getElementsByTagName('meta');
+    for (let i = 0; i < metas.length; i++) {
+      if (metas[i].getAttribute('name') === metaName) {
+        return metas[i].getAttribute('content');
+      }
+    }
+    return '';
+  }
+
+  function offsetURL(url) {
+    var offset = getMeta('distill:offset');
+    return offset ? offset + '/' + url : url;
+  }
+
+  function createFuseIndex() {
+
+    // create fuse index
+    var options = {
+      keys: [
+        { name: 'title', weight: 20 },
+        { name: 'categories', weight: 15 },
+        { name: 'description', weight: 10 },
+        { name: 'contents', weight: 5 },
+      ],
+      ignoreLocation: true,
+      threshold: 0
+    };
+    var fuse = new window.Fuse([], options);
+
+    // fetch the main search.json
+    return fetch(offsetURL('search.json'))
+      .then(function(response) {
+        if (response.status == 200) {
+          return response.json().then(function(json) {
+            // index main articles
+            json.articles.forEach(function(article) {
+              fuse.add(article);
+            });
+            // download collections and index their articles
+            return Promise.all(json.collections.map(function(collection) {
+              return fetch(offsetURL(collection)).then(function(response) {
+                if (response.status === 200) {
+                  return response.json().then(function(articles) {
+                    articles.forEach(function(article) {
+                      fuse.add(article);
+                    });
+                  })
+                } else {
+                  return Promise.reject(
+                    new Error('Unexpected status from search index request: ' +
+                              response.status)
+                  );
+                }
+              });
+            })).then(function() {
+              return fuse;
+            });
+          });
+
+        } else {
+          return Promise.reject(
+            new Error('Unexpected status from search index request: ' +
+                        response.status)
+          );
+        }
+      });
+  }
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // get search element (bail if we don't have one)
+    var searchEl = window.document.getElementById('distill-search');
+    if (!searchEl)
+      return;
+
+    createFuseIndex()
+      .then(function(fuse) {
+
+        // make search box visible
+        searchEl.classList.remove('hidden');
+
+        // initialize autocomplete
+        var options = {
+          autoselect: true,
+          hint: false,
+          minLength: 2,
+        };
+        window.autocomplete(searchEl, options, [{
+          source: function(query, callback) {
+            const searchOptions = {
+              isCaseSensitive: false,
+              shouldSort: true,
+              minMatchCharLength: 2,
+              limit: 10,
+            };
+            var results = fuse.search(query, searchOptions);
+            callback(results
+              .map(function(result) { return result.item; })
+            );
+          },
+          templates: {
+            suggestion: function(suggestion) {
+              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+                : '';
+              var html = `
+                <div class="search-item">
+                  <h3>${suggestion.title}</h3>
+                  <div class="search-item-description">
+                    ${suggestion.description || ''}
+                  </div>
+                  <div class="search-item-preview">
+                    ${img}
+                  </div>
+                </div>
+              `;
+              return html;
+            }
+          }
+        }]).on('autocomplete:selected', function(event, suggestion) {
+          window.location.href = offsetURL(suggestion.path);
+        });
+        // remove inline display style on autocompleter (we want to
+        // manage responsive display via css)
+        $('.algolia-autocomplete').css("display", "");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+  });
+
+  </script>
+
+  <style type="text/css">
+
+  .nav-search {
+    font-size: x-small;
+  }
+
+  /* Algolioa Autocomplete */
+
+  .algolia-autocomplete {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: sub;
+    background-color: white;
+    color: black;
+    padding: 6px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    border-radius: 6px;
+    border: 1px #0F2E3D solid;
+    width: 180px;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-nav .algolia-autocomplete {
+      display: none;
+      visibility: hidden;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete {
+      display: inline-block;
+      visibility: visible;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+      margin-left: 0;
+      width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 90%;
+    outline: none;
+    border: none;
+  }
+
+  .algolia-autocomplete .aa-hint {
+    color: #999;
+  }
+  .algolia-autocomplete .aa-dropdown-menu {
+    width: 550px;
+    max-height: 70vh;
+    overflow-x: visible;
+    overflow-y: scroll;
+    padding: 5px;
+    margin-top: 3px;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #999;
+    border-top: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+    border-bottom: none;
+    margin-bottom: 2px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+    overflow: hidden;
+    font-size: 0.8em;
+    line-height: 1.4em;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+    font-size: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 5px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+    display: inline-block;
+    overflow: hidden;
+    height: 2.8em;
+    width: 80%;
+    margin-right: 4%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+    display: inline-block;
+    width: 15%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+    height: 3em;
+    width: auto;
+    display: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+    display: initial;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #eee;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  </style>
+
+
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+    font-size: 100%;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  hr.section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+  }
+
+
+  d-byline {
+    border-top: none;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+    border-top: none;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  /* tweak for Pandoc numbered line within distill */
+  d-article pre.numberSource code > span {
+      left: -2em;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // separator
+    var separator = '<hr class="section-separator" style="clear: both"/>';
+    // prepend separator above appendix
+    $('.d-byline').before(separator);
+    $('.d-article').before(separator);
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme, except when numbering line
+    // in code chunk
+    $('pre:not(.numberLines) code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        var author_name = front_matter.authors[i].author
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+  <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
+  <link href="site_libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
+  <script src="site_libs/shareon-1.4.1/shareon.min.js"></script>
+  <link href="site_libs/xaringanExtra-shareagain-0.2.6/shareagain.css" rel="stylesheet" />
+  <script src="site_libs/xaringanExtra-shareagain-0.2.6/shareagain.js"></script>
+  <link href="site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+  <script src="site_libs/tile-view-0.2.6/tile-view.js"></script>
+  <link href="site_libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+  <link href="site_libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+  <script src="site_libs/fitvids-2.1.1/fitvids.min.js"></script>
+  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Part 3","authors":[{"author":"Lincoln Colling","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Reny Baykova","authorURL":"#","affiliation":"Canvas site","affiliationURL":"https://canvas.sussex.ac.uk/courses/26267","orcidID":""}]}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="index.html" class="title">Matlab</a>
+</div>
+<div class="nav-right">
+<a href="https://canvas.sussex.ac.uk/courses/26267">Canvas</a>
+<a href="cheatsheet.html">Cheat sheet</a>
+<a href="assessment.html">Assessment</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Course sections
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<span class="nav-dropdown-header">Part I</span>
+<a href="part1.html#finding-our-way-around">Finding our way around</a>
+<a href="part1.html#basic-syntax-and-data-structures">Basic syntax</a>
+<span class="nav-dropdown-header">Part II</span>
+<a href="part2.html#scripts">Scripts</a>
+<a href="part2.html#functions">Functions</a>
+<a href="part2.html#flow-control-and-loops">Flow control and loops</a>
+<span class="nav-dropdown-header">Part III</span>
+<a href="part3.html#introduction-to-ptb">Introduction to PTB</a>
+<a href="part3.html#the-assessment">The assesssment</a>
+<span class="nav-dropdown-header">Part IV</span>
+<a href="part4.html#reading-and-writing-data">Reading and writing data</a>
+<a href="part4.html">Time to work on the assessment</a>
+</div>
+</div>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Part 3</h1>
+<p class="subtitle"><code>Matlab</code></p>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+
+</div>
+
+<div class="d-byline">
+  
+  true
+  
+,   
+  true
+  
+
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#introduction-to-ptb" id="toc-introduction-to-ptb">Introduction to <code>PTB</code></a></li>
+<li><a href="#the-assessment" id="toc-the-assessment">The assessment</a></li>
+</ul>
+</nav>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h1 id="introduction-to-ptb">Introduction to <code>PTB</code></h1>
+<p>In this section, we’ll cover the basics of <code>PsychToolbox</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="shareagain" style="min-width:300px;margin:1em auto;" data-exeternal="1">
+<iframe src="slides/part3_0/index.html" width="1200" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
+<script>fitvids('.shareagain', {players: 'iframe'});</script>
+</div>
+</div>
+<p><br />
+</p>
+<p>In the following set of exercises, we’ll build up a simple experiment.</p>
+<p>This first step is the set-up phase.</p>
+<p>The set-up phase will include several steps. For example, you may need to:</p>
+<ul>
+<li><p>Generate or enter a unique code for each participant:</p></li>
+<li><p>Determine which keyboard will be used for collecting responses
+(<code>GetKeyboardIndices</code>)</p></li>
+<li><p>Determine what the stimuli will be, and load them up into a structure (which
+you’ll loop over in the <em>main loop</em>).</p></li>
+<li><p>Determine which screen will be used for displaying the stimuli
+(<code>Screen('Screens')</code>).</p></li>
+<li><p>Open up a window where you’ll show the stimuli/instructions to the participant
+(<code>Screen('OpenWindow')</code> or <code>PsychImaging('OpenWindow')</code>)</p></li>
+<li><p>Show some instructions on the screen so that the participant knows what
+to do</p></li>
+</ul>
+<h4 class="ex1" id="ex">Ex</h4>
+<p>To determine which keyboard to use, we’ll use the <code>GetKeyboardIndices</code> function.</p>
+<p><snippet code="[devices, names] = GetKeyboardIndices"></snippet></p>
+<p>Using this, you’ll be able to find the <strong>code</strong> for the keyboard you want to
+use.</p>
+<h4 class="ex1" id="ex-1">Ex</h4>
+<p>Next, we’ll determine which screen to use. We can use <code>Screen('Screens')</code> to do
+this.</p>
+<p><snippet code="ScreenNumbers = Screen('Screens')"></snippet></p>
+<p>If you only have one monitor plugged in, then you’ll only have one number;
+otherwise you’ll have two or more.</p>
+<h4 class="ex1" id="ex-2">Ex</h4>
+<p>So far, we’ve been typing commands into the command window, but we’ll want
+to put them all in a script. Let’s create a script to hold our task.</p>
+<p>Create a new script and copy the above commands into it. In case we have
+multiple keyboards and/or multiple monitors, we’ll add a few more lines of
+code to hold the indices of our primary monitor and primary keyboard.</p>
+<p><snippet code="[devices, names] = GetKeyboardIndices; 
+ScreenNumbers = Screen('Screens');
+
+% now create two new variables that will take the values you want 
+% from the variables the first two lines created
+% we'll use `min`, which takes the lowest number from a vector
+
+SCREEN_TO_USE = min(ScreenNumbers); % use the primary display
+DEVICE_TO_USE = min(devices); % use the primary keyboard"></code></p>
+<h4 class="ex1" id="ex-3">Ex</h4>
+<p>The next step is to create a unique subject code. We have a few options here.</p>
+<p>The easiest approach would be to use the <code>input</code> function to get the
+experimenter to enter a subject code. For this, we could use something like the
+code below.</p>
+<p><snippet code="subjectID = input('Enter a subject id: ', 's')"></snippet></p>
+<p>You could also use the <code>input</code> function to get the experimenter to enter any
+other information that might be important.</p>
+<h4 class="ex1" id="ex-4">Ex</h4>
+<p>The next thing we could do is use the subjectID to construct a <strong>filename</strong> for
+our data file. We can use <a href="https://matlab.mindsci.net/cheatsheet.html#concatenating-variables"><em>string
+concatenation</em></a>
+to do this. For example, we could try something like this:</p>
+<p><snippet code="filename = [subjectID, '.csv']"></snippet></p>
+<p>Now that we have a filename, we could, if we wanted to, check whether this file
+already exists. We could use something like the snippet below to do this.</p>
+<p><snippet code="if exist(filename,'file') == 2; % function outputs 2 if a file exists
+  error('file exists'); % throw an error!
+end"></p>
+<p>What this code does is it produces an error and stops the code running if the
+file already exists. If the file doesn’t already exist, then it proceeds
+without doing anything.</p>
+<p>We can add our subject ID generating code to our script now.</p>
+<h4 class="ex1" id="ex-5">Ex</h4>
+<p>The next thing we’ll do is set up our trial structure.</p>
+<p>Our task will be a word discrimination task where participants will press one
+key when they see the word “DOG” and another key when they see the word “CAT”.</p>
+<p>For each trial, we’ll need to know the following information:</p>
+<ol type="1">
+<li><p>The stimulus that will be presented</p></li>
+<li><p>The expected response</p></li>
+</ol>
+<p>And we’ll need to be able to store:</p>
+<ol start="3" type="1">
+<li><p>The actual response</p></li>
+<li><p>The reaction time.</p></li>
+</ol>
+<p>We might also want to store other information, like accuracy, if we’re going
+to need it for our analysis.</p>
+<p>I recommend writing a function to generate your trial structure. Here’s an
+example of what that function might look like for our ‘DOG’/‘CAT’ task.</p>
+<p><span class="a_snippet"> <snippet code="function [trialTable] = MakeTrials&#10;&#10;% make a cell array {&#39;DOG&#39;, &#39;CAT&#39;} &#10;% and then repeat that 5 times&#10;&#10;stimuli = repmat({&#39;DOG&#39;,&#39;CAT&#39;},1,5)&#10;&#10;% shuffle the order!&#10;stimuli = Shuffle(stimuli);&#10;&#10;% through the stimuli &#10;for i = 1 : length(stimuli)&#10;    this_stimulus = stimuli{i} &#10;&#10;    if strcmp(this_stimulus, &#39;CAT&#39;)&#10;        % the corect reponse is &#39;c&#39;&#10;        this_correct = KbName(&#39;c&#39;)&#10;&#10;    elseif strcmp(this_stimulus,&#39;DOG&#39;)&#10;        % the correct reponse is &#39;d&#39;&#10;        this_correct = KbName(&#39;d&#39;)&#10;    end&#10;&#10;    % make an arrary of the correct &#10;    % responses&#10;    responses(i) = this_correct;&#10;&#10;end&#10;&#10;&#10;% create an empty struct&#10;trialTable = struct;&#10;&#10;% loop through and fill the struct&#10;for i = 1 : length(responses)&#10;    trialTable(i).Stimulus = stimuli{i}&#10;    trialTable(i).CorrectReponse = responses(i)&#10;    trialTable(i).Response = [] % will hold the response &#10;    trialTable(i).RT = [] % will hold the RT&#10;end"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,ZnVuY3Rpb24gW3RyaWFsVGFibGVdID0gTWFrZVRyaWFscwoKJSBtYWtlIGEgY2VsbCBhcnJheSB7J0RPRycsICdDQVQnfSAKJSBhbmQgdGhlbiByZXBlYXQgdGhhdCA1IHRpbWVzCgpzdGltdWxpID0gcmVwbWF0KHsnRE9HJywnQ0FUJ30sMSw1KQoKJSBzaHVmZmxlIHRoZSBvcmRlciEKc3RpbXVsaSA9IFNodWZmbGUoc3RpbXVsaSk7CgolIHRocm91Z2ggdGhlIHN0aW11bGkgCmZvciBpID0gMSA6IGxlbmd0aChzdGltdWxpKQogICAgdGhpc19zdGltdWx1cyA9IHN0aW11bGl7aX0gCgogICAgaWYgc3RyY21wKHRoaXNfc3RpbXVsdXMsICdDQVQnKQogICAgICAgICUgdGhlIGNvcmVjdCByZXBvbnNlIGlzICdjJwogICAgICAgIHRoaXNfY29ycmVjdCA9IEtiTmFtZSgnYycpCgogICAgZWxzZWlmIHN0cmNtcCh0aGlzX3N0aW11bHVzLCdET0cnKQogICAgICAgICUgdGhlIGNvcnJlY3QgcmVwb25zZSBpcyAnZCcKICAgICAgICB0aGlzX2NvcnJlY3QgPSBLYk5hbWUoJ2QnKQogICAgZW5kCgogICAgJSBtYWtlIGFuIGFycmFyeSBvZiB0aGUgY29ycmVjdCAKICAgICUgcmVzcG9uc2VzCiAgICByZXNwb25zZXMoaSkgPSB0aGlzX2NvcnJlY3Q7CgplbmQKCgolIGNyZWF0ZSBhbiBlbXB0eSBzdHJ1Y3QKdHJpYWxUYWJsZSA9IHN0cnVjdDsKCiUgbG9vcCB0aHJvdWdoIGFuZCBmaWxsIHRoZSBzdHJ1Y3QKZm9yIGkgPSAxIDogbGVuZ3RoKHJlc3BvbnNlcykKICAgIHRyaWFsVGFibGUoaSkuU3RpbXVsdXMgPSBzdGltdWxpe2l9CiAgICB0cmlhbFRhYmxlKGkpLkNvcnJlY3RSZXBvbnNlID0gcmVzcG9uc2VzKGkpCiAgICB0cmlhbFRhYmxlKGkpLlJlc3BvbnNlID0gW10gJSB3aWxsIGhvbGQgdGhlIHJlc3BvbnNlIAogICAgdHJpYWxUYWJsZShpKS5SVCA9IFtdICUgd2lsbCBob2xkIHRoZSBSVAplbmQK" download="MakeTrials.m">Download MakeTrials.m</a> </span> </span></p>
+<p>The trial table is stored in a <code>struct</code> (see <a href="https://matlab.mindsci.net/cheatsheet.html#defining-variables">the
+cheet-sheat</a> and
+<a href="https://matlab.mindsci.net/slides/part1_1/index.html#22">Part 1</a> for a
+refresher on <code>struct</code>s). Using a <code>struct</code> is easier than storing information in
+a cell array or matrix because we can use the field names to access the
+information we want.</p>
+<h4 class="ex1" id="ex-6">Ex</h4>
+<p>We now have our trial structure, and we have the information about which screen
+and keyboard we’ll use. Now let’s open up a screen!</p>
+<p>Since we’re testing our code out, we’ll open a small screen in the corner, so we
+can still see our code. We’ll be able to change it later. To open up a small
+screen, we can use the following code:</p>
+<p><snippet code="[w, rect] = PsychImaging('OpenWindow', SCREEN_TO_USE, [], [0 0 800 600])"></p>
+<p>If you want to close the screen down, run <code>sca</code> at the command window.</p>
+<h4 class="ex1" id="ex-7">Ex</h4>
+<p>Now that we have a screen open, let’s add some text to it! This text will be the
+instructions given to the participant.</p>
+<p>We’ll use <code>Screen('TextSize'...)</code> to set the size of the text, and
+<code>DrawFormattedText</code> to draw the text.</p>
+<p><snippet code="Screen('TextSize',w,24); 
+DrawFormattedText(w,['Push d if you see the word DOG'...
+  ' and push c if you see the word CAT'],'center','center',[],60)"></snippet></p>
+<p>But remember, you won’t see anything until you <strong>flip</strong> the screen.</p>
+<p><snippet code="Screen('Flip',w)"></code></p>
+<h4 class="ex1" id="ex-8">Ex</h4>
+<p>We don’t want to show the instructions forever. So let’s wait until a key is
+pressed, and then we’ll clear the screen.</p>
+<p><snippet code="KbWait(-1,2); % wait for a key press
+
+Screen('Flip',w); % clear the screen"></snippet></p>
+<h4 class="ex1" id="ex-9">Ex</h4>
+<p>We’re now on to the main part of the experiment. In this part, we’ll loop over
+the trials and display the words ‘DOG’ or ‘CAT’ on the appropriate trials.</p>
+<p>On each iteration of the loop, we’ll have to do the following:</p>
+<ol type="1">
+<li><p>Select a stimulus from the trial structure</p></li>
+<li><p>Show a fixation cross</p></li>
+<li><p>Display the stimulus</p></li>
+<li><p>Collect a response.</p></li>
+</ol>
+<p>But before we do all this, we’ll need to know how many times to loop. We’ll use
+the <code>size</code>/<code>length</code> function to set up our loop. We could do something like the
+following:</p>
+<p><snippet code="for t = 1 : length(trialTable)
+
+  % all the rest of the code goes in here
+
+end"></p>
+<ul>
+<li><p>On each iteration of the loop, the value of <code>t</code> will be set to <code>1</code>, then <code>2</code>,
+then <code>3</code>, then <code>4</code>, until it reaches the value defined by
+<code>size(trialTable,1)</code> (i.e., <code>40</code>)</p></li>
+<li><p>We’ll use the value of <code>t</code> to select a stimulus from the <code>trialTable</code>, and to
+input values (e.g., response times) into the <code>trialTable</code></p></li>
+</ul>
+<h4 class="ex1" id="ex-10">Ex</h4>
+<p>Before we can start putting code inside the main trial loop, we’ll still need
+to add a little more code which will help us to collect responses.</p>
+<p>We’ll use <code>KbQueueCheck()</code> to collect the responses because we want to have
+accurate timing.</p>
+<p>The steps for using <code>KbQueueCheck()</code> (from the slides) are:</p>
+<ol type="1">
+<li><p>Create the queue: <code>KbQueueCreate(DEVICE_TO_USE)</code></p></li>
+<li><p>Start the queue: <code>KbQueueStart(DEVICE_TO_USE)</code></p></li>
+<li><p>Flush the queue: <code>KbQueueFlush(DEVICE_TO_USE)</code></p></li>
+<li><p>Check the queue: <code>KbQueueCheck(DEVICE_TO_USE)</code></p></li>
+<li><p>Stop the queue: <code>KbQueueStop(DEVICE_TO_USE)</code></p></li>
+<li><p>Release the queue: <code>KbQueueRelease(DEVICE_TO_USE)</code></p></li>
+</ol>
+<p>Steps 1 &amp; 2 will be before the loop, 3 &amp; 4 inside the loop, and 5 &amp; 6 after the
+loop.</p>
+<p>Add this code together with our loop will look something like this</p>
+<p><snippet code="KbQueueCreate(DEVICE_TO_USE)
+KbQueueStart(DEVICE_TO_USE)
+
+for t = 1 : size(trialTable,1)
+
+% The code for the trial will go here
+
+end
+
+KbQueueStop(DEVICE_TO_USE); 
+KbQueueRelease(DEVICE_TO_USE);"></snippet></p>
+<h4 class="ex1" id="ex-11">Ex</h4>
+<p>Now we can start with the main trial code. One thing we might want to do is to
+present a fixation cross. Let’s write a function to do this because that’ll make
+our life easier.</p>
+<p><span class="a_snippet"> <snippet code="function DrawFixationCross(windowPtr,rect,crossLength,crossColor,crossWidth)&#10;&#10;[xCenter,yCenter] = RectCenter(rect);&#10;&#10;if nargin == 2&#10;    crossLength  = 10;&#10;    crossWidth = crossLength;&#10;    crossColor = [0 0 0];&#10;end&#10;&#10;Screen(&#39;DrawLine&#39;,windowPtr,crossColor,...&#10;    xCenter, round(yCenter - (crossLength/2)),...&#10;    xCenter, round(yCenter + (crossLength/2)),2)&#10;&#10;Screen(&#39;DrawLine&#39;,windowPtr,crossColor,...&#10;    round(xCenter - (crossWidth/2)), yCenter,...&#10;    round(xCenter + (crossWidth/2)), yCenter,2)"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,ZnVuY3Rpb24gRHJhd0ZpeGF0aW9uQ3Jvc3Mod2luZG93UHRyLHJlY3QsY3Jvc3NMZW5ndGgsY3Jvc3NDb2xvcixjcm9zc1dpZHRoKQoKW3hDZW50ZXIseUNlbnRlcl0gPSBSZWN0Q2VudGVyKHJlY3QpOwoKaWYgbmFyZ2luID09IDIKICAgIGNyb3NzTGVuZ3RoICA9IDEwOwogICAgY3Jvc3NXaWR0aCA9IGNyb3NzTGVuZ3RoOwogICAgY3Jvc3NDb2xvciA9IFswIDAgMF07CmVuZAoKU2NyZWVuKCdEcmF3TGluZScsd2luZG93UHRyLGNyb3NzQ29sb3IsLi4uCiAgICB4Q2VudGVyLCByb3VuZCh5Q2VudGVyIC0gKGNyb3NzTGVuZ3RoLzIpKSwuLi4KICAgIHhDZW50ZXIsIHJvdW5kKHlDZW50ZXIgKyAoY3Jvc3NMZW5ndGgvMikpLDIpCgpTY3JlZW4oJ0RyYXdMaW5lJyx3aW5kb3dQdHIsY3Jvc3NDb2xvciwuLi4KICAgIHJvdW5kKHhDZW50ZXIgLSAoY3Jvc3NXaWR0aC8yKSksIHlDZW50ZXIsLi4uCiAgICByb3VuZCh4Q2VudGVyICsgKGNyb3NzV2lkdGgvMikpLCB5Q2VudGVyLDIp" download="DrawFixationCross.m">Download DrawFixationCross.m</a> </span> </span></p>
+<h4 class="ex1" id="ex-12">Ex</h4>
+<p>Now let’s add some code that selects the stimulus from the trialTable.</p>
+<p>Something like the following will do the trick:</p>
+<p><snippet code="thisStimulus = trialTable(t).Stimulus"></p>
+<p>Next, we’ll use our <code>DrawFixationCross</code> function to draw a fixation cross.</p>
+<p><snippet code="DrawFixationCross(w,rect) % draw a fixation cross
+"></snippet></p>
+<p>Then we’ll flip the screen to show the cross:</p>
+<p><snippet code="Screen('Flip',w) % show it"></snippet></p>
+<p>Then we can pause for some amount of time before showing the actual stimulus.
+You could vary this from trial to trial (this could be important if
+this was an experiment for EEG), but we’ll keep it simple and pause for 0.5
+seconds.</p>
+<p><snippet code="WaitSecs(.5)"></snippet></p>
+<h4 class="ex1" id="ex-13">Ex</h4>
+<p>The next step of the process is to show the stimulus and record the response
+time. We’ll start by adding the stimulus to be the back buffer, but we won’t
+show/flip it yet.</p>
+<p><snippet code="DrawFormattedText(w,thisStimulus,'center','center',[],60) % draw the stimulus"></snippet></p>
+<p>Then we’ll flush the keyboard queue to make sure there aren’t any key presses in
+there.</p>
+<p><snippet code="KbQueueFlush(DEVICE_TO_USE) % flush the kb queue"></snippet></p>
+<p>Now we can flip the screen and measure the time of the flip.</p>
+<p><snippet code="stimulusOnset = Screen('Flip',w) % show the stimulus 
+% and record the time it was shown"></snippet></p>
+<h4 class="ex1" id="ex-14">Ex</h4>
+<p>Now that the stimulus is on the screen, we can start checking for key presses. I
+like to write a little function to collect responses because it’s a bit of code
+that you’ll write over and over each time you program up a new experiment.</p>
+<p>Here’s an example of what that might look like:</p>
+<p><span class="a_snippet"> <snippet code="function [pressTime,keyCode] = CollectResponses(DEVICE)&#10;&#10;    pressed = 0;&#10;&#10;    while pressed == 0&#10;        [pressed, firstpress] = KbQueueCheck(DEVICE);&#10;    end&#10;&#10;    % Get the key name and rt&#10;&#10;    keyCode = find(firstpress &gt; 0);&#10;    pressTime = firstpress(keyCode);&#10;end"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,ZnVuY3Rpb24gW3ByZXNzVGltZSxrZXlDb2RlXSA9IENvbGxlY3RSZXNwb25zZXMoREVWSUNFKQoKICAgIHByZXNzZWQgPSAwOwoKICAgIHdoaWxlIHByZXNzZWQgPT0gMAogICAgICAgIFtwcmVzc2VkLCBmaXJzdHByZXNzXSA9IEtiUXVldWVDaGVjayhERVZJQ0UpOwogICAgZW5kCgogICAgJSBHZXQgdGhlIGtleSBuYW1lIGFuZCBydAoKICAgIGtleUNvZGUgPSBmaW5kKGZpcnN0cHJlc3MgPiAwKTsKICAgIHByZXNzVGltZSA9IGZpcnN0cHJlc3Moa2V5Q29kZSk7CmVuZAo=" download="CollectResponses.m">Download CollectResponses.m</a> </span> </span></p>
+<p>The code in this function will carry on running over and over until a key press
+is detected. Following the call to this function, we’ll call another <code>Flip</code>
+to clear the screen.</p>
+<p><snippet code="% Take away the stimulus after a response
+Screen('Flip',w);"></snippet></p>
+<h4 class="ex1" id="ex-15">Ex</h4>
+<p>Next, we’ll calculate the reaction time and record it in our <code>trialTable</code>.</p>
+<ul>
+<li><p>The <code>CollectResponses</code> functions outputs a variable called <code>pressTime</code> that
+we’ll use to calculate the reaction time.</p>
+<ul>
+<li><code>RT = pressTime - stimulusOnset</code></li>
+</ul></li>
+<li><p>And it also outputs a variable called <code>keyCode</code>, which will tell you which
+button was pressed.</p></li>
+</ul>
+<p>We can add all this to our experiment script.</p>
+<p><snippet code="% Store the responses 
+trialTable(t).Response = keyCode;
+    
+trialTable(t).RT = pressTime - stimulusOnsent;
+    
+% Wait .5 seconds before the next trial
+    
+WaitSecs(.5)"></snippet></p>
+<p>The responses are added as new fields in the <code>trialTable</code> <code>struct</code>.</p>
+<h4 class="ex1" id="ex-16">Ex</h4>
+<p>We now have enough for a basic experiment. But will still need to add a few more
+things. The first is to save the trialTable. We can save it as a <code>.csv</code> file.</p>
+<p>Because the built-in functions in <code>Matlab</code> can’t write out <code>.csv</code> files
+with column headings and mixed data types, we’ll use this custom function
+to write the <code>trialTable</code> <code>struct</code> to a <code>.csv</code> file.</p>
+<p>We can use this function to write out the data into a <code>.csv</code> file.</p>
+<p><span class="a_snippet"> <snippet code="% writeStruct2csv&#10;% Function write a struct to a csv file with column headings&#10;%&#10;% Usage:&#10;% writeStruct2csv(filename, variable)&#10;%&#10;% Inputs:&#10;% filename : the file name of the csv file to write&#10;% variable : the struct to be written to file&#10;%&#10;% Outputs:&#10;% None&#10;%&#10;% Example usage:&#10;%&#10;% writeStruct2csv(&#39;my_data.csv&#39;, trialTable)&#10;&#10;function writeStruct2csv(filename, variable)&#10;&#10;  header = fieldnames(variable)&#39;;&#10;  data = squeeze(horzcat(struct2cell(variable)))&#39;;&#10;&#10;&#10;  for c = 1 : size(data, 1)&#10;    for r = 1 : size(data, 2)&#10;      data{c,r} = as_num(data{c,r});&#10;    end&#10;  end&#10;&#10;&#10;  to_write = [header; data];&#10;&#10;&#10;&#10;&#10;  fid = fopen(filename,&#39;w&#39;);&#10;  for i = 1:size(to_write,1)&#10;    line = to_write(i,:);&#10;    line = cell2line(line);&#10;    fprintf(fid, &#39;%s\n&#39;, line);&#10;&#10;  end&#10;&#10;end&#10;&#10;function numstr = as_num(numstr)&#10;  if isnumeric(numstr)&#10;    numstr = num2str(numstr);&#10;  end&#10;end&#10;&#10;function output = cell2line(line)&#10;&#10;  output = &#39;&#39;;&#10;  for i = line(1:end-1)&#10;    output = [output, i{1},&#39;,&#39;];&#10;  end&#10;  value = line{end};&#10;  output = [output, value];&#10;end"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSB3cml0ZVN0cnVjdDJjc3YKJSBGdW5jdGlvbiB3cml0ZSBhIHN0cnVjdCB0byBhIGNzdiBmaWxlIHdpdGggY29sdW1uIGhlYWRpbmdzCiUKJSBVc2FnZToKJSB3cml0ZVN0cnVjdDJjc3YoZmlsZW5hbWUsIHZhcmlhYmxlKQolCiUgSW5wdXRzOgolIGZpbGVuYW1lIDogdGhlIGZpbGUgbmFtZSBvZiB0aGUgY3N2IGZpbGUgdG8gd3JpdGUKJSB2YXJpYWJsZSA6IHRoZSBzdHJ1Y3QgdG8gYmUgd3JpdHRlbiB0byBmaWxlCiUKJSBPdXRwdXRzOgolIE5vbmUKJQolIEV4YW1wbGUgdXNhZ2U6CiUKJSB3cml0ZVN0cnVjdDJjc3YoJ215X2RhdGEuY3N2JywgdHJpYWxUYWJsZSkKCmZ1bmN0aW9uIHdyaXRlU3RydWN0MmNzdihmaWxlbmFtZSwgdmFyaWFibGUpCgogIGhlYWRlciA9IGZpZWxkbmFtZXModmFyaWFibGUpJzsKICBkYXRhID0gc3F1ZWV6ZShob3J6Y2F0KHN0cnVjdDJjZWxsKHZhcmlhYmxlKSkpJzsKCgogIGZvciBjID0gMSA6IHNpemUoZGF0YSwgMSkKICAgIGZvciByID0gMSA6IHNpemUoZGF0YSwgMikKICAgICAgZGF0YXtjLHJ9ID0gYXNfbnVtKGRhdGF7YyxyfSk7CiAgICBlbmQKICBlbmQKCgogIHRvX3dyaXRlID0gW2hlYWRlcjsgZGF0YV07CgoKCgogIGZpZCA9IGZvcGVuKGZpbGVuYW1lLCd3Jyk7CiAgZm9yIGkgPSAxOnNpemUodG9fd3JpdGUsMSkKICAgIGxpbmUgPSB0b193cml0ZShpLDopOwogICAgbGluZSA9IGNlbGwybGluZShsaW5lKTsKICAgIGZwcmludGYoZmlkLCAnJXNcbicsIGxpbmUpOwoKICBlbmQKCmVuZAoKZnVuY3Rpb24gbnVtc3RyID0gYXNfbnVtKG51bXN0cikKICBpZiBpc251bWVyaWMobnVtc3RyKQogICAgbnVtc3RyID0gbnVtMnN0cihudW1zdHIpOwogIGVuZAplbmQKCmZ1bmN0aW9uIG91dHB1dCA9IGNlbGwybGluZShsaW5lKQoKICBvdXRwdXQgPSAnJzsKICBmb3IgaSA9IGxpbmUoMTplbmQtMSkKICAgIG91dHB1dCA9IFtvdXRwdXQsIGl7MX0sJywnXTsKICBlbmQKICB2YWx1ZSA9IGxpbmV7ZW5kfTsKICBvdXRwdXQgPSBbb3V0cHV0LCB2YWx1ZV07CmVuZAo=" download="writeStruct2csv.m">Download writeStruct2csv.m</a> </span> </span></p>
+<h4 class="ex1" id="ex-17">Ex</h4>
+<p>The last thing is to close down the <code>PsychToolbox</code> screen. The last line of the
+experiment should be:</p>
+<p><snippet code="sca"></snippet></p>
+<h3 id="an-example-experiment">An example experiment</h3>
+<p><span class="a_snippet"> <snippet code="&#10;[devices, names] = GetKeyboardIndices;&#10;ScreenNumbers = Screen(&#39;Screens&#39;);&#10;&#10;% now create two new variables that will take the values you want from &#10;%&#10;% the variables the first two lines created&#10;&#10;SCREEN_TO_USE = min(ScreenNumbers); % use the primary display&#10;DEVICE_TO_USE = min(devices); % use the primary keyboard&#10;&#10;% Ask for a Subject ID&#10;subjectID = input(&#39;Enter a subject id: &#39;, &#39;s&#39;)&#10;&#10;% Make a file name out of the subject ID with the extension &#39;.csv&#39;&#10;filename = [subjectID, &#39;.csv&#39;]&#10;&#10;if exist(filename,&#39;file&#39;) == 2; % function outputs 2 if a file exists&#10;  error(&#39;file exists&#39;); % throw an error!&#10;end&#10;&#10;&#10;Screen(&#39;Preference&#39;, &#39;SkipSyncTests&#39;, 1);&#10;&#10;[w,rect] = PsychImaging(&#39;OpenWindow&#39;,SCREEN_TO_USE,[],[0 0 800 600]);&#10;&#10;&#10;&#10;Screen(&#39;TextSize&#39;,w,24); &#10;DrawFormattedText(w,[&#39;Push d if you see the word DOG&#39;,...&#10;    &#39;and push c if you see the word CAT&#39;],&#39;center&#39;,&#39;center&#39;,[],60)&#10;&#10;Screen(&#39;Flip&#39;,w)&#10;&#10;KbWait(-1,2); % wait for a key press&#10;&#10;Screen(&#39;Flip&#39;,w); % clear the screen&#10;&#10;trialTable = MakeTrials;&#10;&#10;KbQueueCreate(DEVICE_TO_USE)&#10;KbQueueStart(DEVICE_TO_USE)&#10;&#10;for t = 1 : size(trialTable,2)&#10;    &#10;    thisStimulus = trialTable(t).Stimulus; % select a stimulus&#10;    &#10;    DrawFixationCross(w,rect) % draw a fixation cross&#10;    &#10;    Screen(&#39;Flip&#39;,w) % show it&#10;    &#10;    WaitSecs(.5) % pause for .5 seconds&#10;    &#10;    % draw the stimulus&#10;    DrawFormattedText(w,thisStimulus,&#39;center&#39;,&#39;center&#39;,[],60) &#10;    &#10;    KbQueueFlush(DEVICE_TO_USE) % flush the kb queue&#10;    &#10;    stimulusOnsent = Screen(&#39;Flip&#39;,w) % show the stimulus&#10;    % and record the time it was shown&#10;    &#10;    [pressTime,keyCode] = CollectResponses(DEVICE_TO_USE)&#10;&#10;    &#10;    % Take away the stimulus after a response&#10;    Screen(&#39;Flip&#39;,w);&#10;   &#10;    % Store the responses &#10;    trialTable(t).Response = keyCode;&#10;    &#10;    trialTable(t).RT = pressTime - stimulusOnsent;&#10;    &#10;    % Wait .5 seconds before the next trial&#10;    &#10;    WaitSecs(.5)&#10;    &#10;    &#10;end&#10;&#10;KbQueueStop(DEVICE_TO_USE);&#10;KbQueueRelease(DEVICE_TO_USE);&#10;writeStruct2csv(filename, trialTable)&#10;sca&#10;"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,CltkZXZpY2VzLCBuYW1lc10gPSBHZXRLZXlib2FyZEluZGljZXM7ClNjcmVlbk51bWJlcnMgPSBTY3JlZW4oJ1NjcmVlbnMnKTsKCiUgbm93IGNyZWF0ZSB0d28gbmV3IHZhcmlhYmxlcyB0aGF0IHdpbGwgdGFrZSB0aGUgdmFsdWVzIHlvdSB3YW50IGZyb20gCiUKJSB0aGUgdmFyaWFibGVzIHRoZSBmaXJzdCB0d28gbGluZXMgY3JlYXRlZAoKU0NSRUVOX1RPX1VTRSA9IG1pbihTY3JlZW5OdW1iZXJzKTsgJSB1c2UgdGhlIHByaW1hcnkgZGlzcGxheQpERVZJQ0VfVE9fVVNFID0gbWluKGRldmljZXMpOyAlIHVzZSB0aGUgcHJpbWFyeSBrZXlib2FyZAoKJSBBc2sgZm9yIGEgU3ViamVjdCBJRApzdWJqZWN0SUQgPSBpbnB1dCgnRW50ZXIgYSBzdWJqZWN0IGlkOiAnLCAncycpCgolIE1ha2UgYSBmaWxlIG5hbWUgb3V0IG9mIHRoZSBzdWJqZWN0IElEIHdpdGggdGhlIGV4dGVuc2lvbiAnLmNzdicKZmlsZW5hbWUgPSBbc3ViamVjdElELCAnLmNzdiddCgppZiBleGlzdChmaWxlbmFtZSwnZmlsZScpID09IDI7ICUgZnVuY3Rpb24gb3V0cHV0cyAyIGlmIGEgZmlsZSBleGlzdHMKICBlcnJvcignZmlsZSBleGlzdHMnKTsgJSB0aHJvdyBhbiBlcnJvciEKZW5kCgoKU2NyZWVuKCdQcmVmZXJlbmNlJywgJ1NraXBTeW5jVGVzdHMnLCAxKTsKClt3LHJlY3RdID0gUHN5Y2hJbWFnaW5nKCdPcGVuV2luZG93JyxTQ1JFRU5fVE9fVVNFLFtdLFswIDAgODAwIDYwMF0pOwoKCgpTY3JlZW4oJ1RleHRTaXplJyx3LDI0KTsgCkRyYXdGb3JtYXR0ZWRUZXh0KHcsWydQdXNoIGQgaWYgeW91IHNlZSB0aGUgd29yZCBET0cnLC4uLgogICAgJ2FuZCBwdXNoIGMgaWYgeW91IHNlZSB0aGUgd29yZCBDQVQnXSwnY2VudGVyJywnY2VudGVyJyxbXSw2MCkKClNjcmVlbignRmxpcCcsdykKCktiV2FpdCgtMSwyKTsgJSB3YWl0IGZvciBhIGtleSBwcmVzcwoKU2NyZWVuKCdGbGlwJyx3KTsgJSBjbGVhciB0aGUgc2NyZWVuCgp0cmlhbFRhYmxlID0gTWFrZVRyaWFsczsKCktiUXVldWVDcmVhdGUoREVWSUNFX1RPX1VTRSkKS2JRdWV1ZVN0YXJ0KERFVklDRV9UT19VU0UpCgpmb3IgdCA9IDEgOiBzaXplKHRyaWFsVGFibGUsMikKICAgIAogICAgdGhpc1N0aW11bHVzID0gdHJpYWxUYWJsZSh0KS5TdGltdWx1czsgJSBzZWxlY3QgYSBzdGltdWx1cwogICAgCiAgICBEcmF3Rml4YXRpb25Dcm9zcyh3LHJlY3QpICUgZHJhdyBhIGZpeGF0aW9uIGNyb3NzCiAgICAKICAgIFNjcmVlbignRmxpcCcsdykgJSBzaG93IGl0CiAgICAKICAgIFdhaXRTZWNzKC41KSAlIHBhdXNlIGZvciAuNSBzZWNvbmRzCiAgICAKICAgICUgZHJhdyB0aGUgc3RpbXVsdXMKICAgIERyYXdGb3JtYXR0ZWRUZXh0KHcsdGhpc1N0aW11bHVzLCdjZW50ZXInLCdjZW50ZXInLFtdLDYwKSAKICAgIAogICAgS2JRdWV1ZUZsdXNoKERFVklDRV9UT19VU0UpICUgZmx1c2ggdGhlIGtiIHF1ZXVlCiAgICAKICAgIHN0aW11bHVzT25zZW50ID0gU2NyZWVuKCdGbGlwJyx3KSAlIHNob3cgdGhlIHN0aW11bHVzCiAgICAlIGFuZCByZWNvcmQgdGhlIHRpbWUgaXQgd2FzIHNob3duCiAgICAKICAgIFtwcmVzc1RpbWUsa2V5Q29kZV0gPSBDb2xsZWN0UmVzcG9uc2VzKERFVklDRV9UT19VU0UpCgogICAgCiAgICAlIFRha2UgYXdheSB0aGUgc3RpbXVsdXMgYWZ0ZXIgYSByZXNwb25zZQogICAgU2NyZWVuKCdGbGlwJyx3KTsKICAgCiAgICAlIFN0b3JlIHRoZSByZXNwb25zZXMgCiAgICB0cmlhbFRhYmxlKHQpLlJlc3BvbnNlID0ga2V5Q29kZTsKICAgIAogICAgdHJpYWxUYWJsZSh0KS5SVCA9IHByZXNzVGltZSAtIHN0aW11bHVzT25zZW50OwogICAgCiAgICAlIFdhaXQgLjUgc2Vjb25kcyBiZWZvcmUgdGhlIG5leHQgdHJpYWwKICAgIAogICAgV2FpdFNlY3MoLjUpCiAgICAKICAgIAplbmQKCktiUXVldWVTdG9wKERFVklDRV9UT19VU0UpOwpLYlF1ZXVlUmVsZWFzZShERVZJQ0VfVE9fVVNFKTsKd3JpdGVTdHJ1Y3QyY3N2KGZpbGVuYW1lLCB0cmlhbFRhYmxlKQpzY2EKCg==" download="MyPTBTask_demo.m">Download MyPTBTask_demo.m</a> </span> </span></p>
+<h3 id="demo-task-files">Demo task files</h3>
+<p>You can download all the files for the demo task by clicking
+<a href="data:application/zip;base64,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" download="here">Download here</a></p>
+<h1 id="the-assessment">The assessment</h1>
+<p>In this final section, we’ll chat briefly about the assessment.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="shareagain" style="min-width:300px;margin:1em auto;" data-exeternal="1">
+<iframe src="slides/part4_1/index.html" width="1200" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
+<script>fitvids('.shareagain', {players: 'iframe'});</script>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<script>
+document.body.onload = build;
+function build (){
+  let scriptTag = document.createElement('script');
+  scriptTag.src = './bundle.js';
+  let cssTag = document.createElement('link');
+  cssTag.rel = 'stylesheet'
+  cssTag.href = 'mystyle.css'
+  document.body.appendChild(scriptTag);
+  document.body.appendChild(cssTag)
+
+
+  
+  }
+let i = 1;
+document.querySelectorAll(".ex0").forEach(x =>{
+  x.innerHTML = "<h4>Exercise 1." + i + "</h4>";
+  i++;
+
+  })
+
+i = 1;
+document.querySelectorAll(".ex1").forEach(x =>{
+  x.innerHTML = "<h4>Exercise 1." + i + "</h4>";
+  i++;
+
+  })
+
+i = 1;
+document.querySelectorAll(".ex2").forEach(x =>{
+  x.innerHTML = "<h4>Exercise 3." + i + "</h4>";
+  i++;
+
+  })
+
+</script>
+</div>
+<!-- vim: set ft=markdown tw=80 spell spelllang=en_gb: -->
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+<p>Advanced Research Methods</p>
+</div>
+<!--/radix_placeholder_navigation_after_body-->
+
+
+</body>
+
+</html>

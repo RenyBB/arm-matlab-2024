@@ -1,0 +1,39 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+
+  ## generate the slides
+  slides:
+    cmds:
+      - fd index.Rmd ./slides -x rmarkdown {} {//}
+    sources:
+      - ./slides/**/*.Rmd
+    generates:
+      - ./slides/**/*.html
+    silent: true
+
+  ## generate the main site html files
+  site:
+    cmds:
+      - R -e "rmarkdown::render_site()"
+    sources:
+      - ./*.Rmd
+    generates:
+      - ./_site/*.html
+    silent: true
+  
+  ## deploy the site to netlify
+  deploy:
+    deps: [slides, site]
+    sources: 
+      - ./_site/**/*
+    run: when_changed
+    cmds:
+      - touch .deployed
+      - netlify deploy --prod --dir=_site
+    generates:
+      - .deployed
+    method: timestamp
+    silent: true
