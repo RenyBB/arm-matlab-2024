@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Functions</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Lincoln Colling, Reny Baykova" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon-1.4.1/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain-0.2.6/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain-0.2.6/shareagain.js"></script>
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Functions
+]
+.subtitle[
+## Reusable code using functions
+]
+.author[
+### Lincoln Colling, Reny Baykova
+]
+
+---
+
+
+&lt;!-- 
+vim: set ft=markdown tw=80 spell spelllang=en_gb:
+vim: set conceallevel=0 foldlevel=1:
+--&gt;
+
+
+
+
+
+
+
+
+
+
+
+# Functions 
+
+So far, we've been using functions that come with `Matlab`, but often we'll
+want to write our own functions.
+
+## &lt;small&gt;What are functions?&lt;/small&gt; 
+
+- Functions work like *mathematical functions*. They transform
+  **inputs**&lt;sup&gt;1&lt;/sup&gt; to **outputs**.
+
+- They’re **self-contained bits** of code with rules for transforming the
+  information.
+
+- Some examples of functions include the `help`, `doc`, `vectcat`, `horzcat`,
+  `randn`, and `strcmp` functions from [Part I](../part1.html).
+
+.footnote[&lt;sup&gt;1&lt;/sup&gt;*Technically*, functions don't need to take inputs or
+produce outputs, but we'll get to that in a while.]
+
+---
+
+## Using functions 
+
+Functions in `Matlab` can take between 0 to *n* inputs and can produce between 0
+and *n* outputs. 
+
+When you specify multiple **inputs** for functions, then they go inside `()`
+after the function name, and are separated by `,`.
+
+When you specify multiple **outputs** for functions, then they go inside `[]`
+before the `=`, and are separated by `,`.
+
+```matlab
+&gt;&gt; x = rand(10, 1); % rand with two inputs and one output
+&gt;&gt; y = rand(10, 1); % rand with two inputs and one output
+&gt;&gt; [rho, pval] = corr(x, y) % corr with two inputs and two outputs
+
+rho =
+
+    0.2682
+
+
+pval =
+
+    0.4537
+```
+
+---
+
+## Why write functions?
+
+One principle that should guide the code you write can be summed up as:
+
+&lt;larger&gt;&lt;u&gt;&lt;strong&gt;D&lt;/strong&gt;&lt;/u&gt;on't &lt;u&gt;&lt;strong&gt;R&lt;/strong&gt;&lt;/u&gt;epeat
+&lt;u&gt;&lt;strong&gt;Y&lt;/strong&gt;&lt;/u&gt;ourself&lt;/larger&gt;
+
+If you find yourself **repeatedly** using a bit of code (i.e., more than twice)
+then you should probably write a function.
+
+Functions allow you to **encapsulate** a bit of code
+
+- The code **inside** a function exists separately from the rest of the code in
+  a script. 
+
+- This means that functions will **always** produce the **same output** if
+  they're given the **same input**.  
+
+---
+
+## Our first function
+
+Let's write a function to work out the **mean** of some numbers:
+
+```matlab
+% work out the mean of some numbers 
+function mean_value = my_mean(input_numbers)
+
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+
+end
+
+```
+
+Check the **help**…
+```matlab
+&gt;&gt; help my_mean
+  work out the mean of some numbers
+```
+
+---
+
+### Taking apart our first function
+
+Our function starts with a comment. This is what is shown when we use `help`.
+
+```matlab
+* % work out the mean of some numbers 
+function mean_value = my_mean(input_numbers)
+
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+
+end
+
+```
+
+---
+
+### Taking apart our first function
+
+Next, we have the **function declaration** which includes the names of the
+**output variables**, the names of the **input variables**, and the **name of
+the function**.
+
+```matlab
+% work out the mean of some numbers 
+*function mean_value = my_mean(input_numbers)
+
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+
+end
+
+```
+
+---
+
+### Taking apart our first function
+
+Then we have the code that does the actual work…
+
+```matlab
+% work out the mean of some numbers 
+function mean_value = my_mean(input_numbers)
+
+* % we'll use length to get the number of items
+* length_of_input = length(input_numbers)
+*
+* % now we'll use sum to add up all the items
+* sum_of_input = sum(input_numbers)
+*
+* % now work out the mean!
+* mean_value = sum_of_input / length_of_input
+
+end
+
+```
+
+Note that this part of the function can only include references to variables
+that were listed as **inputs** or variables that were **created in the
+function** itself
+
+We'll talk more about this when we cover **variable scope**.
+
+---
+
+### Taking apart our first function
+
+Finally, we have an `end` to indicate that this is the **end** of the function.
+
+```matlab
+% work out the mean of some numbers 
+function mean_value = my_mean(input_numbers)
+
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+
+*end
+
+```
+
+---
+
+#### Header comments 
+
+The comments at the start (before the function declaration) are shown when you
+use the `help` command.
+
+Use these to write help for your functions.
+
+Things to include in the help:
+
+- What the function does
+
+- What inputs it needs
+
+- What outputs it produces
+
+```matlab
+% say_hello
+% Function says hello to person 
+% 
+% Usage: 
+% done = say_hello(input_name)
+%
+% Inputs:
+% input_name : a char with a person's name
+%
+% Outputs:
+% done : logical value that indicates that the function was run
+```
+
+---
+
+#### The function declaration 
+
+The **function declaration** indicates that it's a function, and it specifies the
+**name** of the function.
+
+It also specifies any **inputs** the function needs or any **outputs** the
+function produces.
+
+```matlab
+function [ouput1, output2] = function_name(input1, input2, input3)
+
+```
+
+- In the example above, values 1–3 will be accessible in variables called
+  `input1`, `input2`, and `input3`
+
+- Whatever values are assigned to `output1` and `output2` by the time the
+  function finishes running will be produced as outputs&lt;sup&gt;1&lt;/sup&gt; 
+
+- The function with `function_name` should be stored in a file called
+  `function_name.m`
+
+.footnote[&lt;sup&gt;1&lt;/sup&gt;Note, `Matlab` does not use a `return` statement like most
+other languages]
+
+---
+
+#### The function body
+
+The **body of the function** is where you put the code that does the
+work.
+
+- Only values passed in as **inputs** or variables **created inside** the
+  function body will be accessible.
+
+- You can't access variables in the **workspace** or write to variables in the
+  **workspace**
+
+```matlab
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+```
+
+The variable `input_numbers` is an input in the **function declaration**
+
+`sum_of_inputs` is created by the function
+
+Whatever is assigned to `mean_value` is produced as an output
+
+---
+
+### The end statement
+
+Indicates the **end** of the function
+
+---
+
+## What's the difference between functions and scripts?
+
+A fundamental difference between **scripts** and **functions** is the
+**environment** in which they're executed
+
+**Scripts**
+
+- Scripts have access to **any** variables in the **workspace**
+
+- **All** variables created in a script are created in the **workspace**
+
+**Functions**
+
+- Functions only have access to variables that were passed in as **inputs**
+
+- Only **outputs** from functions will be created in the **workspace**
+
+This is the idea of **variable scope**
+
+---
+
+### Variable scope
+
+**Scripts**
+
+```matlab
+% example script saved as example1.m
+x = 1;
+disp(x); % print out the value of x
+```
+
+```matlab
+x = 99;
+disp(x); % prints out: 99
+example1; % prints out: 1
+disp(x); % prints out: 1 
+```
+
+The value of `x` is set inside the script `example1`, and that change persists
+after the script has finished running.
+
+---
+
+### Variable scope
+
+**Functions**
+```matlab
+% example function saved as example2.m
+function example2
+  x = 1;
+  disp(x); % print out the value of x
+end
+```
+
+```matlab
+x = 99;
+disp(x); % prints out: 99
+example2; % prints out: 1
+disp(x); % prints out: 99 
+```
+
+The value of `x` is set inside the **function** `example2` and this change
+**does not** persist
+
+The `x` **inside** the **function** and the `x` **outside** the **function** are
+different `x`s
+
+_Note that this is different to how variable scope works in `R` and `Python`._
+
+---
+
+## Saving functions in files
+
+Functions in `Matlab` should be saved in **separate** files.
+
+- Each function that you write should live **inside its own file**.
+
+- The file should have a **file name** that matches the **function name**
+
+For example, the following function…
+
+```matlab
+function [output_vars] = my_fun(input_vars)
+  % Do something in here
+end
+
+```
+
+…should be saved in a file called `my_fun.m`.
+
+
+---
+
+### Defining multiple functions per file
+
+Sometimes you might want to define functions that are only used **inside other
+functions**
+
+**Example**
+
+- You write a function called `mean_ci` that works out a **mean** and a
+  **confidence interval**
+
+- Part of working out a confidence interval involves working out a **standard
+  error**.
+
+- So, you write another function called `se` which works out a standard error
+  that can be used by your `mean_ci` function.
+
+
+For a case like this, you have two options:
+
+1. Create two functions in **two** files
+
+2. Create two functions in **one** file
+
+---
+
+
+### &lt;small&gt;Defining multiple functions per file&lt;/small&gt;
+
+Storing the two functions in **one** file:
+
+```matlab
+% functions stored in file mean_ci.m
+function [mean, ci] = mean_ci(input_numbers)
+  mean = sum(input_numbers) / length(input_numbers)
+  ci = 1.96 * se(input_numbers)
+end
+
+function [sem] = se(input_numbers)
+  sd = std(input_numbers)
+  sem = sd / sqrt(length(input_numbers))
+end
+```
+
+- **Advantage**: Fewer files, so easier to manage 
+
+- **Disadvantage**: The function `se` can only be called from inside the
+  `mean_ci` function:
+
+```matlab
+&gt;&gt; se(input_numbers)
+Unrecognized function or variable 'se'.
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

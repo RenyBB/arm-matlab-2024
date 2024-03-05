@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Working with data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Lincoln Colling, Reny Baykova" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon-1.4.1/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain-0.2.6/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain-0.2.6/shareagain.js"></script>
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Working with data
+]
+.subtitle[
+## Data types, indexing, and logic
+]
+.author[
+### Lincoln Colling, Reny Baykova
+]
+
+---
+
+
+&lt;!-- 
+vim: set ft=markdown tw=80 spell spelllang=en_gb:
+vim: set conceallevel=0 foldlevel=1:
+--&gt;
+
+
+
+
+
+
+
+
+# Variables and data structures
+
+- Variables are used for storing information.
+
+- They come in different **types**, which can store different types of
+  information.
+
+- You can _assign_ content to a variable with an `=` sign.
+
+We've already had the chance to play around with variables a little, so some of
+this should be familiar by now.
+
+---
+
+
+## &lt;smaller&gt;Matlab's data types&lt;/smaller&gt;
+
+The primary data types that we'll be working with in `Matlab` are:
+
+1. Vectors/matrices (for storing numbers) 
+
+2. Strings (for storing strings of characters)
+
+3. Cell arrays (for storing mixed types of data)
+
+4. structs (for storing arbitrary data in key-value pairs)
+
+
+.footnote[`Matlab` also has a data type called a table (which is similar to a
+`tibble` or `data.frame` in `R`), but I won't be talking about them much.]
+
+---
+
+### Vectors / Matrices
+
+The base data type in `Matlab` is the **matrix**
+
+A matrix in `Matlab` can have one dimension (*vector*), two dimensions
+(*matrix*), or more (*tensor*), but in `Matlab`, we refer to them all as a
+*matrix*.
+
+The simplest matrix in `Matlab` is a 1 × 1 matrix.
+
+A 1 × 1 matrix is just a single number.
+
+
+```matlab
+&gt;&gt; a_number = 1;
+```
+
+A 1 × 4 matrix would be a list of four numbers…
+
+To do this, we wrap a list of four numbers in `[]` and separate them with `,`
+
+```matlab
+&gt;&gt; a_vector = [1, 2, 3, 4];
+```
+
+Or spaces… 
+
+```matlab
+&gt;&gt; a_vector = [1 2 3 4];
+```
+
+---
+
+### Vectors / Matrices
+
+We could also create, e.g., a 4 × 1 matrix, which would be a list of four
+numbers arranged vertically instead of horizontally… 
+
+To do this, we separate the numbers with `;` instead of `,`.
+
+```matlab
+&gt;&gt; a_column_vector = [1; 2; 3; 4]; 
+```
+
+&lt;small&gt;The distinction between row vectors (1 × 4) and column vectors (4 × 1) is
+not usually that important, but it does become important when we
+want to *concatenate* two vectors together.&lt;/small&gt;
+
+#### 2-D matrices
+
+More commonly we'll encounter matrices that have multiple rows and columns
+(e.g., a 2 × 3 matrix).
+
+To create a matrix with multiple rows and columns, we separate numbers on the
+same row with `,` and separate columns with `;`.
+
+```matlab
+&gt;&gt; a_matrix = [11, 12, 13; 21, 22, 23] % create a 2 x 3 matrix
+```
+
+---
+
+#### 2-D matrices
+
+Matrices in Matlab must be **rectangular**.
+
+```matlab
+&gt;&gt; a_matrix = [11, 12, 13; 21, 22, 23] % a valid matrix
+
+a_matrix =
+
+    11    12    13
+    21    22    23
+```
+
+Otherwise, you'll get an error…
+
+```matlab
+&gt;&gt; a_matrix = [11, 12; 21, 22, 23] % an invalid matrix
+Error using vertcat
+Dimensions of arrays being concatenated are not consistent.
+```
+
+---
+
+### Accessing and indexing matrices
+
+Once we have a matrix of data, we might want to access specific values in that
+matrix.
+
+To access a single value of a matrix we access using the following syntax:
+
+```matlab
+matrix_name(row_number, column_number)
+```
+
+For example: 
+
+```mattab
+a_matrix(1,1); % get row 1 column 1
+
+a_matrix(2,1); % get row 2 column 1
+
+a_matrix(2,2); % get row 2 column 2
+```
+
+---
+
+#### Accessing multiple values 
+
+We can also access more than one value at a time. For example, we can get entire
+rows or columns. To do this we use `:` to get all the rows/columns.
+
+```matlab
+a_matrix(1,:); % get the first row and all columns
+
+a_matrix(:,1); % get the first column and all the rows
+```
+
+#### Access short-cuts for 1-D matrices
+
+There are a few shortcuts we can use for accessing values. 
+
+For example, if we have a 1 × N or N × 1 matrix then we can use
+a single index value.
+
+```matlab
+a_row_vector = [1, 2, 3, 4];
+a_col_vector = [1; 2; 3; 4];
+
+a_row_vector(2) % the second value of the vector
+
+a_col_vector(4) % the fourth value of the vector
+```
+
+---
+
+#### The `end` keyword 
+
+`Matlab` also has a special keyword called `end` which we can use to access the
+last row/column/element of a matrix
+
+```matlab
+a_row_vector(end) % the last element of the row vector
+a_row_vector(end-1) % the second to last element of the row vector
+
+a_matrix(end,:) % the last row of the matrix
+
+a_matrix(:,end) % the last column of the matrix
+```
+
+---
+
+#### Logical indexing of matrices
+
+We can use logical indexing to access elements (see [the cheat
+sheet](/cheatsheet.html#logical-operations-numbers) for examples of logical
+rules)
+
+If we use one of the logical operators together with a matrix or a vector we
+get an output that tells us which elements match our rule
+
+```matlab
+&gt;&gt; a_matrix &gt;= 22
+
+ans =
+
+  2x3 logical array
+
+   0   0   0
+   0   1   1
+```
+
+We use this logical matrix output to index the values we want
+
+```matlab
+&gt;&gt; a_matrix(a_matrix &gt;= 22)
+
+ans =
+
+    22
+    23
+```
+
+---
+
+#### Modifying matrices
+
+Instead of *accessing* elements of a matrix, we can also *modify* elements by
+*assigning* new values to elements.
+
+First, our original vector…
+```matlab
+&gt;&gt; a_vector 
+
+a_vector =
+
+     1     2     3     4     5
+```
+
+Then we change the last element to `99`
+```matlab
+&gt;&gt; a_vector(end) = 99;
+```
+
+Now the last element has been changed to `99`:
+```matlab
+&gt;&gt; a_vector
+
+a_vector =
+
+     1     2     3     4    99
+```
+
+---
+
+#### Modifying matrices 
+
+We can also use logical rules to decide which elements to modify.
+
+For example, we could change all the values in `a_matrix` that are *greater
+than 21* to `NaN` (not a number)
+
+```matlab
+&gt;&gt; a_matrix(a_matrix &gt; 21) = NaN 
+
+a_matrix =
+
+    11    12    13
+    21   NaN   NaN
+
+```
+
+In `Matlab`, if you try to insert a value in a new position, then `0`s are
+added to fill any intermediate positions&lt;sup&gt;1&lt;/sup&gt;
+
+```matlab
+&gt;&gt; a_vector = [1, 2, 3]; % matrix has 3 elements
+&gt;&gt; a_vector(11) = 99 % modifying the 11th element
+
+a_vector =
+
+     1     2     3     0     0     0     0     0     0     0    99
+```
+
+.footnote[&lt;sup&gt;1&lt;/sup&gt;This is in contrast to `R` which will fill the
+intermediate positions with `NA` or `Python` which will produce an error.]
+
+---
+
+### Strings
+
+Matrices can only store numbers. But sometimes we want to store letter strings.
+
+`Matlab` provides two ways of storing strings of letters:
+
+1. `char` and `char array` (The traditional method)
+
+2. `string` and `string array` (A recent addition to the language)
+
+&lt;u&gt;Most of the time you'll want to use `char`s to store letters…&lt;/u&gt;
+
+To assign a series of letters (as a `char`) to a variable we put the letters
+inside single quotes `' '`
+
+```matlab
+a_char = 'A char of letters'
+```
+
+To store letters as a `string` we put the letters inside double quotes `"
+"`&lt;sup&gt;1&lt;/sup&gt;
+
+```octave
+a_string = "A string of letters"
+```
+
+.footnote[&lt;sup&gt;1&lt;/sup&gt;Note that `Matlab` **does** distinguish between `''` and
+`""` whereas, for example, `R` does not make a distinction. Older versions of
+`Matlab` would produce an error if you used `""`.]
+
+---
+
+#### Chars/Strings
+
+You'll almost always want to use `char`s, which means that you'll almost always
+use single quotes `''`.
+
+
+`Char`s and `String`s behave differently in `Matlab`, particularly when
+concatenating or indexing. Here are some examples:
+
+```matlab
+&gt;&gt; first_name = 'Reny';
+&gt;&gt; last_name = 'Baykova';
+&gt;&gt; full_name = [first_name, last_name]
+
+full_name =
+
+    'RenyBaykova'
+```
+
+```octave
+&gt;&gt; first_name = "Reny";
+&gt;&gt; last_name = "Baykova";
+&gt;&gt; full_name = [first_name, last_name]
+
+full_name = 
+
+  1x2 string array
+
+    "Reny"    "Baykova"
+```
+
+---
+
+
+#### Chars/Strings
+
+Or with indexing:
+
+```matlab
+&gt;&gt; a_char = 'a string of characters';
+&gt;&gt; a_char(1)
+
+ans =
+
+    'a'
+```
+
+When indexing a `char` we can access individual *characters*…
+
+```octave
+&gt;&gt; a_string = "a string";
+&gt;&gt; a_string(1)
+
+ans = 
+
+    "a string"
+```
+
+But when indexing a `string` we can only access individual *elements*…
+
+---
+
+#### Logic with string/chars
+
+Logical operations also behave differently between `char`s and `string`s
+
+And the behaviour with `char`s (which is what you'll mostly be using) is **not**
+what you'd expect
+
+First, let's compare two `string`s
+
+```octave
+&gt;&gt; "ab" == "ab" 
+
+ans =
+
+  logical
+
+   1
+```
+
+```octave
+&gt;&gt; "ab" == "ac"
+
+ans =
+
+  logical
+
+   0
+```
+
+This is the behaviour you'd probably expect…
+
+
+---
+
+
+#### Logic with string/chars
+
+```matlab
+&gt;&gt; 'ab' == 'ab'
+
+ans =
+
+  1x2 logical array
+
+   1   1
+```
+
+```matlab
+&gt;&gt; 'ab' == 'ac'
+
+ans =
+
+  1x2 logical array
+
+   1   0
+```
+
+Logical operations on `char`s operate on each character…
+
+Which most of the time is **not** what we want!
+
+---
+
+#### Logic with string/chars
+
+
+Instead of logical equality (`==`), we can use `strcmp()` to compare `char`s
+
+```matlab
+&gt;&gt; 'ab' == 'ac'
+
+ans =
+
+  1x2 logical array
+
+   1   0
+
+```
+
+Instead of comparing letter-by-letter…
+
+
+```matlab
+&gt;&gt; char_one = 'ab';
+&gt;&gt; char_two = 'ac';
+&gt;&gt; strcmp(char_one, char_two)
+
+ans =
+
+  logical
+
+   0
+```
+
+`strcmp()` will compare the entire string of letters… so we'll mostly use
+`strcmp()` for logic with `string`s and `char`s 
+
+
+---
+
+class: section
+
+# Advanced data structures 
+
+Cell arrays and structs
+
+
+---
+
+### Cell arrays
+
+We've covered matrices and strings/chars for when we want to store numbers and
+letters, respectively. 
+
+But sometimes we want to store letters and numbers in one variable…
+
+`Matlab` provides two additional data types for doing this: `cell` arrays and
+`struct`s
+
+Cell arrays are *a bit* like matrices, but we use `{}` instead of `[]` when
+creating them…
+
+```matlab
+&gt;&gt; a_cell_array = {'a letter', 99; "a", [12 ; 12]}
+
+a_cell_array =
+
+  2x2 cell array
+
+    {'a letter'}    {[      99]}
+    {["a"     ]}    {2x1 double}
+
+```
+
+Here we have a 2 × 2 cell array where one element is a char, another is a 
+one-element matrix, another one is a string, and the final one is a column vector…
+
+Each cell in a _cell array_ can hold any other kind of `Matlab` data.
+
+
+---
+
+#### Accessing and indexing cell arrays
+
+With matrices, there's no distinction between an element of a matrix and the
+*content* of that element, but there is this distinction for cell arrays
+
+```matlab
+a_cell_array = {'element 1', [2; 3]}; % first we create a cell array
+```
+
+If we want to get the *element* then we use `()`, just like with matrices:
+
+```matlab
+&gt;&gt; a_cell_array(2)
+
+ans =
+
+  1x1 cell array
+
+    {2x1 double}
+```
+
+Using `()` returns a 1 × 1 cell array… 
+
+---
+
+#### Accessing and indexing cell arrays
+
+But if we want the *content* (i.e., the matrix that is in cell 2), then we can
+use `{}` instead…
+
+```matlab
+&gt;&gt; a_cell_array{2}
+
+ans =
+
+     2
+     3
+```
+
+Using `{}` returns the 2 × 1 matrix in cell 2 of the cell array 
+
+---
+
+### Structs 
+
+- Like `cell` arrays, `struct`s allow you to mix arbitrary data types 
+
+- `struct`s organise data in key-value pairs&lt;sup&gt;1&lt;/sup&gt;
+
+- `struct`s are a common way of organising data in, for example, SPM, EEGLab,
+  and FieldTrip
+
+To create an empty `struct` we can use the `struct` keyword
+
+```matlab
+person = struct % create an empty struct named person
+
+person.name = 'Reny' % field called name and assign a char
+
+person.pets = {'dog' 'cat'} % assign a cell array to pets field
+
+person.age = [32]; % assign a matrix to the age field
+
+```
+
+
+.footnote[&lt;sup&gt;1&lt;/sup&gt;A `struct` is a like a named list in `R` or a `dict` in
+`Python`. They're also a way of organising data that is similar to `.json`
+files]
+
+---
+
+#### Accessing structs
+
+Once we have a struct like this…
+
+```matlab
+&gt;&gt; person
+
+person = 
+
+  struct with fields:
+
+    name: 'Reny'
+    pets: {'dog'  'cat'}
+     age: 32
+```
+
+…then we can use the field names to access the elements
+
+```matlab
+&gt;&gt; person.name
+
+ans =
+
+    'Reny'
+```
+
+---
+
+#### Accessing structs
+
+We can also use variables to *dynamically* access structs 
+
+First, let's get the names of the fields using `fieldnames`
+```matlab
+&gt;&gt; the_fields = fieldnames(person)
+
+the_fields =
+
+  3x1 cell array
+
+    {'name'}
+    {'pets'}
+    {'age' }
+
+&gt;&gt; the_field_I_want = the_fields{1}
+
+the_field_I_want =
+
+    'name'
+```
+
+Now I have a variable called `the_field_I_want` that contains a char
+corresponding to the name of a field.
+
+---
+
+
+#### Accessing structs
+
+I can use the variable `the_field_I_want` (or any other variable that
+happens to hold a char corresponding to a field name) to access that field:
+
+
+To do this, I use the variable name inside `()` instead of using the
+field name itself
+
+```matlab
+&gt;&gt; person.(the_field_I_want)
+
+ans =
+
+    'Reny'
+```
+
+The use case for this might not be immediately obvious, but we'll run through
+some scenarios in later problem-solving sections
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Scripts</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Lincoln Colling, Reny Baykova" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon-1.4.1/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain-0.2.6/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain-0.2.6/shareagain.js"></script>
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Scripts
+]
+.subtitle[
+## Organising our code in scripts
+]
+.author[
+### Lincoln Colling, Reny Baykova
+]
+
+---
+
+
+&lt;!-- 
+vim: set ft=markdown tw=80 spell spelllang=en_gb:
+vim: set conceallevel=0 foldlevel=1:
+--&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+# Scripts
+
+Up to now, we've been typing our commands at the `Matlab` command prompt,
+`&gt;&gt;` in the **Command Window**.
+
+But this isn't very efficient because often we'll want to re-use code, or save
+code for later use…
+
+We can use **scripts** (files with an `.m` extension) to store a series of
+commands that we can then re-run.
+
+---
+
+## &lt;small&gt;The search path&lt;/small&gt;
+
+Before we can start using scripts in `Matlab`, we have to understand the concept 
+of the **search path**.
+
+The **search path** is a list of all the folders on your computer where `Matlab`
+will look for `.m` files.
+
+By default, the search path will include several folders related to `Matlab`
+and a folder in your `Document` folder, usually something like:
+  - `/Users/USERNAME/Documents/Matlab` or 
+  - `C:/Users/USERNAME/Documents/Matlab`
+
+You can *view* your search path with the `path` command:
+
+```octave
+&gt;&gt; path
+
+		MATLABPATH
+
+	/Users/lc663/Documents/MATLAB
+	/Users/lc663/matlab
+	/Applications/MATLAB_R2019b.app/toolbox/matlab/timefun
+```
+
+---
+
+## &lt;small&gt;The search path&lt;/small&gt;
+
+.center[&lt;img src="path_annotated.png" width="95%" /&gt;]
+
+My *poorly* annotated `Matlab` window showing an example of a folder in the
+search path, a folder not in the search path, and the current folder…
+
+---
+
+## Our first script
+
+The easiest way to create a new script (or function) file is with the `edit`
+command.
+
+Type `edit` followed by the name of the new file you want to create.
+
+```matlab
+&gt;&gt; edit say_hello.m
+```
+
+Valid names for script files:
+
+1. Must be **one** word without spaces.
+
+2. Has the extension `.m`
+
+3. Doesn't start on a number
+
+Helpfully, `Matlab` will show an error and give you a chance to edit the name if
+you don't follow the rules!
+
+
+---
+
+## Our first script
+
+We can create our first script called `say_hello.m`&lt;sup&gt;1&lt;/sup&gt;
+
+You can copy the code below into the editor window and save it!
+
+```matlab
+% A simple script
+name = input('What is your name? ','s'); % ask your name
+disp(['Hello ' name '! Pleased to meet you']); % say hello
+```
+
+Once we've saved the script, we can run it by typing its name at the command
+prompt.
+
+```matlab
+&gt;&gt; say_hello
+```
+
+Or by using the `run` command with the filename (this is useful if the file is
+**not** in our search path)
+
+```matlab
+&gt;&gt; run say_hello.m
+```
+
+
+.footnote[&lt;sup&gt;1&lt;/sup&gt;You can also cut and paste the code for this script from
+the [Part 1](/part1.html) page]
+
+---
+
+### Script sections
+
+Our simple script has one section, but it can be useful to break scripts
+down into sections.
+
+Sections can be run *independently*, which can be useful when we're debugging
+code.
+
+To create a script section, do two comment symbols `%` on a line by
+themselves.
+
+```matlab
+disp('I am section 1')
+
+%%
+
+disp('I am section 2')
+
+```
+
+You can run sections by clicking on the **Run Section** button on the toolbar,
+or by hitting CTRL+ENTER / CMD+ENTER when your cursor is in a section.
+
+---
+
+## Adding help to a script
+
+Back in Part I, we saw that we could get **help** on `Matlab` commands by using
+the `help` command.
+
+For example, to get help on the `randn` function: 
+
+```matlab
+&gt;&gt; help randn
+```
+
+The same works for scripts/functions you write yourself:
+
+```matlab
+&gt;&gt; help say_hello
+  A simple script
+```
+
+Any comments at the start of the file are printed out when you ask for `help`.
+
+A good habit is to write your own documentation (what gets printed out by
+`help`) for any of the scripts and functions you write.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

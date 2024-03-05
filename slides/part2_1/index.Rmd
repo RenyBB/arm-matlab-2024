@@ -1,0 +1,551 @@
+---
+title: "Functions"
+subtitle: "Reusable code using functions"
+author: "Lincoln Colling, Reny Baykova"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    selt_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true 
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+<!-- 
+vim: set ft=markdown tw=80 spell spelllang=en_gb:
+vim: set conceallevel=0 foldlevel=1:
+-->
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+```{r, echo=FALSE, eval=TRUE}
+library(xaringanthemer)
+
+style_duo_accent(
+ primary_color = "#003b49",
+secondary_color = "#1d4289",
+header_font_google = google_font("Cabin"),
+text_font_google   = google_font("Noto Sans", "300", "300i"),
+code_font_google   = google_font("Fira Mono"),
+colors = c(
+red = "#d3273e",
+purple = "#5d3754s",
+orange = "#dc582a",
+green = "#007a78",
+white = "#FFFFFF",
+blue = "#1d4289"
+)
+)
+xaringanthemer::style_extra_css(
+  list(".title-slide" = list(
+   # "background-image" =
+   #   "url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/University_of_Sussex_Logo.svg/480px-University_of_Sussex_Logo.svg.png)",
+  "background-position" =  "95% 95%",
+ "background-size" = "180px",
+  "border" = "10px solid #013035",
+  "background-color" = "#FFFFFF"
+  ),
+ ".title-slide h1" = list(
+  "padding-top" = "0px",
+  "font-size" = "60px",
+  "text-align" = "left",
+  "padding-bottom" = "18px",
+  "margin-bottom" = "18px",
+  "margin-top" = "0px",
+  "color" = "#003b49"
+ ),
+ ".title-slide h2" = list(
+   "font-size" = "40px",
+   "text-align" = "left",
+   "padding-top" = "10px",
+   "margin-top" = "0px",
+   "color" = "#003b49"
+ ),
+ ".title-slide h3" = list(
+   "font-size" = "30px",
+   "color" = "#26272A",
+   "text-align" = "left",
+   "text-shadow" = "none",
+   "padding" = "0px",
+   "margin" = "0px",
+   "line-height" = "1"),
+ ".footnote" = list(
+   "font-size" = ".6em"
+ ),
+   ".section h1" = list(
+    "padding" = "auto",
+    "display" = "block",
+    "margin-left" = "auto",
+    "margin-right" = "auto",
+    "padding-top" = "250px",
+    "vertical-align" = "auto",
+    "align-items" = "center",
+    "font-size" = "40px"
+   ),
+".section .remark-slide-number" = list(
+   "display" = "none"),
+   "pre" = list("border-style" = "solid",
+   "border-width" = "1px",
+   "border-color" = "lightgrey",
+   "padding" = "5px",
+   "border-radius" = "3px"),
+ "larger" = list("font-size" = "2em")))
+```
+
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+xaringanExtra::use_share_again()
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons"))
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+# I'll add some meta data later
+# library(metathis)
+# meta() %>%
+#   meta_description(desc)
+```
+
+# Functions 
+
+So far, we've been using functions that come with `Matlab`, but often we'll
+want to write our own functions.
+
+## <small>What are functions?</small> 
+
+- Functions work like *mathematical functions*. They transform
+  **inputs**<sup>1</sup> to **outputs**.
+
+- They’re **self-contained bits** of code with rules for transforming the
+  information.
+
+- Some examples of functions include the `help`, `doc`, `vectcat`, `horzcat`,
+  `randn`, and `strcmp` functions from [Part I](../part1.html).
+
+.footnote[<sup>1</sup>*Technically*, functions don't need to take inputs or
+produce outputs, but we'll get to that in a while.]
+
+---
+
+## Using functions 
+
+Functions in `Matlab` can take between 0 to *n* inputs and can produce between 0
+and *n* outputs. 
+
+When you specify multiple **inputs** for functions, then they go inside `()`
+after the function name, and are separated by `,`.
+
+When you specify multiple **outputs** for functions, then they go inside `[]`
+before the `=`, and are separated by `,`.
+
+```matlab
+>> x = rand(10, 1); % rand with two inputs and one output
+>> y = rand(10, 1); % rand with two inputs and one output
+>> [rho, pval] = corr(x, y) % corr with two inputs and two outputs
+
+rho =
+
+    0.2682
+
+
+pval =
+
+    0.4537
+```
+
+---
+
+## Why write functions?
+
+One principle that should guide the code you write can be summed up as:
+
+<larger><u><strong>D</strong></u>on't <u><strong>R</strong></u>epeat
+<u><strong>Y</strong></u>ourself</larger>
+
+If you find yourself **repeatedly** using a bit of code (i.e., more than twice)
+then you should probably write a function.
+
+Functions allow you to **encapsulate** a bit of code
+
+- The code **inside** a function exists separately from the rest of the code in
+  a script. 
+
+- This means that functions will **always** produce the **same output** if
+  they're given the **same input**.  
+
+---
+
+## Our first function
+
+Let's write a function to work out the **mean** of some numbers:
+
+```matlab
+% work out the mean of some numbers 
+function mean_value = my_mean(input_numbers)
+
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+
+end
+
+```
+
+Check the **help**…
+```matlab
+>> help my_mean
+  work out the mean of some numbers
+```
+
+---
+
+### Taking apart our first function
+
+Our function starts with a comment. This is what is shown when we use `help`.
+
+```matlab
+* % work out the mean of some numbers 
+function mean_value = my_mean(input_numbers)
+
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+
+end
+
+```
+
+---
+
+### Taking apart our first function
+
+Next, we have the **function declaration** which includes the names of the
+**output variables**, the names of the **input variables**, and the **name of
+the function**.
+
+```matlab
+% work out the mean of some numbers 
+*function mean_value = my_mean(input_numbers)
+
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+
+end
+
+```
+
+---
+
+### Taking apart our first function
+
+Then we have the code that does the actual work…
+
+```matlab
+% work out the mean of some numbers 
+function mean_value = my_mean(input_numbers)
+
+* % we'll use length to get the number of items
+* length_of_input = length(input_numbers)
+*
+* % now we'll use sum to add up all the items
+* sum_of_input = sum(input_numbers)
+*
+* % now work out the mean!
+* mean_value = sum_of_input / length_of_input
+
+end
+
+```
+
+Note that this part of the function can only include references to variables
+that were listed as **inputs** or variables that were **created in the
+function** itself
+
+We'll talk more about this when we cover **variable scope**.
+
+---
+
+### Taking apart our first function
+
+Finally, we have an `end` to indicate that this is the **end** of the function.
+
+```matlab
+% work out the mean of some numbers 
+function mean_value = my_mean(input_numbers)
+
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+
+*end
+
+```
+
+---
+
+#### Header comments 
+
+The comments at the start (before the function declaration) are shown when you
+use the `help` command.
+
+Use these to write help for your functions.
+
+Things to include in the help:
+
+- What the function does
+
+- What inputs it needs
+
+- What outputs it produces
+
+```matlab
+% say_hello
+% Function says hello to person 
+% 
+% Usage: 
+% done = say_hello(input_name)
+%
+% Inputs:
+% input_name : a char with a person's name
+%
+% Outputs:
+% done : logical value that indicates that the function was run
+```
+
+---
+
+#### The function declaration 
+
+The **function declaration** indicates that it's a function, and it specifies the
+**name** of the function.
+
+It also specifies any **inputs** the function needs or any **outputs** the
+function produces.
+
+```matlab
+function [ouput1, output2] = function_name(input1, input2, input3)
+
+```
+
+- In the example above, values 1–3 will be accessible in variables called
+  `input1`, `input2`, and `input3`
+
+- Whatever values are assigned to `output1` and `output2` by the time the
+  function finishes running will be produced as outputs<sup>1</sup> 
+
+- The function with `function_name` should be stored in a file called
+  `function_name.m`
+
+.footnote[<sup>1</sup>Note, `Matlab` does not use a `return` statement like most
+other languages]
+
+---
+
+#### The function body
+
+The **body of the function** is where you put the code that does the
+work.
+
+- Only values passed in as **inputs** or variables **created inside** the
+  function body will be accessible.
+
+- You can't access variables in the **workspace** or write to variables in the
+  **workspace**
+
+```matlab
+  % we'll use length to get the number of items
+  length_of_input = length(input_numbers)
+
+  % now we'll use sum to add up all the items
+  sum_of_input = sum(input_numbers)
+
+  % now work out the mean!
+  mean_value = sum_of_input / length_of_input
+```
+
+The variable `input_numbers` is an input in the **function declaration**
+
+`sum_of_inputs` is created by the function
+
+Whatever is assigned to `mean_value` is produced as an output
+
+---
+
+### The end statement
+
+Indicates the **end** of the function
+
+---
+
+## What's the difference between functions and scripts?
+
+A fundamental difference between **scripts** and **functions** is the
+**environment** in which they're executed
+
+**Scripts**
+
+- Scripts have access to **any** variables in the **workspace**
+
+- **All** variables created in a script are created in the **workspace**
+
+**Functions**
+
+- Functions only have access to variables that were passed in as **inputs**
+
+- Only **outputs** from functions will be created in the **workspace**
+
+This is the idea of **variable scope**
+
+---
+
+### Variable scope
+
+**Scripts**
+
+```matlab
+% example script saved as example1.m
+x = 1;
+disp(x); % print out the value of x
+```
+
+```matlab
+x = 99;
+disp(x); % prints out: 99
+example1; % prints out: 1
+disp(x); % prints out: 1 
+```
+
+The value of `x` is set inside the script `example1`, and that change persists
+after the script has finished running.
+
+---
+
+### Variable scope
+
+**Functions**
+```matlab
+% example function saved as example2.m
+function example2
+  x = 1;
+  disp(x); % print out the value of x
+end
+```
+
+```matlab
+x = 99;
+disp(x); % prints out: 99
+example2; % prints out: 1
+disp(x); % prints out: 99 
+```
+
+The value of `x` is set inside the **function** `example2` and this change
+**does not** persist
+
+The `x` **inside** the **function** and the `x` **outside** the **function** are
+different `x`s
+
+_Note that this is different to how variable scope works in `R` and `Python`._
+
+---
+
+## Saving functions in files
+
+Functions in `Matlab` should be saved in **separate** files.
+
+- Each function that you write should live **inside its own file**.
+
+- The file should have a **file name** that matches the **function name**
+
+For example, the following function…
+
+```matlab
+function [output_vars] = my_fun(input_vars)
+  % Do something in here
+end
+
+```
+
+…should be saved in a file called `my_fun.m`.
+
+
+---
+
+### Defining multiple functions per file
+
+Sometimes you might want to define functions that are only used **inside other
+functions**
+
+**Example**
+
+- You write a function called `mean_ci` that works out a **mean** and a
+  **confidence interval**
+
+- Part of working out a confidence interval involves working out a **standard
+  error**.
+
+- So, you write another function called `se` which works out a standard error
+  that can be used by your `mean_ci` function.
+
+
+For a case like this, you have two options:
+
+1. Create two functions in **two** files
+
+2. Create two functions in **one** file
+
+---
+
+
+### <small>Defining multiple functions per file</small>
+
+Storing the two functions in **one** file:
+
+```matlab
+% functions stored in file mean_ci.m
+function [mean, ci] = mean_ci(input_numbers)
+  mean = sum(input_numbers) / length(input_numbers)
+  ci = 1.96 * se(input_numbers)
+end
+
+function [sem] = se(input_numbers)
+  sd = std(input_numbers)
+  sem = sd / sqrt(length(input_numbers))
+end
+```
+
+- **Advantage**: Fewer files, so easier to manage 
+
+- **Disadvantage**: The function `se` can only be called from inside the
+  `mean_ci` function:
+
+```matlab
+>> se(input_numbers)
+Unrecognized function or variable 'se'.
+```
