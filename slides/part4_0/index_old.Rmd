@@ -1,0 +1,261 @@
+---
+title: "The assessment"
+subtitle: "A few tips" 
+author: "Reny Baykova"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    selt_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true 
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+<!-- 
+vim: set ft=markdown tw=80 spell spelllang=en_gb:
+vim: set conceallevel=0 foldlevel=1:
+-->
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+
+```{r, echo=FALSE, eval=TRUE}
+library(xaringanthemer)
+
+style_duo_accent(
+ primary_color = "#003b49",
+secondary_color = "#1d4289",
+header_font_google = google_font("Cabin"),
+text_font_google   = google_font("Noto Sans", "300", "300i"),
+code_font_google   = google_font("Fira Mono"),
+colors = c(
+red = "#d3273e",
+purple = "#5d3754s",
+orange = "#dc582a",
+green = "#007a78",
+white = "#FFFFFF",
+blue = "#1d4289"
+)
+)
+xaringanthemer::style_extra_css(
+  list(".title-slide" = list(
+   # "background-image" =
+   #   "url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/University_of_Sussex_Logo.svg/480px-University_of_Sussex_Logo.svg.png)",
+  "background-position" =  "95% 95%",
+ "background-size" = "180px",
+  "border" = "10px solid #013035",
+  "background-color" = "#FFFFFF"
+  ),
+ ".title-slide h1" = list(
+  "padding-top" = "0px",
+  "font-size" = "60px",
+  "text-align" = "left",
+  "padding-bottom" = "18px",
+  "margin-bottom" = "18px",
+  "margin-top" = "0px",
+  "color" = "#003b49"
+ ),
+ ".title-slide h2" = list(
+   "font-size" = "40px",
+   "text-align" = "left",
+   "padding-top" = "10px",
+   "margin-top" = "0px",
+   "color" = "#003b49"
+ ),
+ ".title-slide h3" = list(
+   "font-size" = "30px",
+   "color" = "#26272A",
+   "text-align" = "left",
+   "text-shadow" = "none",
+   "padding" = "0px",
+   "margin" = "0px",
+   "line-height" = "1"),
+ ".footnote" = list(
+   "font-size" = ".6em"
+ ),
+   ".section h1" = list(
+    "padding" = "auto",
+    "display" = "block",
+    "margin-left" = "auto",
+    "margin-right" = "auto",
+    "padding-top" = "250px",
+    "vertical-align" = "auto",
+    "align-items" = "center",
+    "font-size" = "40px"
+   ),
+".section .remark-slide-number" = list(
+   "display" = "none"),
+   "pre" = list("border-style" = "solid",
+   "border-width" = "1px",
+   "border-color" = "lightgrey",
+   "padding" = "5px",
+   "border-radius" = "3px")
+))
+
+```
+
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+xaringanExtra::use_share_again()
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons"))
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+# I'll add some meta data later
+# library(metathis)
+# meta() %>%
+#   meta_description(desc)
+```
+
+
+# Outline
+
+- Your task is to implement a computerized experiment task using Matlab.
+
+- The recommended task is a standard Colour/Word Stroop task with *at least*
+three colour words (e.g., blue, red, yellow). 
+
+- However, if you'd like to design a task that is relevant to your Master's thesis
+then you're also welcome to do so **if you check with me first**.
+
+
+---
+
+## Things to consider 
+
+The aim is to develop a computerized task that is as realistic as possible.
+
+This means that your task should:
+
+- Have multiple trials (not just 3 or 4)
+
+  - If your code is well-designed then it should be trivial to alter the number
+    of trials for particular use cases
+
+- You should consider things like trial order
+
+- You should think about how the data is saved and **what data** is saved
+
+Programming is not just about writing code. It's about *designing* your code
+so that your code can *achieve your objective*.
+
+This means that **most** of the assignment will be about **designing** your
+code. Only after you've planned out exactly what *your code will do* should you
+start writing code.
+
+*The [assessment page](../../assessment.html#things-to-consider) has more
+information about the sorts of things you should be thinking about when you're
+designing your code* 
+
+---
+
+## How it will be assessed
+
+You will be assessed on the quality of your code... What does this mean?
+
+- First and foremost, this means that **your code should run**
+
+However, I will also be looking at other things
+
+- Do you write your code in such a way so that you make use of *reusable
+  components* that could, in theory, be used as part of different experiment
+
+- Do you include documentation for reusable functions that you write, so that,
+  for example, other members of your lab could make use of them
+
+- Does your code save files in a sensible way
+
+- Does your code save all the information you'll need to analyze the data for
+  your experiment
+
+I won't give you a bullet point list of everything that your code needs to do,
+because thinking about the *design of your code* **is the task YOU need to
+solve**
+
+<!-- ## The task
+
+The task should be as realistic as possible. This means that it should include:
+
+- Multiple trials 
+
+
+- Should record some kind of response
+
+Additionally, it should save the data from the experiment. This data should be
+saved in a way that would allow it to be analyzed later. E.g., if you record
+responses, these should be matched with a stimulus/condition 
+-->
+
+
+---
+
+### What you need to submit
+
+You'll need to include the following things with your submission.
+
+1. The `Matlab` code for your task
+
+  - This might be one file, or it might be multiple files (for example if you
+    decided to employ multiple functions) 
+
+  - Please ensure **that your code runs**, because I will be running it!
+
+2. Data from one participant (yourself), so that I can see what the output
+   looks like
+
+3. A description of the task:
+
+  - What kind of task is it
+  
+  - What are the different conditions
+  
+  - What responses are being recorded / why?
+
+I expect this *description* to be fewer than 750 words. The purpose of this
+description is so that I can make sure that your code *does what you
+intend it to do*.
+
+---
+  
+### What you need to submit
+  
+- The submission will take the form of a word/pdf document with your description
+  and one or more `.m` files with the actual `Matlab` code.
+
+- You **must** zip these together in a `.zip` file because **canvas** renames
+  uploaded files so uploading the files individually will break things and it 
+  will make it impossible for me to run the code!
+
+
+---
+
+### Getting help
+
+Peter Scarfe’s PsychToolbox Demos provide lots of good examples of using
+PsychToolbox.
+
+Note, however, that these are designed as **demos** so _please_ don't just copy
+one of the examples and submit that as your assessment, because these don't do
+everything that _your code will need to do_ (e.g., they don't have very good
+participant instructions, and they don't save the data in a useful way etc)
+
+This website, together with the stuff that was covered in class will give you
+all the building blocks you need to put together an experiment.
+
+You'll still need to put those blocks together, but you can make use of any 
+resources you can find.
+
+---
+
+### Finally
+
+**Keep things simple** but **do the simple things well**
+
+Trying to overcomplicate things is always risky, so try to avoid it.
+

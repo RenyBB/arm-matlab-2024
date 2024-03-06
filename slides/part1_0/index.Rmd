@@ -107,18 +107,16 @@ xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons"))
 
 # Introduction 
 
-The website https://matlab.mindsci.net will contain a lot of information that
+**[The course website](https://renybb.github.io/arm-matlab-2024/)** will contain a lot of information that
 will be useful for this course, including:
 
 1. The lecture slides
 
-2. The lecture notes
+2. Downloadable code snippets
 
-3. Downloadable code snippets
+3. Cheat sheets and tips
 
-4. Cheat sheets and tips
-
-5. Starter code for the assessments
+4. Starter code for the assessment
 
 **Make sure that you visit it!**
 

@@ -121,18 +121,18 @@ an **IF A THEN B** rule.
 - In `Matlab`, we can do this with an `if` statement
 
 ```matlab
-birthyear = 2005
+birthyear = 1992
 if birthyear <  2002
     disp('You are old enough to buy beer')
 end % notice that we put end when we've finished the rule
 ```
 
-If the condition `birthyear < 1999` produces a logical `1`, then the path is
+If the condition `birthyear < 2002` produces a logical `1`, then the path is
 followed:
 
 ```matlab
->> birthyear = 2015;
->> birthyear < 2005
+>> birthyear = 1992;
+>> birthyear < 2002
 
 ans =
 
@@ -148,7 +148,7 @@ ans =
 You can also use `else` to specify what to do if the condition _isn't_ met:
 
 ```matlab
-if birthyear < 2005
+if birthyear < 2002
     disp('You are old enough to buy beer')
 else
     disp('You are not old enough to buy beer!')
@@ -158,9 +158,9 @@ end
 Or `elseif` for more complex branching:
 
 ```matlab
-if birthyear < 2005
+if birthyear < 2002
     disp('You are old enough to buy beer')
-elseif birthyear == 2005 
+elseif birthyear == 2002 
     disp('You might be old enough to buy beer')
 else 
     disp('You are not old enough to buy beer!')

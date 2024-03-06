@@ -1,0 +1,11 @@
+websave('CollectResponses.m','http://matlab.mindsci.net/ptb/CollectResponses.m');
+websave('DownloadPsychtoolbox.m','http://matlab.mindsci.net/ptb/DownloadPsychtoolbox.m');
+websave('DrawFixationCross.m','http://matlab.mindsci.net/ptb/DrawFixationCross.m');
+websave('DrawSomeText.m','http://matlab.mindsci.net/ptb/DrawSomeText.m');
+websave('MakeSubjectID.m','http://matlab.mindsci.net/ptb/MakeSubjectID.m');
+websave('MakeTrials.m','http://matlab.mindsci.net/ptb/MakeTrials.m');
+websave('MyPTBTask_demo.m','http://matlab.mindsci.net/ptb/MyPTBTask_demo.m');
+websave('OpenPTBWindow.m','http://matlab.mindsci.net/ptb/OpenPTBWindow.m');
+websave('update.m','http://matlab.mindsci.net/ptb/update.m');
+websave('writeJSON.m','http://matlab.mindsci.net/ptb/writeJSON.m');
+websave('DownloadPsychtoolbox.m','https://raw.githubusercontent.com/Psychtoolbox-3/Psychtoolbox-3/master/Psychtoolbox/DownloadPsychtoolbox.m');
