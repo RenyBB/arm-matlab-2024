@@ -142,16 +142,16 @@ with `Matlab`
 
 ---
 
-## Why Matlab and not…
+## Why Matlab and not something else…
 
 
 - `Matlab` provides a one-stop-shop with all the common tools you‘ll need for
-  research in cognitive neuroscience 
+  quantitative research in cognitive neuroscience/psychology 
 
 - `Matlab` is great for working with arrays and matrices (that is, the kind of
-  data structures we commonly encounter in cognitive neuroscience).
+  data structures we commonly encounter in cognitive neuroscience/psychology).
 
-- Many popular toolboxes (SPM, EEGLab) for working with cog-neuro data (e.g.,
+- Many popular toolboxes (SPM, EEGLab) for working with neuroimaing data (e.g.,
   *fMRI*, *EEG*, *MEG*, *PET*) have been built in `Matlab` and are only
   available in `Matlab` 
 
@@ -162,7 +162,7 @@ with `Matlab`
 
 ---
 
-## My approach to programming
+## A good approach to programming
 
 Often people don't care *how* they solve a problem, only that their code
 *works*…
@@ -197,16 +197,19 @@ Writing a program involves:
 
 But the more you practice, the better you'll get.
 
-The **problem-solving** part of programming is the hardest. Once you have
+---
+
+### The process of writing programs
+
+When you set out to write some code, first think about the _logic_ of the problem you are trying to solve. 
+
+The **problem-solving** part of programming is often the hardest. Once you have
 the **steps**, writing the code can be pretty straightforward.
 
-Because of this, we'll also work on some general problem-solving tasks…
-
-95% of questions I typically get on this course are not _programming
-questions_, they're questions about the _logic_ of the problem.
-
 You should be able to _explain the steps that you need to take to solve the
-problem_ in **plain English** before you start trying to write code…
+problem_ in **plain English** before you start trying to write code.
+
+Throughout the module, we'll work on some general problem-solving tasks to help 
 
 ---
 
@@ -304,7 +307,7 @@ development environment*)
 ## <small>The anatomy of a program…</small>
 
 A computer program is just a set of instructions that tells the computer what
-to do…
+to do.
 
 This might include, instructions to…
 
@@ -320,7 +323,7 @@ This might include, instructions to…
 
 
 Instructions that tell `Matlab` to perform these kinds of actions are
-called **functions…**
+called **functions**.
 
 In this course, we're going to **use** functions, but we're also going to 
 **write** functions.

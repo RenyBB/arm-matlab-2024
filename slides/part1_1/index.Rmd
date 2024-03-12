@@ -105,14 +105,14 @@ xaringanExtra::use_share_again()
 xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons"))
 ```
 
-# Variables and data structures
+# Variables and data types
 
 - Variables are used for storing information.
 
-- They come in different **types**, which can store different types of
-  information.
-
 - You can _assign_ content to a variable with an `=` sign.
+
+- There are different **types** of data that we can assign to a variable.
+
 
 We've already had the chance to play around with variables a little, so some of
 this should be familiar by now.
@@ -126,11 +126,11 @@ The primary data types that we'll be working with in `Matlab` are:
 
 1. Vectors/matrices (for storing numbers) 
 
-2. Strings (for storing strings of characters)
+2. Character arrays and strings (for storing text)
 
 3. Cell arrays (for storing mixed types of data)
 
-4. structs (for storing arbitrary data in key-value pairs)
+4. Structures (for storing mixed types of data that you can refer to by name)
 
 
 .footnote[`Matlab` also has a data type called a table (which is similar to a
@@ -146,10 +146,7 @@ A matrix in `Matlab` can have one dimension (*vector*), two dimensions
 (*matrix*), or more (*tensor*), but in `Matlab`, we refer to them all as a
 *matrix*.
 
-The simplest matrix in `Matlab` is a 1 × 1 matrix.
-
-A 1 × 1 matrix is just a single number.
-
+The simplest matrix in `Matlab` is a 1 × 1 matrix. A 1 × 1 matrix is just a single number.
 
 ```matlab
 >> a_number = 1;
@@ -157,16 +154,16 @@ A 1 × 1 matrix is just a single number.
 
 A 1 × 4 matrix would be a list of four numbers…
 
-To do this, we wrap a list of four numbers in `[]` and separate them with `,`
+To do this, we wrap a list of four numbers in `[]` and separate them with `,` or spaces...
 
 ```matlab
->> a_vector = [1, 2, 3, 4];
-```
+>> a_vector_commas = [1, 2, 3, 4];
 
-Or spaces… 
+>> a_vector_spaces = [1 2 3 4]
 
-```matlab
->> a_vector = [1 2 3 4];
+a_vector_spaces =
+
+     1     2     3     4
 ```
 
 ---
@@ -176,26 +173,40 @@ Or spaces…
 We could also create, e.g., a 4 × 1 matrix, which would be a list of four
 numbers arranged vertically instead of horizontally… 
 
-To do this, we separate the numbers with `;` instead of `,`.
+To do this, we separate the numbers with `;` instead of `,`/spaces.
 
 ```matlab
->> a_column_vector = [1; 2; 3; 4]; 
+>> a_column_vector = [1; 2; 3; 4]
+
+a_column_vector =
+
+     1
+     2
+     3
+     4
+
 ```
 
 <small>The distinction between row vectors (1 × 4) and column vectors (4 × 1) is
 not usually that important, but it does become important when we
 want to *concatenate* two vectors together.</small>
 
+---
+
 #### 2-D matrices
 
 More commonly we'll encounter matrices that have multiple rows and columns
 (e.g., a 2 × 3 matrix).
 
-To create a matrix with multiple rows and columns, we separate numbers on the
-same row with `,` and separate columns with `;`.
+When creating a 2-D matrix, we use `,` or spaces to create separate columns, and we use `;` to create separate rows.
 
 ```matlab
 >> a_matrix = [11, 12, 13; 21, 22, 23] % create a 2 x 3 matrix
+
+a_matrix =
+
+    11    12    13
+    21    22    23
 ```
 
 ---
@@ -236,7 +247,7 @@ matrix_name(row_number, column_number)
 
 For example: 
 
-```mattab
+```matlab
 a_matrix(1,1); % get row 1 column 1
 
 a_matrix(2,1); % get row 2 column 1
@@ -257,6 +268,16 @@ a_matrix(1,:); % get the first row and all columns
 a_matrix(:,1); % get the first column and all the rows
 ```
 
+We can also access  multiple **specific** values, not just the whole row or column.
+
+```matlab
+a_matrix(1,1:3); % get the first row, columns 1, 2, and 3
+
+a_matrix(1,[1,3]); % get the first row, columns 1 and 3
+```
+
+---
+
 #### Access short-cuts for 1-D matrices
 
 There are a few shortcuts we can use for accessing values. 
@@ -269,8 +290,12 @@ a_row_vector = [1, 2, 3, 4];
 a_col_vector = [1; 2; 3; 4];
 
 a_row_vector(2) % the second value of the vector
+% this is the same as:
+a_row_vector(1,2) 
 
 a_col_vector(4) % the fourth value of the vector
+% this is the same as:
+a_col_vector(4,1)
 ```
 
 ---
@@ -388,63 +413,85 @@ intermediate positions with `NA` or `Python` which will produce an error.]
 
 ---
 
-### Strings
+### Character arrays and String arrays
 
-Matrices can only store numbers. But sometimes we want to store letter strings.
+Matrices can only store numbers. But sometimes we want to store text.
 
-`Matlab` provides two ways of storing strings of letters:
+`Matlab` provides two ways of storing text. The
 
-1. `char` and `char array` (The traditional method)
+First: A `char` is a sequence of characters, just as a vector is a sequence of numbers. Each character in a `char array` is a unique element.
 
-2. `string` and `string array` (A recent addition to the language)
-
-<u>Most of the time you'll want to use `char`s to store letters…</u>
-
-To assign a series of letters (as a `char`) to a variable we put the letters
+To assign a series of letters to a variable as a `char` we put the letters
 inside single quotes `' '`
 
 ```matlab
-a_char = 'A char of letters'
+>> a_char = 'A char of letters';
+>> length(a_char) % check the numbers of elements in the array
+
+ans =
+
+    17
 ```
+
+<u>Most of the time you'll want to use `char`s to store characters…</u>
+
+---
+
+### Character arrays and String arrays
+
+Second: A `string` allows you to store a sequence of characters as a single element, and a `string array` allows you to store multiple strings (each being a separate element)
 
 To store letters as a `string` we put the letters inside double quotes `"
 "`<sup>1</sup>
 
-```octave
-a_string = "A string of letters"
+```matlab
+>> a_string = "A string of letters"; % a string array with 1 element
+>> length(a_string) % check the numbers of elements in the array
+
+ans =
+
+     1
+     
+>> my_name = ["Reny", "Baykova"]; % a string array with 2 elements
+>> length(my_name)
+
+ans =
+
+     2
+     
 ```
 
-.footnote[<sup>1</sup>Note that `Matlab` **does** distinguish between `''` and
-`""` whereas, for example, `R` does not make a distinction. Older versions of
-`Matlab` would produce an error if you used `""`.]
+Note that `Matlab` **does** distinguish between `''` and
+`""` whereas, for example, `R` does not make a distinction. Strings are a relatively new data type in `Matlab` and older Matlab versions
+would produce an error if you used `""`.
 
 ---
 
-#### Chars/Strings
+####  Concatenating with chars/srings
 
 You'll almost always want to use `char`s, which means that you'll almost always
 use single quotes `''`.
 
 
-`Char`s and `String`s behave differently in `Matlab`, particularly when
-concatenating or indexing. Here are some examples:
+`Char`s and `String`s behave differently in `Matlab` when
+concatenating:
 
 ```matlab
->> first_name = 'Reny';
->> last_name = 'Baykova';
->> full_name = [first_name, last_name]
+>> first_name_char = 'Reny';
+>> last_name_char = 'Baykova';
+>> full_name_char = [first_name_char, last_name_char]
 
-full_name =
+full_name_char =
 
     'RenyBaykova'
 ```
 
-```octave
->> first_name = "Reny";
->> last_name = "Baykova";
->> full_name = [first_name, last_name]
+```matlab
+>> first_name_str = "Reny";
+>> last_name_str = "Baykova";
+>> full_name_str = [first_name_str, last_name_str]
 
-full_name = 
+full_name_str = 
 
   1x2 string array
 
@@ -454,35 +501,41 @@ full_name =
 ---
 
 
-#### Chars/Strings
+####  Indexing with chars/strings
 
-Or with indexing:
+Indexing using () also works differently. With a `char`, we can access individual *characters* because each character is a separate element…
 
 ```matlab
->> a_char = 'a string of characters';
->> a_char(1)
+>> full_name_char
+
+full_name_char =
+    'RenyBaykova'
+
+>> full_name_char(1)
 
 ans =
-
-    'a'
+    'R'
 ```
 
-When indexing a `char` we can access individual *characters*…
+In contrast, each element in a `string` can be a sequence of characters...
 
-```octave
->> a_string = "a string";
->> a_string(1)
+```matlab
+>> full_name_str
+
+full_name_str = 
+  1×2 string array
+
+    "Reny"    "Baykova"
+    
+>> full_name_str(1)
 
 ans = 
-
-    "a string"
+    "Reny"    
 ```
-
-But when indexing a `string` we can only access individual *elements*…
 
 ---
 
-#### Logic with string/chars
+#### Logic with strings
 
 Logical operations also behave differently between `char`s and `string`s
 
@@ -517,7 +570,7 @@ This is the behaviour you'd probably expect…
 ---
 
 
-#### Logic with string/chars
+#### Logic with chars
 
 ```matlab
 >> 'ab' == 'ab'
@@ -645,13 +698,13 @@ ans =
     {2x1 double}
 ```
 
-Using `()` returns a 1 × 1 cell array… 
+Using `()` returns a 1 × 1 cell array that contains a 2 x 1 matrix, but we can't see what that matrix contains
 
 ---
 
 #### Accessing and indexing cell arrays
 
-But if we want the *content* (i.e., the matrix that is in cell 2), then we can
+If we want the *content* (i.e., the matrix that is in cell 2), then we can
 use `{}` instead…
 
 ```matlab
@@ -667,11 +720,12 @@ Using `{}` returns the 2 × 1 matrix in cell 2 of the cell array
 
 ---
 
-### Structs 
+### Structure arrays 
 
-- Like `cell` arrays, `struct`s allow you to mix arbitrary data types 
+- Like `cell` arrays, `struct`s allow you to mix different data types 
 
-- `struct`s organise data in key-value pairs<sup>1</sup>
+- `struct`s organise data in key-value pairs<sup>1</sup>.
+The data goes in different **fields** and the name you want to assign to each field is stored in the associated **field name**.
 
 - `struct`s are a common way of organising data in, for example, SPM, EEGLab,
   and FieldTrip
@@ -681,11 +735,11 @@ To create an empty `struct` we can use the `struct` keyword
 ```matlab
 person = struct % create an empty struct named person
 
-person.name = 'Reny' % field called name and assign a char
+person.name = 'Reny' % we create field called "name", and assign a char to it
 
-person.pets = {'dog' 'cat'} % assign a cell array to pets field
+person.pets = {'dog' 'cat'} % assign a cell array to "pets" field
 
-person.age = [32]; % assign a matrix to the age field
+person.age = [32]; % assign a matrix to the "age" field
 
 ```
 
