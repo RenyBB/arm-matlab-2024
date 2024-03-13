@@ -459,9 +459,9 @@ ans =
      
 ```
 
-Note that `Matlab` **does** distinguish between `''` and
+.footnote[<sup>1</sup>Note that `Matlab` **does** distinguish between `''` and
 `""` whereas, for example, `R` does not make a distinction. Strings are a relatively new data type in `Matlab` and older Matlab versions
-would produce an error if you used `""`.
+would produce an error if you used `""`.]
 
 ---
 
