@@ -2310,7 +2310,7 @@ logical indexing to replace all the values that are equal to 99 with the value
 <p><snippet code="%create a matrix
 
 m = [1 2 3; 5 99 9; 2 5 6; 99 12 14]"></p>
-<p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% create a matrix - copied from notes&#10;m = [1 2 3; 5 99 9; 2 5 6; 99 12 14]&#10;&#10;% Exercise 2.2 Solution&#10;a_row_vector(m == 99) = nan&#10;"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBjcmVhdGUgYSBtYXRyaXggLSBjb3BpZWQgZnJvbSBub3RlcwptID0gWzEgMiAzOyA1IDk5IDk7IDIgNSA2OyA5OSAxMiAxNF0KCiUgRXhlcmNpc2UgMi4yIFNvbHV0aW9uCmFfcm93X3ZlY3RvcihtID09IDk5KSA9IG5hbgoK" download="logical_index.m">Download logical_index.m</a> </span> </span> </details></p>
+<p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% create a matrix - copied from notes&#10;m = [1 2 3; 5 99 9; 2 5 6; 99 12 14]&#10;&#10;% Exercise 2.2 Solution&#10;m(m == 99) = nan&#10;"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBjcmVhdGUgYSBtYXRyaXggLSBjb3BpZWQgZnJvbSBub3RlcwptID0gWzEgMiAzOyA1IDk5IDk7IDIgNSA2OyA5OSAxMiAxNF0KCiUgRXhlcmNpc2UgMi4yIFNvbHV0aW9uCm0obSA9PSA5OSkgPSBuYW4KCg==" download="logical_index.m">Download logical_index.m</a> </span> </span> </details></p>
 <h4 class="ex1" id="ex-5">Ex</h4>
 <p>We haven’t covered the <code>find()</code> function yet, but it does something that you
 might sometimes find useful. Use the code below to create a matrix</p>
