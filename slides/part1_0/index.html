@@ -70,21 +70,21 @@ will be useful for this course, including:
 
 ## The aim of this mini-module
 
-- Get you familiar with the basics of programming
+- Get you familiar with the basics of programming.
 
 - Get you familiar with how to find help when you encounter a new programming
-  challenge
+  challenge.
 
-- Learn the basics of working with data in `Matlab`
+- Learn the basics of working with data in `Matlab`.
 
 - Introduce you to the basics of `PsychToolbox`, a set of `Matlab` tools for
-  stimulus presentation and response collection
+  stimulus presentation and response collection.
 
 
 The aim of this module is not to give you a set of instructions on how to do a
 bunch of specific things in `Matlab`. Rather, the aim is to give you a set of 
 tools that will allow you to *figure out* how to do the things you want to do 
-with `Matlab`
+with `Matlab`.
 
 ---
 
@@ -92,7 +92,7 @@ with `Matlab`
 
 
 - `Matlab` provides a one-stop-shop with all the common tools you‘ll need for
-  quantitative research in cognitive neuroscience/psychology 
+  quantitative research in cognitive neuroscience/psychology. 
 
 - `Matlab` is great for working with arrays and matrices (that is, the kind of
   data structures we commonly encounter in cognitive neuroscience/psychology).
@@ -103,7 +103,7 @@ with `Matlab`
 
 - Although this course is focused on `Matlab` you'll hopefully learn enough of
   the fundamentals of programming so that learning a new language will be
-  easier…
+  easier.
 
 
 ---
@@ -111,22 +111,22 @@ with `Matlab`
 ## A good approach to programming
 
 Often people don't care *how* they solve a problem, only that their code
-*works*…
+*works*.
 
 But it's better to do it right the first time and write code with 3 assumptions
-in mind
+in mind:
 
-1. That you'll understand **nothing** next time you look at **your** code
+1. That you'll understand **nothing** next time you look at **your** code,
 
-2. That *somebody else* will be using your code
+2. That *somebody else* will be using your code,
 
-3. That your code will need to run on another computer at some point
+3. That your code will need to run on another computer at some point.
 
 I'll try to teach you some good practices that will help you with all these.
 
 And although we'll be learning this in the context of `Matlab` the *principles*
 will also apply to other languages like `R` or `Python` (although the exact
-**procedures** will differ)
+**procedures** will differ).
 
 ---
 
@@ -134,12 +134,12 @@ will also apply to other languages like `R` or `Python` (although the exact
 
 Writing a program involves:
 
-- Breaking down problems into solvable steps
+- Breaking down problems into solvable steps,
 
-- Often lots or trial-and-error to check how bits of code work
+- Often lots or trial-and-error to check how bits of code work,
 
 - Debugging and finding errors, which can often take longer than the initial
-  programming
+  programming.
 
 But the more you practice, the better you'll get.
 
@@ -155,7 +155,7 @@ the **steps**, writing the code can be pretty straightforward.
 You should be able to _explain the steps that you need to take to solve the
 problem_ in **plain English** before you start trying to write code.
 
-Throughout the module, we'll work on some general problem-solving tasks to help 
+Throughout the module, we'll work on some general problem-solving tasks to help you gain experience.
 
 ---
 
@@ -198,7 +198,7 @@ By now you should've installed `Matlab` on your computer.
 If you haven't, then you'll have a chance to install it in the break.
 
 You can install it by following the instructions on the [University IT
-website](http://www.sussex.ac.uk/its/services/software/owncomputer/matlab)
+website](http://www.sussex.ac.uk/its/services/software/owncomputer/matlab).
 
 &lt;iframe width=730 height=350 src="http://www.sussex.ac.uk/its/services/software/owncomputer/matlab" style="border:none"&gt;&lt;/iframe&gt;
 
@@ -208,7 +208,7 @@ class: section
 # The basics of `Matlab`
 
 In this section, we'll cover the basics of the `Matlab` IDE (*integrated
-development environment*)
+development environment*).
 
 ---
 
@@ -230,11 +230,11 @@ development environment*)
 ### Parts of the `Matlab` GUI
 
 - The **Current Folder** pane allows you to browse the files in our working
-  directory
+  directory.
 
 - When you click on a filename then you'll be able to view information
   about that file (for example, any *comments* at the start of the file or
-  *data* contained in the file)
+  *data* contained in the file).
 
 - The **Workspace** gives us a list of the data (**variables**) that are
   currently loaded in `Matlab`.
@@ -246,7 +246,7 @@ development environment*)
   files).
 
 - Finally, the **Command window** is where we can type the commands we want to
-  run…
+  run.
 
 ---
 
@@ -265,7 +265,7 @@ This might include, instructions to…
 
 4. Process data in a particular way.
 
-5. Write data to a file
+5. Write data to a file.
 
 
 Instructions that tell `Matlab` to perform these kinds of actions are
@@ -282,14 +282,14 @@ In this course, we're going to **use** functions, but we're also going to
   use, or _call_ that function.
 
 - Most functions will also take one or more inputs, and produce one or more
-  outputs
+  outputs.
 
 An example of a function in `Matlab` is the `cos` function. The `cos` function
 works out the **cosine** of a number. It needs an input (a number) and produces
-an output (the cosine of that number)
+an output (the cosine of that number).
 
 
-We can run this function at the command prompt `&gt;&gt;` by using its name (`cos`)
+We can run this function at the command prompt `&gt;&gt;` by using its name (`cos`):
 
 ```matlab
 &gt;&gt; cos(0)
@@ -302,11 +302,11 @@ ans =
 
 ### Using a function…
 Notice that the **input** to a function goes inside `()`. If the function took
-several inputs then they would be separated by `,`.
+several inputs then they would be separated by `,`. For example, let's use the function 
+`zeros` to create a matrix with 2 rows and 3 columns:
 
-zeros(m,n)
 ```matlab
-&gt;&gt; zeros(2,3)
+&gt;&gt; zeros(2,3) 
 
 ans =
 
@@ -318,14 +318,14 @@ ans =
 
 ### Inputs and outputs to functions
 
-In the previous examples, we directly wrote in the numbers that we wanted to
-use as the input to our function… 
-
-… and the output of the function was printed out directly to the
-command window
+- In the previous examples, we directly wrote in the numbers that we wanted to
+  use as the input to our function…
+  
+  … and the output of the function was printed out directly to the
+  command window.
 
 - But it's far more often the case that we'll have some data stored in a
-  variable, and that we'll want to use this data as the input to our function
+  variable, and that we'll want to use this data as the input to our function.
 
 - And it's more often the case that we'll want to store the output of a
   function in a variable so we can use it for some other purpose
@@ -337,9 +337,9 @@ command window
 
 Variables in `Matlab` always have a name.
 
-Variable names must be one word (no spaces) and must start with a letter
+Variable names must be one word (no spaces) and must start with a letter.
 
-We use the `=` sign to **assign** some data to a variable…
+We use the `=` sign to **assign** some data to a variable:
 
 ```matlab
 &gt;&gt; my_number = 0
@@ -351,14 +351,14 @@ my_number =
 
 
 It's a good idea to give variables *meaningful* and *descriptive* names so
-that you know what they contain…
+that you know what they contain.
 
 ---
 
 ### Inputs and outputs to functions
 
 We can use the **variable** as the input to a function by using the
-variable name
+variable name:
 
 ```matlab
 &gt;&gt; cos(my_number)
@@ -368,7 +368,7 @@ ans =
      1
 ```
 
-We can also assign the output from a function to a variable
+We can also assign the output from a function to a variable:
 
 ```matlab
 &gt;&gt; cosine_of_number = cos(my_number)
@@ -387,9 +387,9 @@ If you've used `R` before, then all of this should be very familiar.
 
 When you run commands in `Matlab`, the commands will often produce **outputs**
 that are printed to the screen… even if you assign the output to a
-variable&lt;sup&gt;1&lt;/sup&gt;
+variable&lt;sup&gt;1&lt;/sup&gt;.
 
-To suppress the output we add a `;` to the end of the line.
+To suppress the output we add a `;` to the end of the line:
 
 **Showing the output…**    
 ```matlab
@@ -417,7 +417,7 @@ screen.]
   understand your code. They're little notes in your code.
 
 - In `Matlab`, comments are marked with `%`. Anything that comes after the
-  `%` isn't run by `Matlab`.
+  `%` isn't run by `Matlab`:
 
 ```matlab
 &gt;&gt; A = 1; % This is a comment and isn't run by Matlab 
