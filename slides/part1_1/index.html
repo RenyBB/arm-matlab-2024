@@ -85,11 +85,9 @@ The primary data types that we'll be working with in `Matlab` are:
 
 ### Vectors / Matrices
 
-The base data type in `Matlab` is the **matrix**
+The base data type in `Matlab` is the **matrix** and it stores numeric data. 
 
-A matrix in `Matlab` can have one dimension (*vector*), two dimensions
-(*matrix*), or more (*tensor*), but in `Matlab`, we refer to them all as a
-*matrix*.
+A matrix in `Matlab` can have one dimension (*vector*), two dimensions (*matrix*), or more but in `Matlab`, we refer to them all as a *matrix*.
 
 The simplest matrix in `Matlab` is a 1 × 1 matrix. A 1 × 1 matrix is just a single number.
 
@@ -99,7 +97,7 @@ The simplest matrix in `Matlab` is a 1 × 1 matrix. A 1 × 1 matrix is just a si
 
 A 1 × 4 matrix would be a list of four numbers…
 
-To do this, we wrap a list of four numbers in `[]` and separate them with `,` or spaces...
+To create a 1 x 4 matrix, we wrap a list of four numbers in `[]` and separate them with `,` or spaces...
 
 ```matlab
 &gt;&gt; a_vector_commas = [1, 2, 3, 4];
@@ -118,7 +116,7 @@ a_vector_spaces =
 We could also create, e.g., a 4 × 1 matrix, which would be a list of four
 numbers arranged vertically instead of horizontally… 
 
-To do this, we separate the numbers with `;` instead of `,`/spaces.
+To do this, we separate the numbers with `;` instead of `,` spaces.
 
 ```matlab
 &gt;&gt; a_column_vector = [1; 2; 3; 4]
@@ -181,10 +179,10 @@ Dimensions of arrays being concatenated are not consistent.
 
 ### Accessing and indexing matrices
 
-Once we have a matrix of data, we might want to access specific values in that
+Once we have a matrix of data, we might want to access specific elements in that
 matrix.
 
-To access a single value of a matrix we access using the following syntax:
+To access a single element of a matrix we access using the following syntax:
 
 ```matlab
 matrix_name(row_number, column_number)
@@ -202,9 +200,9 @@ a_matrix(2,2); % get row 2 column 2
 
 ---
 
-#### Accessing multiple values 
+#### Accessing multiple elements 
 
-We can also access more than one value at a time. For example, we can get entire
+We can also access more than one element at a time. For example, we can get entire
 rows or columns. To do this we use `:` to get all the rows/columns.
 
 ```matlab
@@ -213,7 +211,7 @@ a_matrix(1,:); % get the first row and all columns
 a_matrix(:,1); % get the first column and all the rows
 ```
 
-We can also access  multiple **specific** values, not just the whole row or column.
+We can also access  multiple **specific** elements, not just the whole row or column.
 
 ```matlab
 a_matrix(1,1:3); % get the first row, columns 1, 2, and 3
@@ -225,7 +223,7 @@ a_matrix(1,[1,3]); % get the first row, columns 1 and 3
 
 #### Access short-cuts for 1-D matrices
 
-There are a few shortcuts we can use for accessing values. 
+There are a few shortcuts we can use for accessing elements in 1-D matrices.  
 
 For example, if we have a 1 × N or N × 1 matrix then we can use
 a single index value.
@@ -234,11 +232,11 @@ a single index value.
 a_row_vector = [1, 2, 3, 4];
 a_col_vector = [1; 2; 3; 4];
 
-a_row_vector(2) % the second value of the vector
+a_row_vector(2) % the second element of the vector
 % this is the same as:
 a_row_vector(1,2) 
 
-a_col_vector(4) % the fourth value of the vector
+a_col_vector(4) % the fourth element of the vector
 % this is the same as:
 a_col_vector(4,1)
 ```
@@ -281,7 +279,7 @@ ans =
    0   1   1
 ```
 
-We use this logical matrix output to index the values we want
+We use this logical matrix output to index the elements we want
 
 ```matlab
 &gt;&gt; a_matrix(a_matrix &gt;= 22)
@@ -296,8 +294,8 @@ ans =
 
 #### Modifying matrices
 
-Instead of *accessing* elements of a matrix, we can also *modify* elements by
-*assigning* new values to elements.
+Instead of *accessing* elements of a matrix, we can also *modify* a matrix
+*assigning* new values to its elements.
 
 First, our original vector…
 ```matlab
@@ -328,7 +326,7 @@ a_vector =
 
 We can also use logical rules to decide which elements to modify.
 
-For example, we could change all the values in `a_matrix` that are *greater
+For example, we could change all the elements in `a_matrix` that are *greater
 than 21* to `NaN` (not a number)
 
 ```matlab
