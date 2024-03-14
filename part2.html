@@ -2248,8 +2248,8 @@ details[open] summary {
 </p>
 <h4 class="ex0" id="ex">Ex</h4>
 <p><span class="a_snippet"> <snippet code="% A simple script&#10;name = input(&#39;What is your name? &#39;,&#39;s&#39;); % ask your name&#10;disp([&#39;Hello &#39; name &#39;! Pleased to meet you&#39;]); % say hello"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBBIHNpbXBsZSBzY3JpcHQKbmFtZSA9IGlucHV0KCdXaGF0IGlzIHlvdXIgbmFtZT8gJywncycpOyAlIGFzayB5b3VyIG5hbWUKZGlzcChbJ0hlbGxvICcgbmFtZSAnISBQbGVhc2VkIHRvIG1lZXQgeW91J10pOyAlIHNheSBoZWxsbwo=" download="say_hello.m">Download say_hello.m</a> </span> </span></p>
-<p>Let’s create our first script. We’ll use the code in the snippet above.</p>
-<p>There are a couple of ways to go about creating our first script. We could
+<p>Let’s create a script. We’ll use the code in the snippet above.</p>
+<p>There are a couple of ways to go about creating a script. We could
 download the file above, making sure to save it in our search path, or we could
 directly create a new file from the <code>Matlab</code> command prompt. Let’s try the
 second approach.</p>
@@ -2257,7 +2257,7 @@ second approach.</p>
 <output code="&gt;&gt; edit say_hello.m">
 </output>
 <p>This should open a new file called <code>say_hello.m</code> in the editor window. Cut and
-paste the code for our first script into this file and save it.</p>
+paste the code from the snippet into this file and save it.</p>
 <h4 class="ex0" id="ex-1">Ex</h4>
 <p>You should now have a script file called <code>say_hello.m</code>. Make sure that you can
 run the script by typing the name at the command prompt.</p>
@@ -2343,7 +2343,15 @@ isn’t, then it should output a 0.</p></li>
 </ul>
 <p>Once you’ve written your function, try it out on these numbers:</p>
 <p><span class="a_snippet"> <snippet code="% For this set the difference should be significant&#10;x1 = [-1.655 -1.441 -0.113 -1.254 1.307 -0.924 -1.141 -0.362 0.641 -0.592]&#10;&#10;y1 = [1.854 2.845 2.109 1.194 0.142 2.581 3.053 2.839 0.338 3.7830]&#10;&#10;% For this set the difference should not be significant&#10;x1 = [1.120 1.287 0.903 1.290 0.441 1.984 1.750 0.453 0.464 1.010]&#10;&#10;y1 = [0.710 0.576  1.574  0.144  1.493  0.538  0.253  1.721 -0.384 -0.809]"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBGb3IgdGhpcyBzZXQgdGhlIGRpZmZlcmVuY2Ugc2hvdWxkIGJlIHNpZ25pZmljYW50CngxID0gWy0xLjY1NSAtMS40NDEgLTAuMTEzIC0xLjI1NCAxLjMwNyAtMC45MjQgLTEuMTQxIC0wLjM2MiAwLjY0MSAtMC41OTJdCgp5MSA9IFsxLjg1NCAyLjg0NSAyLjEwOSAxLjE5NCAwLjE0MiAyLjU4MSAzLjA1MyAyLjgzOSAwLjMzOCAzLjc4MzBdCgolIEZvciB0aGlzIHNldCB0aGUgZGlmZmVyZW5jZSBzaG91bGQgbm90IGJlIHNpZ25pZmljYW50CngxID0gWzEuMTIwIDEuMjg3IDAuOTAzIDEuMjkwIDAuNDQxIDEuOTg0IDEuNzUwIDAuNDUzIDAuNDY0IDEuMDEwXQoKeTEgPSBbMC43MTAgMC41NzYgIDEuNTc0ICAwLjE0NCAgMS40OTMgIDAuNTM4ICAwLjI1MyAgMS43MjEgLTAuMzg0IC0wLjgwOV0K" download="numbers.m">Download numbers.m</a> </span> </span></p>
-<p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="function [is_sig] = my_ttest(xvar, yvar)&#10;&#10;  % first let&#39;s work out the differences between the two variables&#10;  diffs = xvar - yvar;&#10;&#10;  % now let&#39;s run a t-test on the differences (i.e., a one-sample t-test)&#10;  [H,P] = ttest(diffs);&#10;  if P &lt; 0.05 &#10;      disp(&#39;There is a significant difference between x and y&#39;)&#10;      is_sig = 1;&#10;  else&#10;      disp(&#39;There is NOT a significant difference between x and y&#39;)&#10;      is_sig = 0;&#10;  end&#10;&#10;&#10;end"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,ZnVuY3Rpb24gW2lzX3NpZ10gPSBteV90dGVzdCh4dmFyLCB5dmFyKQoKICAlIGZpcnN0IGxldCdzIHdvcmsgb3V0IHRoZSBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRoZSB0d28gdmFyaWFibGVzCiAgZGlmZnMgPSB4dmFyIC0geXZhcjsKCiAgJSBub3cgbGV0J3MgcnVuIGEgdC10ZXN0IG9uIHRoZSBkaWZmZXJlbmNlcyAoaS5lLiwgYSBvbmUtc2FtcGxlIHQtdGVzdCkKICBbSCxQXSA9IHR0ZXN0KGRpZmZzKTsKICBpZiBQIDwgMC4wNSAKICAgICAgZGlzcCgnVGhlcmUgaXMgYSBzaWduaWZpY2FudCBkaWZmZXJlbmNlIGJldHdlZW4geCBhbmQgeScpCiAgICAgIGlzX3NpZyA9IDE7CiAgZWxzZQogICAgICBkaXNwKCdUaGVyZSBpcyBOT1QgYSBzaWduaWZpY2FudCBkaWZmZXJlbmNlIGJldHdlZW4geCBhbmQgeScpCiAgICAgIGlzX3NpZyA9IDA7CiAgZW5kCgoKZW5kCg==" download="my_ttest.m">Download my_ttest.m</a> </span> </span> </details></p>
+<!-- `<details>
+<summary>Solution Code</summary>
+<span class="a_snippet">
+<snippet code="function [is_sig] = my_ttest(xvar, yvar)&#10;&#10;  % first let&#39;s work out the differences between the two variables&#10;  diffs = xvar - yvar;&#10;&#10;  % now let&#39;s run a t-test on the differences (i.e., a one-sample t-test)&#10;  [H,P] = ttest(diffs);&#10;  if P &lt; 0.05 &#10;      disp(&#39;There is a significant difference between x and y&#39;)&#10;      is_sig = 1;&#10;  else&#10;      disp(&#39;There is NOT a significant difference between x and y&#39;)&#10;      is_sig = 0;&#10;  end&#10;&#10;&#10;end"></snippet>
+<span class="download">
+<a href="data:application/octet-stream;base64,ZnVuY3Rpb24gW2lzX3NpZ10gPSBteV90dGVzdCh4dmFyLCB5dmFyKQoKICAlIGZpcnN0IGxldCdzIHdvcmsgb3V0IHRoZSBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRoZSB0d28gdmFyaWFibGVzCiAgZGlmZnMgPSB4dmFyIC0geXZhcjsKCiAgJSBub3cgbGV0J3MgcnVuIGEgdC10ZXN0IG9uIHRoZSBkaWZmZXJlbmNlcyAoaS5lLiwgYSBvbmUtc2FtcGxlIHQtdGVzdCkKICBbSCxQXSA9IHR0ZXN0KGRpZmZzKTsKICBpZiBQIDwgMC4wNSAKICAgICAgZGlzcCgnVGhlcmUgaXMgYSBzaWduaWZpY2FudCBkaWZmZXJlbmNlIGJldHdlZW4geCBhbmQgeScpCiAgICAgIGlzX3NpZyA9IDE7CiAgZWxzZQogICAgICBkaXNwKCdUaGVyZSBpcyBOT1QgYSBzaWduaWZpY2FudCBkaWZmZXJlbmNlIGJldHdlZW4geCBhbmQgeScpCiAgICAgIGlzX3NpZyA9IDA7CiAgZW5kCgoKZW5kCg==" download="my_ttest.m">Download my_ttest.m</a>
+</span>
+</span>
+</details>`{=html} -->
 <h4 class="ex2" id="ex-8">Ex</h4>
 <p>Remember the <code>berry_broadbent.m</code> script from above. You should now know enough
 to understand most of it. Read over it again, and see if it makes more sense.</p>
@@ -2381,7 +2389,15 @@ ans =
 </output>
 <p>Write some code (either a script or a function) that loops through <code>people</code> and
 prints out the name of any person who has a pet!</p>
-<p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% this will just create some dummy data for us to work on&#10;% let&#39;s create an struct array with some data&#10;&#10;% ---- This section is copied from the handount -------------&#10;% ---- All it does is create the struct array ---------------&#10;&#10;person.name = &#39;Lincoln&#39;;&#10;person.has_pets = 0;&#10;people = person;&#10;person.name = &#39;Laura&#39;;&#10;person.has_pets = 1;&#10;people = [people person];&#10;person.name = &#39;Edwin&#39;;&#10;person.has_pets = 1;&#10;people = [people person];&#10;person.name = &#39;Clara&#39;;&#10;person.has_pets = 0;&#10;people = [people person];&#10;clear person;&#10;&#10;% ------------------------------------------&#10;&#10;% solution for Exercise 3.3&#10;for p = 1:length(people)&#10;    if people(p).has_pets == 1&#10;        disp(people(p).name)&#10;    end&#10;end"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSB0aGlzIHdpbGwganVzdCBjcmVhdGUgc29tZSBkdW1teSBkYXRhIGZvciB1cyB0byB3b3JrIG9uCiUgbGV0J3MgY3JlYXRlIGFuIHN0cnVjdCBhcnJheSB3aXRoIHNvbWUgZGF0YQoKJSAtLS0tIFRoaXMgc2VjdGlvbiBpcyBjb3BpZWQgZnJvbSB0aGUgaGFuZG91bnQgLS0tLS0tLS0tLS0tLQolIC0tLS0gQWxsIGl0IGRvZXMgaXMgY3JlYXRlIHRoZSBzdHJ1Y3QgYXJyYXkgLS0tLS0tLS0tLS0tLS0tCgpwZXJzb24ubmFtZSA9ICdMaW5jb2xuJzsKcGVyc29uLmhhc19wZXRzID0gMDsKcGVvcGxlID0gcGVyc29uOwpwZXJzb24ubmFtZSA9ICdMYXVyYSc7CnBlcnNvbi5oYXNfcGV0cyA9IDE7CnBlb3BsZSA9IFtwZW9wbGUgcGVyc29uXTsKcGVyc29uLm5hbWUgPSAnRWR3aW4nOwpwZXJzb24uaGFzX3BldHMgPSAxOwpwZW9wbGUgPSBbcGVvcGxlIHBlcnNvbl07CnBlcnNvbi5uYW1lID0gJ0NsYXJhJzsKcGVyc29uLmhhc19wZXRzID0gMDsKcGVvcGxlID0gW3Blb3BsZSBwZXJzb25dOwpjbGVhciBwZXJzb247CgolIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKJSBzb2x1dGlvbiBmb3IgRXhlcmNpc2UgMy4zCmZvciBwID0gMTpsZW5ndGgocGVvcGxlKQogICAgaWYgcGVvcGxlKHApLmhhc19wZXRzID09IDEKICAgICAgICBkaXNwKHBlb3BsZShwKS5uYW1lKQogICAgZW5kCmVuZAo=" download="has_pets.m">Download has_pets.m</a> </span> </span> </details></p>
+<!-- `<details>
+<summary>Solution Code</summary>
+<span class="a_snippet">
+<snippet code="% this will just create some dummy data for us to work on&#10;% let&#39;s create an struct array with some data&#10;&#10;% ---- This section is copied from the handount -------------&#10;% ---- All it does is create the struct array ---------------&#10;&#10;person.name = &#39;Lincoln&#39;;&#10;person.has_pets = 0;&#10;people = person;&#10;person.name = &#39;Laura&#39;;&#10;person.has_pets = 1;&#10;people = [people person];&#10;person.name = &#39;Edwin&#39;;&#10;person.has_pets = 1;&#10;people = [people person];&#10;person.name = &#39;Clara&#39;;&#10;person.has_pets = 0;&#10;people = [people person];&#10;clear person;&#10;&#10;% ------------------------------------------&#10;&#10;% solution for Exercise 3.3&#10;for p = 1:length(people)&#10;    if people(p).has_pets == 1&#10;        disp(people(p).name)&#10;    end&#10;end"></snippet>
+<span class="download">
+<a href="data:application/octet-stream;base64,JSB0aGlzIHdpbGwganVzdCBjcmVhdGUgc29tZSBkdW1teSBkYXRhIGZvciB1cyB0byB3b3JrIG9uCiUgbGV0J3MgY3JlYXRlIGFuIHN0cnVjdCBhcnJheSB3aXRoIHNvbWUgZGF0YQoKJSAtLS0tIFRoaXMgc2VjdGlvbiBpcyBjb3BpZWQgZnJvbSB0aGUgaGFuZG91bnQgLS0tLS0tLS0tLS0tLQolIC0tLS0gQWxsIGl0IGRvZXMgaXMgY3JlYXRlIHRoZSBzdHJ1Y3QgYXJyYXkgLS0tLS0tLS0tLS0tLS0tCgpwZXJzb24ubmFtZSA9ICdMaW5jb2xuJzsKcGVyc29uLmhhc19wZXRzID0gMDsKcGVvcGxlID0gcGVyc29uOwpwZXJzb24ubmFtZSA9ICdMYXVyYSc7CnBlcnNvbi5oYXNfcGV0cyA9IDE7CnBlb3BsZSA9IFtwZW9wbGUgcGVyc29uXTsKcGVyc29uLm5hbWUgPSAnRWR3aW4nOwpwZXJzb24uaGFzX3BldHMgPSAxOwpwZW9wbGUgPSBbcGVvcGxlIHBlcnNvbl07CnBlcnNvbi5uYW1lID0gJ0NsYXJhJzsKcGVyc29uLmhhc19wZXRzID0gMDsKcGVvcGxlID0gW3Blb3BsZSBwZXJzb25dOwpjbGVhciBwZXJzb247CgolIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKJSBzb2x1dGlvbiBmb3IgRXhlcmNpc2UgMy4zCmZvciBwID0gMTpsZW5ndGgocGVvcGxlKQogICAgaWYgcGVvcGxlKHApLmhhc19wZXRzID09IDEKICAgICAgICBkaXNwKHBlb3BsZShwKS5uYW1lKQogICAgZW5kCmVuZAo=" download="has_pets.m">Download has_pets.m</a>
+</span>
+</span>
+</details>`{=html} -->
 <h1 id="problem-solving-task">Problem-solving task</h1>
 <p>At this point, you should know enough Matlab to solve a small problem.
 The problem that you’ll be solving is based on the children’s game called

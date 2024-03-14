@@ -116,11 +116,9 @@ xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons"))
 
 # Scripts
 
-Up to now, we've been typing our commands at the `Matlab` command prompt,
-`>>` in the **Command Window**.
+Typing commands in the **Command Window** isn't very efficient because it doesn't allow us to save and re-use code. 
 
-But this isn't very efficient because often we'll want to re-use code, or save
-code for later use…
+And often we'll want to save and re-use code for later use.
 
 We can use **scripts** (files with an `.m` extension) to store a series of
 commands that we can then re-run.
@@ -128,9 +126,6 @@ commands that we can then re-run.
 ---
 
 ## <small>The search path</small>
-
-Before we can start using scripts in `Matlab`, we have to understand the concept 
-of the **search path**.
 
 The **search path** is a list of all the folders on your computer where `Matlab`
 will look for `.m` files.
@@ -142,7 +137,7 @@ and a folder in your `Document` folder, usually something like:
 
 You can *view* your search path with the `path` command:
 
-```octave
+```matlab
 >> path
 
 		MATLABPATH
@@ -158,12 +153,12 @@ You can *view* your search path with the `path` command:
 
 .center[<img src="path_annotated.png" width="95%" />]
 
-My *poorly* annotated `Matlab` window showing an example of a folder in the
-search path, a folder not in the search path, and the current folder…
+An annotated `Matlab` window showing an example of a folder in the
+search path, a folder not in the search path, and the current folder.
 
 ---
 
-## Our first script
+## Creating a script
 
 The easiest way to create a new script (or function) file is with the `edit`
 command.
@@ -188,9 +183,9 @@ you don't follow the rules!
 
 ---
 
-## Our first script
+## Creating a script
 
-We can create our first script called `say_hello.m`<sup>1</sup>
+We can create a script called `say_hello.m`<sup>1</sup>
 
 You can copy the code below into the editor window and save it!
 
