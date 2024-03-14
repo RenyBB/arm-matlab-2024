@@ -2185,11 +2185,17 @@ Course sections
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#assignment-outline" id="toc-assignment-outline">Assignment outline</a>
+<li><a href="#assessment" id="toc-assessment">Assessment</a>
 <ul>
-<li><a href="#getting-help" id="toc-getting-help">Getting help</a></li>
+<li><a href="#matlab-experiment-70-of-assessment-mark" id="toc-matlab-experiment-70-of-assessment-mark">MATLAB experiment [70% of assessment mark]</a></li>
+<li><a href="#essay-30-of-assessment-mark" id="toc-essay-30-of-assessment-mark">Essay [30% of assessment mark]</a></li>
+<li><a href="#what-to-submit" id="toc-what-to-submit">What to submit</a></li>
 </ul></li>
-<li><a href="#assessment" id="toc-assessment">Assessment</a></li>
+<li><a href="#resit" id="toc-resit">Resit</a></li>
+<li><a href="#getting-help" id="toc-getting-help">Getting help</a>
+<ul>
+<li><a href="#section" id="toc-section"></a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2220,22 +2226,69 @@ action.</p>
 reflect this.</p>
 </div>
 -->
-<h1 id="assignment-outline">Assignment outline</h1>
+<h1 id="assessment">Assessment</h1>
+<p>Your assessment will comprise of two parts: (1) coding a MATLAB psychology experiment, and (2) writing a 750-word essay. The MATLAB experiment will contribute 70% of your mark for the assessment, and the essay will contribute 30% of your mark for the assessment.</p>
+<h2 id="matlab-experiment-70-of-assessment-mark">MATLAB experiment [70% of assessment mark]</h2>
+<p>The main part of your assessment is to implement a computerized experiment task using MATLAB. The task is a standard Colour/Word Stroop task (Stroop, 1935) at least three colour words (e.g. red, green, blue).
+Your task will contain a variable number of trials depending on the choices you make. As a guideline, your task should include at least 10 trials per condition, and completing your task as a participant should take a maximum of 5 minutes.
+To code your Stroop Task, start from the Stroop Task demo designed by Peter Scarfe: <a href="https://peterscarfe.com/stroop.html" class="uri">https://peterscarfe.com/stroop.html</a>. Then, make the following additions and changes:</p>
+<ol type="1">
+<li><p>Check that the nominal frame rate of your monitor is 60Hz. If not, set it to 60Hz using the SetResolution() function.</p></li>
+<li><p>Currently, each column of the response matrix (‘respMat’) corresponds to a new trial, and each row corresponds to a different variable. Swap these around such that each row corresponds to a new trial, and each column corresponds to a different variable.</p></li>
+<li><p>Add a column in the response matrix (‘respMat’) to store the participant’s id, and a second column to store the trial id. Specify the participant id using the input() function at the start of the script.</p></li>
+<li><p>Adapt the code so that there is an equal number of congruent and incongruent trials.</p></li>
+<li><p>Currently, the fixation point appears immediately after participants provide a response. Instead, adjust the code such that there is a fixed gap of ~250ms between the offset of the stimulus and the start of the next trial. The exact duration of the blank screen should be specified in number of frames not in milliseconds.</p></li>
+<li><p>On each trial, randomise the interstimulus interval between ~500ms to ~1000ms. The exact duration of each interstimulus interval should be specified in number of frames not in milliseconds.</p></li>
+<li><p>Define a trial exclusion criterion based on reaction times. If on a given trial, a participant’s reaction time is greater than 5000ms, mark that trial for exclusion. <strong>NOTE</strong>: this will require adding an extra column to the data matrix.</p></li>
+<li><p>Add instructions at the start of the experiment. These should clearly explain to a participant what their task will be. Your instructions should describe what will happen in each trial but should not disclose the goal of the experiment. Feel free to have a look at the instructions used in previous studies, but <strong>do not</strong> copy your instructions from elsewhere; <u>write your own instructions</u>. At the end of the experiment, provide the participant with feedback on their performance. Describe what the purpose of the task was and display: (1) the participant’s average reaction time on correct trials for each condition, (2) their performance accuracy for each condition, or (3) both.</p></li>
+<li><p>Save the data matrix generated from running the experiment into a file. The filename should include the participant id and the date on which the experiment was run. <strong>NOTE</strong>: do not hardcode the date, use the datetime() function to return the current date.</p></li>
+</ol>
+<p>If you complete the above list of tasks, you can get a maximum mark of 68 for the code-based part of the assignment. <strong>NOTE</strong>: If your code doesn’t run or your code is not clearly commented you will not get 68 (more on this further down). <u>To get a higher mark for this part of the assignment, successfully complete one or more of the following advanced tasks</u>:</p>
+<ol start="11" type="1">
+<li><p>Include an additional neutral condition in which participants are shown a coloured circle (e.g. red, green, blue). See <a href="https://peterscarfe.com/oval.html" class="uri">https://peterscarfe.com/oval.html</a>.</p></li>
+<li><p>Check for timing presentation issues during the experiment. Compute the difference between the desired and actual duration of the fixation point. If the difference is greater than 10ms, mark the trial for exclusion. Repeat excluded trials. If a trial is to be excluded (either because participants took too long or because of a timing issue), add that trial back into the sequence of remaining trials, and reshuffle the sequence of remaining trials. Limit the overall number of allowed repetitions to avoid an infinite loop.</p></li>
+<li><p>Record responses using a keyboard queue. This allows keyboard responses to be recorded more accurately. See <a href="http://psychtoolbox.org/docs/KbQueueCreate" class="uri">http://psychtoolbox.org/docs/KbQueueCreate</a> and <a href="https://peterscarfe.com/keyboardQDemo.html" class="uri">https://peterscarfe.com/keyboardQDemo.html</a>.</p></li>
+<li><p>If you are interested in implementing different or more ambitious modifications, talk to me first.</p></li>
+</ol>
+<p>Successfully completing any 1 of tasks 11-13 will bump the maximum mark you can get for this part of the assessment to the 70s range. Completing 2 or all 3 of the specified advanced tasks (11-13) will bump the maximum possible mark further. <strong>NOTE</strong>: You will not get these marks if your code doesn’t run, or your code is not clearly commented.</p>
+<p>You will also be assessed on the quality of your code. First, this means that your code should run. I will also be looking at whether you write your code in such a way so that you make use of reusable components that could, in theory, be reused for a different experiment. You should keep in mind the three assumptions outlined in session one:</p>
+<ol type="1">
+<li><p>That you’ll understand nothing next time you look at your code;</p></li>
+<li><p>That somebody else will be using your code;</p></li>
+<li><p>That your code will need to run on another computer at some point.</p></li>
+</ol>
+<p>Writing clear comments that show understanding of what each line of code does can help you get a good mark. The comments already in the demo will not contribute towards your mark, and some comments would need to be edited or deleted.</p>
+<p>Finally, to demonstrate that your code works, record a video demoing your code, and record the data collected from one participant (yourself). The video should include a brief run through your code and show you completing the task from start to finish. The purpose of providing a video and the data of one participant is to show that your code works. Showing that your code runs is especially important if for some reason I can’t get your code to run.</p>
+<p>References:</p>
+<p>Stroop, J. R. (1935). Studies of interference in serial verbal reactions. <em>Journal of experimental psychology</em>, 18(6), 643.</p>
+<h2 id="essay-30-of-assessment-mark">Essay [30% of assessment mark]</h2>
+<p>Discuss how you would design an experiment based on the Stroop effect to investigate a question related to the research area of your Master’s thesis. If you have not selected your final year project yet, let me know.</p>
+<p>The word limit is 750 words, and for this component of the assignment, you will be assessed following the postgraduate criteria for shorter essays.</p>
+<h2 id="what-to-submit">What to submit</h2>
+<p>This this assignment you will submit the following:</p>
+<ol type="1">
+<li>Your Psychtoolbox code for the task.</li>
+<li>Video demoing your code and task.</li>
+<li>Data from one participant.</li>
+<li>Your essay.</li>
+</ol>
+<h1 id="resit">Resit</h1>
+<p>The resit will have the same instructions for the Matlab (Stroop task) component. For the essay component, students are required to address a research question different to the original submission.</p>
+<h1 id="getting-help">Getting help</h1>
 <p>In preparing your code, you’re welcome to make use of any resources you
 find online. Part of being effective at Matlab is making good use of the
 resources available to you. A good place to start is in the lecture
 notes. There’s a lot of information (and code snippets) in there that
 will be useful for you.</p>
-<h2 id="getting-help">Getting help</h2>
 <p>There are several websites that you might find useful when doing the
-assessment. Two I recommend checking out include,</p>
+assessment. Two I recommend checking out include:</p>
 <ol type="1">
-<li><p><a href="https://peterscarfe.com/ptbtutorials.html">Psychtoobox Demos</a></p></li>
+<li><p>The different demos you can find in Peter Scarfe’s <a href="https://peterscarfe.com/ptbtutorials.html">Psychtoobox Demos</a> (not just the Stroop demo you need for the assignment)</p></li>
 <li><p><a href="https://uk.mathworks.com/matlabcentral/fileexchange/">Matlab File
 Exchange</a></p></li>
 </ol>
-<p>Please note, however, that if you re-use any code you find online then
-this should be referenced in <strong>your</strong> <code>Matlab</code> code. The reference
+<p>Please note, however, that if you re-use any code you find online to complete the listed tasks,
+then this should be referenced in <strong>your</strong> Matlab code. The reference
 should include a link to the page where you found the code. See the
 snippet below as an example.</p>
 <output code="% Euclidean distance between two vectors
@@ -2243,9 +2296,9 @@ snippet below as an example.</p>
 V = G - G2;
 D = sqrt(V * V&#39;)">
 </output>
-<h1 id="assessment">Assessment</h1>
-<p>We are waiting for approval for the assessment for this mini-module.
-The site will be updated when the assessment is approved.</p>
+<h2 id="section"></h2>
+<p><strong>Generative AI tools must not be used to generate any materials or content for this assessment</strong>: The purpose and format of this assessment makes it inappropriate or impractical for AI tools to be used.</p>
+<p>Students registered with the Disability Advice team and in receipt of reasonable adjustments are still permitted to use other assistive technology as required.</p>
 <div class="layout-chunk" data-layout="l-body">
 <script>
 document.body.onload = build;
