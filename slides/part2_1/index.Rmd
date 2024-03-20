@@ -201,13 +201,6 @@ function mean_value = my_mean(input_numbers)
 end
 
 ```
-
-Check the **help**…
-```matlab
->> help my_mean
-  work out the mean of some numbers
-```
-
 ---
 
 ### Taking apart our first function
@@ -229,6 +222,12 @@ function mean_value = my_mean(input_numbers)
 
 end
 
+```
+
+Check the **help**…
+```matlab
+>> help my_mean
+  work out the mean of some numbers
 ```
 
 ---
@@ -351,7 +350,6 @@ function produces.
 
 ```matlab
 function [ouput1, output2] = function_name(input1, input2, input3)
-
 ```
 
 - In the example above, values 1–3 will be accessible in variables called
@@ -380,6 +378,8 @@ work.
   **workspace**
 
 ```matlab
+function mean_value = my_mean(input_numbers)
+
   % we'll use length to get the number of items
   length_of_input = length(input_numbers)
 
@@ -388,6 +388,7 @@ work.
 
   % now work out the mean!
   mean_value = sum_of_input / length_of_input
+end
 ```
 
 The variable `input_numbers` is an input in the **function declaration**
@@ -436,10 +437,17 @@ disp(x); % print out the value of x
 ```
 
 ```matlab
-x = 99;
-disp(x); % prints out: 99
-example1; % prints out: 1
-disp(x); % prints out: 1 
+>> x = 99;
+>> disp(x); % prints out: 99
+x =
+    99
+    
+>> example1; % prints out: 1
+     1
+     
+>> disp(x); % prints out: 1 
+x =
+     1
 ```
 
 The value of `x` is set inside the script `example1`, and that change persists
@@ -459,10 +467,15 @@ end
 ```
 
 ```matlab
-x = 99;
-disp(x); % prints out: 99
-example2; % prints out: 1
-disp(x); % prints out: 99 
+>> x = 99;
+>> disp(x); % prints out: 99
+x =
+    99
+>> example2; % prints out: 1
+    1
+>> disp(x); % prints out: 99 
+x =
+    99
 ```
 
 The value of `x` is set inside the **function** `example2` and this change
