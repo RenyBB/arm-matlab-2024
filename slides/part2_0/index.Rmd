@@ -125,39 +125,6 @@ commands that we can then re-run.
 
 ---
 
-## <small>The search path</small>
-
-The **search path** is a list of all the folders on your computer where `Matlab`
-will look for `.m` files.
-
-By default, the search path will include several folders related to `Matlab`
-and a folder in your `Document` folder, usually something like:
-  - `/Users/USERNAME/Documents/Matlab` or 
-  - `C:/Users/USERNAME/Documents/Matlab`
-
-You can *view* your search path with the `path` command:
-
-```matlab
->> path
-
-		MATLABPATH
-
-	/Users/lc663/Documents/MATLAB
-	/Users/lc663/matlab
-	/Applications/MATLAB_R2019b.app/toolbox/matlab/timefun
-```
-
----
-
-## <small>The search path</small>
-
-.center[<img src="path_annotated.png" width="95%" />]
-
-An annotated `Matlab` window showing an example of a folder in the
-search path, a folder not in the search path, and the current folder.
-
----
-
 ## Creating a script
 
 The easiest way to create a new script (or function) file is with the `edit`
@@ -175,7 +142,8 @@ Valid names for script files:
 
 2. Has the extension `.m`
 
-3. Doesn't start on a number
+3. Must start with a letter
+
 
 Helpfully, `Matlab` will show an error and give you a chance to edit the name if
 you don't follow the rules!
@@ -262,3 +230,37 @@ Any comments at the start of the file are printed out when you ask for `help`.
 
 A good habit is to write your own documentation (what gets printed out by
 `help`) for any of the scripts and functions you write.
+
+
+---
+
+## <small> Finally: the search path</small>
+
+The **search path** is a list of all the folders on your computer where `Matlab`
+will look for `.m` files.
+
+By default, the search path will include several folders related to `Matlab`
+and a folder in your `Document` folder, usually something like:
+  - `/Users/USERNAME/Documents/Matlab` or 
+  - `C:/Users/USERNAME/Documents/Matlab`
+
+You can *view* your search path with the `path` command:
+
+```matlab
+>> path
+
+		MATLABPATH
+
+	/Users/lc663/Documents/MATLAB
+	/Users/lc663/matlab
+	/Applications/MATLAB_R2019b.app/toolbox/matlab/timefun
+```
+
+---
+
+## <small> Finally: the search path</small>
+
+.center[<img src="path_annotated.png" width="95%" />]
+
+An annotated `Matlab` window showing an example of a folder in the
+search path, a folder not in the search path, and the current folder.
