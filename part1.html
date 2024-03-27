@@ -2304,19 +2304,39 @@ should return a 1 × 2 matrix will the values <code>[3 4]</code></p>
 <p><snippet code="size(my_matrix)  % get the size of a matrix/cell array"></p>
 <p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% One solution is as follows&#10;my_matrix = [11 12 13 14; 21 22 23 24;31 32 33 34];&#10;&#10;% but you can also write it like this&#10;my_matrix = [11 12 13 14&#10;             21 22 23 24&#10;             31 32 33 34]"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBPbmUgc29sdXRpb24gaXMgYXMgZm9sbG93cwpteV9tYXRyaXggPSBbMTEgMTIgMTMgMTQ7IDIxIDIyIDIzIDI0OzMxIDMyIDMzIDM0XTsKCiUgYnV0IHlvdSBjYW4gYWxzbyB3cml0ZSBpdCBsaWtlIHRoaXMKbXlfbWF0cml4ID0gWzExIDEyIDEzIDE0CiAgICAgICAgICAgICAyMSAyMiAyMyAyNAogICAgICAgICAgICAgMzEgMzIgMzMgMzRdCg==" download="create_a_matrix.m">Download create_a_matrix.m</a> </span> </span> </details></p>
 <h4 class="ex1" id="ex-4">Ex</h4>
-<p>Use the code below to create a matrix. Once you’ve created the matrix, use
-logical indexing to replace all the values that are equal to 99 with the value
-<code>NaN</code> (not a number).</p>
+<p>Copy the code below into the <code>Matlab</code> command window to create the matrix <code>m</code>.</p>
 <p><snippet code="%create a matrix
-
-m = [1 2 3; 5 99 9; 2 5 6; 99 12 14]"></p>
+m = [1 2 3; 5 99 9; 2 5 6; 99 12 14]
+"></p>
+<p>Once you’ve created the matrix <code>m</code>, copy the code below to find which values in the matrix are equal to 99. To do this, we use the logical operator <code>==</code> which means <code>equal to</code>.<br />
+<snippet code="%find which values in m are equal to 99
+m == 99
+"></p>
+<p>By typing in the command <code>m == 99</code> we are asking <code>Matlab</code> to check whether each value in the matrix <code>m</code> is equal to 99. The command <code>m = 99</code> returns a <code>logical</code> array containing 0s and 1s. 0 means that the corresponding number in the matrix <code>m</code> is not equal to 99. 1 means that the corresponding number in the matrix <code>m</code> is equal to 99. The command <code>m==99</code> returns:</p>
+<p><span class="math display">\[  
+\left[\begin{array}{cc}
+0 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0\\
+\end{array}\right]
+\]</span>
+The value in row 1, column 1 is a 0, which means that the corresponding number in the matrix <code>m</code> is not equal to 99. Now let’s look at the matrix <code>m</code> - the number in row 1, column 1 is indeed not equal to 99. In comparison, the number in row 2, column 2 is equal to 99. Therefore the result of <code>m==99</code> shows a 1 in row 2, column 2.</p>
+<p><code>Logical</code> arrays can be used to access the values in a matrix that fulfill the specified rule. For example, the code <code>m(m==99)</code> will return all values in the matrix <code>m</code> that are equal to 99. Try this by coping the code in the <code>Matlab</code> command window.</p>
+<p><snippet code="%return all numbers in the matrix m that are equal to 99
+m(m==99)
+"></p>
+<p>Now, use the code above to replace all values equal to 99 with NaN (not a number).
+For a clue how to do this, take a look at slide number 12, <em>Logical indexing of matrices</em>.</p>
 <p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% create a matrix - copied from notes&#10;m = [1 2 3; 5 99 9; 2 5 6; 99 12 14]&#10;&#10;% Exercise 2.2 Solution&#10;m(m == 99) = nan&#10;"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBjcmVhdGUgYSBtYXRyaXggLSBjb3BpZWQgZnJvbSBub3RlcwptID0gWzEgMiAzOyA1IDk5IDk7IDIgNSA2OyA5OSAxMiAxNF0KCiUgRXhlcmNpc2UgMi4yIFNvbHV0aW9uCm0obSA9PSA5OSkgPSBuYW4KCg==" download="logical_index.m">Download logical_index.m</a> </span> </span> </details></p>
 <h4 class="ex1" id="ex-5">Ex</h4>
 <p>We haven’t covered the <code>find()</code> function yet, but it does something that you
-might sometimes find useful. Use the code below to create a matrix</p>
+might sometimes find useful. Copy the code below into the <code>Matlab</code> command windows to create a matrix called <code>a_row_vector</code></p>
 <p><snippet code="a_row_vector = [1, 2, 3, 5, 6, 23, 546, 435]" /></p>
-<p>Try using logical indexing to find the elements of <code>a_row_vector</code> that are
-greater than 100. If you’ve done it correctly you should see something like this
+<p>Try to ask <code>Matlab</code> which numbers in <code>a_row_vector</code> are
+greater than 100. The logical operator for ‘greater than’ is <code>&gt;</code>.
+Look at slide 12 or Exercise 2.2 for a clue. We want to get a <code>logical</code> array containin 0s and 1s.
+If you’ve done it correctly you should see something like this
 when you run the code:</p>
 <output code="
 ans =
@@ -2327,7 +2347,7 @@ ans =
 ">
 </output>
 <p>Next, try to return the elements from <code>a_row_vector</code> that match your logical
-rule.</p>
+rule. Look at slide 14 or Exercise 2.2 for a clue.</p>
 <output code="
 ans =
 
@@ -2336,7 +2356,7 @@ ans =
 </output>
 <p>So far we’ve got the matrix that tells us which elements match and which don’t
 and we’ve got the actual values of the elements that match. But what if we
-wanted to know the <em>index</em> of the <em>elements that matched</em> our logical rule? Try
+wanted to know the position (<em>index</em>) of the <em>elements that matched</em> our logical rule? Try
 the code below and see what happens…</p>
 <p><snippet code="find(a_row_vector > 100)
 "></snippet></p>
@@ -2344,49 +2364,58 @@ the code below and see what happens…</p>
 <p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="%create a matrix - copied from handout&#10;&#10;a_row_vector = [1, 2, 3, 5, 6, 23, 546, 435]&#10;&#10;a_row_vector &gt; 100&#10;&#10;% The value of the elements that match the rule&#10;a_row_vector(a_row_vector &gt; 100)&#10;&#10;% using find to return the indices of the elements that match the rule&#10;find(a_row_vector &gt; 100)&#10;"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JWNyZWF0ZSBhIG1hdHJpeCAtIGNvcGllZCBmcm9tIGhhbmRvdXQKCmFfcm93X3ZlY3RvciA9IFsxLCAyLCAzLCA1LCA2LCAyMywgNTQ2LCA0MzVdCgphX3Jvd192ZWN0b3IgPiAxMDAKCiUgVGhlIHZhbHVlIG9mIHRoZSBlbGVtZW50cyB0aGF0IG1hdGNoIHRoZSBydWxlCmFfcm93X3ZlY3RvcihhX3Jvd192ZWN0b3IgPiAxMDApCgolIHVzaW5nIGZpbmQgdG8gcmV0dXJuIHRoZSBpbmRpY2VzIG9mIHRoZSBlbGVtZW50cyB0aGF0IG1hdGNoIHRoZSBydWxlCmZpbmQoYV9yb3dfdmVjdG9yID4gMTAwKQoK" download="using_find.m">Download using_find.m</a> </span> </span> </details></p>
 <h4 class="ex1" id="ex-6">Ex</h4>
 <p>All the logical operations we’ve used so far have been fairly simple. We’ve only
-been matching one condition. But let’s return to our variable <code>a_row_vector</code>. It
+been checking one condition at a time. We will now try to ask <code>Matlab</code> to check two conditions at the same time. Let’s return to our variable <code>a_row_vector</code>. It
 has some values greater than 100 and some values less than
-20. But does it have any values between those two values? That is, values that
+20. But does <code>a_row_vector</code> have any values that
 are greater than 20 and less than 100? Can you figure out what those values
-are? Try joining to logical condition and <code>&amp;</code> (logical <strong>AND</strong>)</p>
+are?</p>
+<p>First, in Exercise 2.2 we wrote some code to check which numbers in <code>a_row_vector</code> are greater than 20.
+Second, write some code to check which numbers in <code>a_row_vector</code> are smaller than 20.
+Third, try joining the two lines of code described above using <code>&amp;</code> which means <strong>AND</strong>. To do this, put the code you wrote to check which numbers are greater than 20 and the code you wrote to check which numbers are smaller than 100 in the appropriate places:</p>
+<p><code>check which numbers are &gt; than 20</code> <strong>&amp;</strong> <code>check which numbers are &lt; than 100</code></p>
+<p>Finally, display the values in <code>a_row_vector</code> which fulfill both conditions. Check slide 12 or the exercises above for a clue.</p>
 <p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% create a row vector -- copied from handout&#10;a_row_vector = [1, 2, 3, 5, 6, 23, 546, 435]&#10;&#10;% values greater than 20 AND less than 100?&#10;a_row_vector &gt; 20 &amp; a_row_vector &lt; 100&#10;&#10;% what are those values?&#10;a_row_vector(a_row_vector &gt; 20 &amp; a_row_vector &lt; 100)"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBjcmVhdGUgYSByb3cgdmVjdG9yIC0tIGNvcGllZCBmcm9tIGhhbmRvdXQKYV9yb3dfdmVjdG9yID0gWzEsIDIsIDMsIDUsIDYsIDIzLCA1NDYsIDQzNV0KCiUgdmFsdWVzIGdyZWF0ZXIgdGhhbiAyMCBBTkQgbGVzcyB0aGFuIDEwMD8KYV9yb3dfdmVjdG9yID4gMjAgJiBhX3Jvd192ZWN0b3IgPCAxMDAKCiUgd2hhdCBhcmUgdGhvc2UgdmFsdWVzPwphX3Jvd192ZWN0b3IoYV9yb3dfdmVjdG9yID4gMjAgJiBhX3Jvd192ZWN0b3IgPCAxMDApCg==" download="using_logical_and.m">Download using_logical_and.m</a> </span> </span> </details></p>
 <h4 class="ex1" id="ex-7">Ex</h4>
 <p>In the previous exercise, we discovered logical <strong>AND</strong>. But there’s also
 logical <strong>OR</strong>. Logical <strong>OR</strong> is the <code>|</code> symbol.</p>
 <p>Using logical <strong>OR</strong> find the values in <code>a_row_vector</code> that are either less
-than 20 or greater than 100.</p>
+than 20 or greater than 100. To do this, put the code you wrote to check which numbers are greater than 20 and the code you wrote to check which numbers are smaller than 100 in the appropriate places:</p>
+<p><code>check which numbers are &gt; than 20</code> <strong>|</strong> <code>check which numbers are &lt; than 100</code></p>
 <p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% create a row vector -- copied from handout&#10;a_row_vector = [1, 2, 3, 5, 6, 23, 546, 435]&#10;&#10;&#10;% values less than 20 OR greater than 100&#10;a_row_vector &lt; 20 | a_row_vector &gt; 100&#10;&#10;% what are those values?&#10;a_row_vector(a_row_vector &lt; 20 | a_row_vector &gt; 100)"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBjcmVhdGUgYSByb3cgdmVjdG9yIC0tIGNvcGllZCBmcm9tIGhhbmRvdXQKYV9yb3dfdmVjdG9yID0gWzEsIDIsIDMsIDUsIDYsIDIzLCA1NDYsIDQzNV0KCgolIHZhbHVlcyBsZXNzIHRoYW4gMjAgT1IgZ3JlYXRlciB0aGFuIDEwMAphX3Jvd192ZWN0b3IgPCAyMCB8IGFfcm93X3ZlY3RvciA+IDEwMAoKJSB3aGF0IGFyZSB0aG9zZSB2YWx1ZXM/CmFfcm93X3ZlY3RvcihhX3Jvd192ZWN0b3IgPCAyMCB8IGFfcm93X3ZlY3RvciA+IDEwMCkK" download="using_logical_or.m">Download using_logical_or.m</a> </span> </span> </details></p>
 <h4 class="ex1" id="ex-8">Ex</h4>
-<p>Sometimes we might have two vectors/matrices that we want to join together. To
-do this, we’ll want to concatenate the vectors/matrices together. There are two
-different ways to do this in <code>Matlab</code>. One way is to use the <code>vertcat()</code> or
-<code>horzcat()</code> functions and the other way is to wrap the individual
-vectors/matrices in <code>[]</code>.</p>
+<p>Sometimes we might want to combine two matrices together into one matrix. The formal term for combining two arrays together into one array is <code>concatenate</code>. There are two
+different ways to concatenate matrices in <code>Matlab</code>. One way is to put the individual
+vectors/matrices inside square brackets, <code>[]</code>, as we have been doing so far. The other way which we haven’t come across yet is to use the <code>vertcat()</code> or
+<code>horzcat()</code> functions.</p>
 <p>Try using <code>help</code> or <code>doc</code> to get help on the <code>vertcat()</code> and <code>horzcat()</code>
 functions, and then use them to concatenate the two vectors below.</p>
 <p><snippet code="one_vector = [11, 12, 13, 14]
 another_vector = [21, 22, 23, 24]" /></p>
 <p>Next, try using <code>[]</code> to concatenate the two vectors. If you want a hint on how
-to use <code>[]</code> to concatenate vectors check back on <em>creating vectors/matrices</em>.</p>
+to use <code>[]</code> to concatenate vectors check back on slide 4, <em>Numerical arrays/matrices</em>.</p>
 <p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% some vectors -- copied from the handout&#10;one_vector = [11, 12, 13, 14]&#10;another_vector = [21, 22, 23, 24]&#10;&#10;% to get help on vertcat and horzcat, check the solution above for ttest&#10;&#10;% concatenate the vectors vertically&#10;vertcat(one_vector, another_vector)&#10;&#10;% or another way&#10;[one_vector; another_vector]&#10;&#10;% concatenate the vectors horizontally&#10;horzcat(one_vector, another_vector)&#10;&#10;% or another way&#10;[one_vector, another_vector]"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBzb21lIHZlY3RvcnMgLS0gY29waWVkIGZyb20gdGhlIGhhbmRvdXQKb25lX3ZlY3RvciA9IFsxMSwgMTIsIDEzLCAxNF0KYW5vdGhlcl92ZWN0b3IgPSBbMjEsIDIyLCAyMywgMjRdCgolIHRvIGdldCBoZWxwIG9uIHZlcnRjYXQgYW5kIGhvcnpjYXQsIGNoZWNrIHRoZSBzb2x1dGlvbiBhYm92ZSBmb3IgdHRlc3QKCiUgY29uY2F0ZW5hdGUgdGhlIHZlY3RvcnMgdmVydGljYWxseQp2ZXJ0Y2F0KG9uZV92ZWN0b3IsIGFub3RoZXJfdmVjdG9yKQoKJSBvciBhbm90aGVyIHdheQpbb25lX3ZlY3RvcjsgYW5vdGhlcl92ZWN0b3JdCgolIGNvbmNhdGVuYXRlIHRoZSB2ZWN0b3JzIGhvcml6b250YWxseQpob3J6Y2F0KG9uZV92ZWN0b3IsIGFub3RoZXJfdmVjdG9yKQoKJSBvciBhbm90aGVyIHdheQpbb25lX3ZlY3RvciwgYW5vdGhlcl92ZWN0b3JdCg==" download="concat_vecs.m">Download concat_vecs.m</a> </span> </span> </details></p>
 <h4 class="ex1" id="ex-9">Ex</h4>
-<p>Create a <code>struct</code> with the following fields</p>
+<p>In this exercise we will create a structure.</p>
+<p>The structure we create will look somewhat like the data you’d get from an experiment. It will contain the name of the participant (NOTE: this is just for the example, we anonymise real data), the id we have assigned to the participant, and their reaction times on 10 trials.</p>
+<p>Before we create the structure, we will first create a 10x2 matrix that will look like reaction time data on 10 trials. The matrix will have 10 rows and 2 columns. Each row will correspond to a different trial. The first column will contain the trial number (the numbers 1 through 10) and the second column will contain the reaction time recorded on that trial. To create our sequence of trial numbers, try the code below to fill a horizontal (row) vector with the numbers 1 to 10:</p>
+<p><snippet code="trialid = 1:10" /></p>
+<p>We now have a sequence of trial numbers, but we need them arranged vertically, not horizontally. Try the code below to turn the row vector <code>trialid</code> into a column vector.</p>
+<p><snippet code="trialid = trialid'" /></p>
+<p>Next, to generate our reaction times, use the <code>rand()</code> function to create a vertical (column) vector contain 10 random numbers. This vector will have 10 rows and 1 column.</p>
+<p>&lt;snippet code=“% use the rand() function to create a vergical (column) vector with 10 random numbers
+rts = rand() % chech the help for rand() to see what you have to put inside the brackets/&gt;</p>
+<p>After you have created a vertical (column) vector containt the trial ids, <code>trialid</code>, and another vertical (column) vector contain 10 random number, <code>rts</code>, combined (concatenate) these two vectors into one matrix called <code>rts</code>. The matrix <code>rts</code> should have 10 rows and 2 columns. For a clue how to do this, check Exercise 2.6.</p>
+<p>After you have created the matrix that contains the trial data, it is time to create a structure.</p>
+<p>First, create a structures called <code>data</code> using the function <code>struct</code>.</p>
+<p>The structure data will contain three field:</p>
 <ol type="1">
 <li><p>name</p></li>
 <li><p>id_code</p></li>
 <li><p>rt</p></li>
 </ol>
-<p>Fill the name field with a name (pick any name you want). Put a four-digit
-number as the <code>id_code</code> field. Make sure this is <code>char</code>. In the <code>rt</code> field,
-put a matrix with 2 columns and 10 rows. The first column should have
-consecutive numbers from 1 to 10, and the second column should be random
-numbers.</p>
-<p>Hints: You try the code below to fill a row vector with the numbers 1 to 5</p>
-<p><snippet code="vect = 1:5" /></p>
-<p>We probably need a column vector. Try the code below to turn the row vector
-<code>vect</code> into a column vector.</p>
-<p><snippet code="vect'" /></p>
-<p>To generate some random numbers, read the help on the <code>randn()</code> function.</p>
+<p>The <code>name</code> field will contain a name of your choice - pick any name you want. Make sure this is a <code>char</code> data type (use single quotes).<br />
+The <code>id_code</code> field will contain a four-digit number.
+The <code>rt</code> field will contain the <code>rts</code> matrix you created above.</p>
 <p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% you can read the help on randn() using&#10;help randn&#10;&#10;% we can now use randn to generate a 10 random number&#10;rts = randn(10,1)&#10;&#10;% we can now just make a vec to 10 consecutive numbers&#10;trialid = 1:10&#10;&#10;% but that&#39;s a horizontal vec, so we need to transpose it&#10;trialid = trialid&#39;&#10;&#10;% now let&#39;s make a matrix called rt by concatenating the two vecs&#10;rt = [trialid rts]&#10;&#10;% now we make the struct&#10;data = struct&#10;data.rt = rt&#10;data.id_code = 1234&#10;data.name = &#39;Lincoln&#39;"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSB5b3UgY2FuIHJlYWQgdGhlIGhlbHAgb24gcmFuZG4oKSB1c2luZwpoZWxwIHJhbmRuCgolIHdlIGNhbiBub3cgdXNlIHJhbmRuIHRvIGdlbmVyYXRlIGEgMTAgcmFuZG9tIG51bWJlcgpydHMgPSByYW5kbigxMCwxKQoKJSB3ZSBjYW4gbm93IGp1c3QgbWFrZSBhIHZlYyB0byAxMCBjb25zZWN1dGl2ZSBudW1iZXJzCnRyaWFsaWQgPSAxOjEwCgolIGJ1dCB0aGF0J3MgYSBob3Jpem9udGFsIHZlYywgc28gd2UgbmVlZCB0byB0cmFuc3Bvc2UgaXQKdHJpYWxpZCA9IHRyaWFsaWQnCgolIG5vdyBsZXQncyBtYWtlIGEgbWF0cml4IGNhbGxlZCBydCBieSBjb25jYXRlbmF0aW5nIHRoZSB0d28gdmVjcwpydCA9IFt0cmlhbGlkIHJ0c10KCiUgbm93IHdlIG1ha2UgdGhlIHN0cnVjdApkYXRhID0gc3RydWN0CmRhdGEucnQgPSBydApkYXRhLmlkX2NvZGUgPSAxMjM0CmRhdGEubmFtZSA9ICdMaW5jb2xuJwo=" download="making_a_struct.m">Download making_a_struct.m</a> </span> </span> </details></p>
 <div class="layout-chunk" data-layout="l-body">
 <script>
