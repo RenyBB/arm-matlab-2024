@@ -2402,9 +2402,7 @@ to use <code>[]</code> to concatenate vectors check back on slide 4, <em>Numeric
 <p>We now have a sequence of trial numbers, but we need them arranged vertically, not horizontally. Try the code below to turn the row vector <code>trialid</code> into a column vector.</p>
 <p><snippet code="trialid = trialid'" /></p>
 <p>Next, to generate our reaction times, use the <code>rand()</code> function to create a vertical (column) vector contain 10 random numbers. This vector will have 10 rows and 1 column.</p>
-<p>&lt;snippet code=“% use the rand() function to create a vergical (column) vector with 10 random numbers
-rts = rand() % chech the help for rand() to see what you have to put inside the brackets/&gt;</p>
-<p>After you have created a vertical (column) vector containt the trial ids, <code>trialid</code>, and another vertical (column) vector contain 10 random number, <code>rts</code>, combined (concatenate) these two vectors into one matrix called <code>rts</code>. The matrix <code>rts</code> should have 10 rows and 2 columns. For a clue how to do this, check Exercise 2.6.</p>
+<p>After you have created a vertical (column) vector contain the trial ids, <code>trialid</code>, and another vertical (column) vector contain 10 random number, <code>rts</code>, combine these two vectors into one matrix called <code>rts</code>. The matrix <code>rts</code> should have 10 rows and 2 columns. For a clue how to do this, check Exercise 2.6.</p>
 <p>After you have created the matrix that contains the trial data, it is time to create a structure.</p>
 <p>First, create a structures called <code>data</code> using the function <code>struct</code>.</p>
 <p>The structure data will contain three field:</p>
