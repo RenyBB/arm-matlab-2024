@@ -2250,7 +2250,7 @@ details[open] summary {
 <p><span class="a_snippet"> <snippet code="% A simple script&#10;name = input(&#39;What is your name? &#39;,&#39;s&#39;); % ask your name&#10;disp([&#39;Hello &#39; name &#39;! Pleased to meet you&#39;]); % say hello"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBBIHNpbXBsZSBzY3JpcHQKbmFtZSA9IGlucHV0KCdXaGF0IGlzIHlvdXIgbmFtZT8gJywncycpOyAlIGFzayB5b3VyIG5hbWUKZGlzcChbJ0hlbGxvICcgbmFtZSAnISBQbGVhc2VkIHRvIG1lZXQgeW91J10pOyAlIHNheSBoZWxsbwo=" download="say_hello.m">Download say_hello.m</a> </span> </span></p>
 <p>Let’s create a script. We’ll use the code in the snippet above.</p>
 <p>There are a couple of ways to go about creating a script. We could
-download the file above, making sure to save it in our search path, or we could
+download the file above and save it in our search path. Alternatively, we could
 directly create a new file from the <code>Matlab</code> command prompt. Let’s try the
 second approach.</p>
 <p>Try typing the following at the command prompt:</p>
@@ -2261,9 +2261,13 @@ paste the code from the snippet into this file and save it.</p>
 <h4 class="ex0" id="ex-1">Ex</h4>
 <p>You should now have a script file called <code>say_hello.m</code>. Make sure that you can
 run the script by typing the name at the command prompt.</p>
+<output code="&gt;&gt; say_hello">
+</output>
 <h4 class="ex0" id="ex-2">Ex</h4>
 <p>After you’ve made sure that you can run the script by typing the name, see if
 you can get help using <code>help</code>.</p>
+<output code="&gt;&gt; help say_hello">
+</output>
 <h4 class="ex0" id="ex-3">Ex</h4>
 <p>Next, we’ll try downloading a script. Click the download link below the following
 code snippet and save the file somewhere in your search path.</p>
@@ -2272,18 +2276,19 @@ code snippet and save the file somewhere in your search path.</p>
 <p>If you’re not sure of your search path, then try using the <code>path</code> command to
 list all the folders in your search path.</p>
 <h4 class="ex0" id="ex-4">Ex</h4>
-<p>Now let’s try to modify our search path. Create a new folder somewhere not in your
+<p>Now let’s try to modify our search path. Create a new folder somewhere that is not in your
 search path. Let’s call the folder <code>experiments</code>.</p>
 <p><span class="a_snippet"> <snippet code="P = []; &#10;a0 = 6000; &#10;m0 = 0;&#10;w0 = 300; &#10;P(1, :) = [m0, w0, a0];&#10;&#10;figure&#10;plot(0, a0, &#39;.&#39;, &#39;markersize&#39;, 24);&#10;hold on;&#10;xlim([0 25])&#10;i = 1&#10;while i &lt; 25&#10;  P&#10;  a = input(&#39;How many workers this month?&#39;)&#10;  b = 20 * a - a0;&#10;  a0 = b;&#10;  plot(i, a0, &#39;.&#39;, &#39;markersize&#39;,24);&#10;  P(i + 1, :) = [i, a, b];&#10;  plot(P(:, 1), P(:, 3), &#39;color&#39;,&#39;k&#39;);&#10;  i = i + 1;&#10;end"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,UCA9IFtdOyAKYTAgPSA2MDAwOyAKbTAgPSAwOwp3MCA9IDMwMDsgClAoMSwgOikgPSBbbTAsIHcwLCBhMF07CgpmaWd1cmUKcGxvdCgwLCBhMCwgJy4nLCAnbWFya2Vyc2l6ZScsIDI0KTsKaG9sZCBvbjsKeGxpbShbMCAyNV0pCmkgPSAxCndoaWxlIGkgPCAyNQogIFAKICBhID0gaW5wdXQoJ0hvdyBtYW55IHdvcmtlcnMgdGhpcyBtb250aD8nKQogIGIgPSAyMCAqIGEgLSBhMDsKICBhMCA9IGI7CiAgcGxvdChpLCBhMCwgJy4nLCAnbWFya2Vyc2l6ZScsMjQpOwogIFAoaSArIDEsIDopID0gW2ksIGEsIGJdOwogIHBsb3QoUCg6LCAxKSwgUCg6LCAzKSwgJ2NvbG9yJywnaycpOwogIGkgPSBpICsgMTsKZW5kCg==" download="berry_broadbent.m">Download berry_broadbent.m</a> </span> </span><br />
 </p>
 <p>Download the code above and save it to your <code>experiments</code> folder. It doesn’t
 matter if you don’t understand the code because it includes some concepts we
 haven’t covered yet.</p>
-<p>Now add the folder to your search path using the <code>addpath</code> function. For me,
-I’d write something like this:</p>
-<output code="addpath(&#39;~/icloud/teaching/matlab/code/experiments&#39;)">
+<p>Now add the folder to your search path using the <code>addpath</code> function.</p>
+<p>In my case, I created the folder <code>experiments</code> in the folder <code>matlab</code>, so I’d add the folder to my search patch like this:</p>
+<output code="addpath(&#39;matlab/experiments&#39;)">
 </output>
-<p>Now see if you can run it by typing the script name at the command prompt.</p>
+<p>In your case, the folder <code>experiments</code> might be in a different location. Check where you added the folder <code>experiments</code> and change the code above to match.</p>
+<p>Now see if you can run the <code>berry_broadbent.m</code> script by typing the script name at the command prompt.</p>
 <h1 id="functions">Functions</h1>
 <p>In this section, we’re going to learn how to make reusable code by writing
 <em>functions</em>.</p>
@@ -2297,21 +2302,95 @@ I’d write something like this:</p>
 <p>We’ve created a few scripts. Now let’s create a function. Create a new file and
 copy the following code into it.</p>
 <p><span class="a_snippet"> <snippet code="function [hello_str] = say_hello_fun(name)&#10;    hello_str = [&#39;Hello &#39;, name];&#10;end"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,ZnVuY3Rpb24gW2hlbGxvX3N0cl0gPSBzYXlfaGVsbG9fZnVuKG5hbWUpCiAgICBoZWxsb19zdHIgPSBbJ0hlbGxvICcsIG5hbWVdOwplbmQ=" download="say_hello_fun.m">Download say_hello_fun.m</a> </span> </span><br />
-Remember, the file should have the same name as the function.</p>
+<strong>Remember, the file should have the same name as the function.</strong></p>
 <h4 class="ex1" id="ex-6">Ex</h4>
-<p>I’d like you to try to write a function on your own. Here are the
-specifications of what the function should do:</p>
-<ul>
-<li><p>The function should take in a vector of numbers as the input.</p></li>
-<li><p>And it should output the following:</p>
-<ol type="1">
-<li><p>The mean of the numbers</p></li>
-<li><p>The upper 95% Confidence interval</p></li>
-<li><p>The lower 95% Confidence interval</p></li>
-</ol></li>
-</ul>
-<p>You don’t have to write it from scratch. Instead, see if you can modify one of
-the examples from the slides.</p>
+<p>I’d like you to try to write a function on your own. The function will compute: (1) the mean of a sequence of numbers, (2) the upper limit of the 95% confidence interval of the mean, and (3) the lower limit of the 95% confidence interval of the mean. The input that the function requires will be a vector (a 1-dimensional matrix). You don’t have to create your function from scratch, you can instead modify the <code>mean_ci</code> function on slide 19.</p>
+<p>First, define the name, input, and output of the function. To do this follow the notation on slide 11.
+Add the <code>end</code> statement that should be placed at the end of the function. The code won’t work if the function is not closed with an <code>end</code> statement.
+The commands to calculate the mean and confidence interval will go between the function declaration and the end statement.</p>
+<output code="% Write a function that calculates:
+% output1 = the mean of a vector of numbers
+% output2 = the upper limit of the 95% confidence interval
+% output3 = the lower limit of the 95% confidence interval. 
+
+
+% function declaration
+function [output1, output2, output3] = function_name(input_numbers) 
+
+% command to calculate the mean 
+
+% command to calculate the upper limit of 95% confidence interval
+
+% command to calculate the lower limit of the 95% confidence interval
+
+end % end statement to close the function">
+</output>
+<p>In the function that we have started writing, <code>input_numbers</code> will correspond to the vector of numbers you want to put into the function, <code>output1</code> will correspond to he mean of the vector, <code>output2</code> - to the upper limit of the 95% confidence interval, and <code>output3</code> - to the lower limit of the 95% confidence interval. Change the names of <code>output1</code>, <code>output2</code>, <code>output3</code> to something more meaningful to signify what output the function creates. For example, I’ll rename <code>output1</code> to <code>mean</code>.
+I will also change the name of the function to something more meaningful than <code>function_name</code>, such as <code>mean_ci</code>.</p>
+<p>Next, fill in the commands for calculating the mean of the <code>input</code>, the upper, and the and lower limit of the confidence interval. If you don’t know the formula for calculating the upper and lower limit of the confidence interval, try to find it online.</p>
+<p>To calculate the confidence interval, you need to calculate the standard error of the mean. In the code on slide 19, a separate function is defined to calculate the standard error of the mean. This second function will only be accessible by the function <code>mean_ci</code>:</p>
+<output code="% Write a function that calculates:
+% mean = the mean of a vector of numbers
+% output2 = the upper limit of the 95% confidence interval
+% output3 = the lower limit of the 95% confidence interval. 
+
+function [mean, output2, output3] = mean_ci(input_numbers) % function declaration
+
+% command to calculate the mean   
+mean = sum(input_numbers) / length(input_numbers);
+
+% calculate the confidence interval
+
+ci = 1.96 * se(input_numbers);
+
+% command to calculate the upper limit of 95% confidence interval
+
+% command to calculate the lower limit of the 95% confidence interval
+
+end
+
+% In the same file, I will define a function se()
+% that will calculate the standard error of a vector of number.
+% This function will only be accessible by the function mean_ci()
+
+function [sem] = se(input_numbers)
+  sd = std(input_numbers);
+  sem = sd / sqrt(length(input_numbers));
+end">
+</output>
+<p>If you want to be able to use the function <code>se()</code> on its own, you have to save it into a separate file names <code>se.m</code>, and that file needs to be in your search path.</p>
+<p>Alternatively, you don’t have to create a separate function to calculate the the standard error:</p>
+<output code="% Write a function that calculates:
+% mean = the mean of a vector of numbers
+% output2 = the upper limit of the 95% confidence interval
+% output3 = the lower limit of the 95% confidence interval. 
+
+function [mean, output2, output3] = mean_ci(input_numbers) % function declaration
+
+% command to calculate the mean   
+mean = sum(input_numbers) / length(input_numbers);
+
+% calculate the standard error
+sem = std(input_numbers)/sqrt(length(input_numbers));
+
+% calculate the confidence interval
+
+ci = 1.96 * se(input_numbers); 
+
+% command to calculate the upper limit of 95% confidence interval
+
+% command to calculate the lower limit of the 95% confidence interval
+
+end">
+</output>
+<p>Each of these approaches is equally good, go with whichever is most intuitive to you.
+In any case, to complete the function you just need to add a line of code to calculate the upper limit of 95% confidence interval and another line of code to calculate the lower limit of the 95% confidence interval.</p>
+<p>When you are ready, save the function and check whether it works by running the following code:</p>
+<output code="example_vector = 1:10; % first let&#39;s create a vector of numbers 
+mean_ci(example_vector)">
+</output>
+<p>If <code>Matlab</code> gives you an error, try to find out what that error means.
+Remember, that the function only has access to the input you have supplied and the commands that it has executed. For example, the function declaration for <code>mean_ci()</code> currently means that we are asking <code>Matlab</code> to output the variables <code>mean</code>, <code>output2</code>, and <code>output3</code>. The function creates the variable <code>mean</code>, but it currently does not create the variables <code>output2</code> and <code>output3</code>. So, if we try to run the function as it is, <code>Matlab</code> will display an error because it can’t display the variables <code>output2</code> and <code>output3</code> - they don’t exist in the code (yet).</p>
 <h1 id="flow-control-and-loops">Flow control and loops</h1>
 <p>In this section, we’ll learn how to use flow control to create programs that
 branch according to certain conditions, and we’ll learn how to use loops to run
@@ -2323,10 +2402,10 @@ bits of code over and over.</p>
 </div>
 </div>
 <h4 class="ex2" id="ex-7">Ex</h4>
-<p>For the first exercise, we’ll write a function. We’ll then add a little flow
-control. Here are the specifications of the function.</p>
+<p>For the first exercise, we’ll write a function that computes a one-sample t-test and tells you whether the results is significant or not.</p>
+<p>Here are the specifications of the function.</p>
 <ul>
-<li><p>The function should take in two vectors of numbers:</p></li>
+<li><p>The function should take in two vectors of numbers.</p></li>
 <li><p>It should work out the pair-wise difference between them (i.e., the
 difference between element 1 in vector 1 and element 1 in vector 2, the
 difference between element 2 in vector 1 and element 2 in vector 2 etc). That
@@ -2341,17 +2420,33 @@ help for the <code>disp</code> function, or look at some examples we’ve covere
 <li><p>Finally, if the difference is significant, then it should output a 1 and if it
 isn’t, then it should output a 0.</p></li>
 </ul>
+<p>Use the outline below to begin writing your function:</p>
+<output code=" % Describe what the function does
+% Describe what input the function needs
+% Describe what output the function gives
+
+function [is_sig] = my_test(xvar, yvar) % function declaration
+
+% compute the difference between xvar and yvar
+
+% write an if-else statement that will check whether the t-test is significant
+
+% After the &#39;if&#39;,  write the condition that will be checked. 
+% In plain English, that will be &#39;If the t-test is significant&#39;
+if  
+% specify what should happen if the t-test is significant
+  
+else % else means in all other cases (here, meaning &#39;If the test is not-significant&#39;)
+   
+% specify what should happen if the t-test is NOT significant
+   
+end % if-else statements need to be closed with an end statement
+
+end % we also need to close the function witn an end statement">
+</output>
 <p>Once you’ve written your function, try it out on these numbers:</p>
 <p><span class="a_snippet"> <snippet code="% For this set the difference should be significant&#10;x1 = [-1.655 -1.441 -0.113 -1.254 1.307 -0.924 -1.141 -0.362 0.641 -0.592]&#10;&#10;y1 = [1.854 2.845 2.109 1.194 0.142 2.581 3.053 2.839 0.338 3.7830]&#10;&#10;% For this set the difference should not be significant&#10;x1 = [1.120 1.287 0.903 1.290 0.441 1.984 1.750 0.453 0.464 1.010]&#10;&#10;y1 = [0.710 0.576  1.574  0.144  1.493  0.538  0.253  1.721 -0.384 -0.809]"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSBGb3IgdGhpcyBzZXQgdGhlIGRpZmZlcmVuY2Ugc2hvdWxkIGJlIHNpZ25pZmljYW50CngxID0gWy0xLjY1NSAtMS40NDEgLTAuMTEzIC0xLjI1NCAxLjMwNyAtMC45MjQgLTEuMTQxIC0wLjM2MiAwLjY0MSAtMC41OTJdCgp5MSA9IFsxLjg1NCAyLjg0NSAyLjEwOSAxLjE5NCAwLjE0MiAyLjU4MSAzLjA1MyAyLjgzOSAwLjMzOCAzLjc4MzBdCgolIEZvciB0aGlzIHNldCB0aGUgZGlmZmVyZW5jZSBzaG91bGQgbm90IGJlIHNpZ25pZmljYW50CngxID0gWzEuMTIwIDEuMjg3IDAuOTAzIDEuMjkwIDAuNDQxIDEuOTg0IDEuNzUwIDAuNDUzIDAuNDY0IDEuMDEwXQoKeTEgPSBbMC43MTAgMC41NzYgIDEuNTc0ICAwLjE0NCAgMS40OTMgIDAuNTM4ICAwLjI1MyAgMS43MjEgLTAuMzg0IC0wLjgwOV0K" download="numbers.m">Download numbers.m</a> </span> </span></p>
-<!-- `<details>
-<summary>Solution Code</summary>
-<span class="a_snippet">
-<snippet code="function [is_sig] = my_ttest(xvar, yvar)&#10;&#10;  % first let&#39;s work out the differences between the two variables&#10;  diffs = xvar - yvar;&#10;&#10;  % now let&#39;s run a t-test on the differences (i.e., a one-sample t-test)&#10;  [H,P] = ttest(diffs);&#10;  if P &lt; 0.05 &#10;      disp(&#39;There is a significant difference between x and y&#39;)&#10;      is_sig = 1;&#10;  else&#10;      disp(&#39;There is NOT a significant difference between x and y&#39;)&#10;      is_sig = 0;&#10;  end&#10;&#10;&#10;end"></snippet>
-<span class="download">
-<a href="data:application/octet-stream;base64,ZnVuY3Rpb24gW2lzX3NpZ10gPSBteV90dGVzdCh4dmFyLCB5dmFyKQoKICAlIGZpcnN0IGxldCdzIHdvcmsgb3V0IHRoZSBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRoZSB0d28gdmFyaWFibGVzCiAgZGlmZnMgPSB4dmFyIC0geXZhcjsKCiAgJSBub3cgbGV0J3MgcnVuIGEgdC10ZXN0IG9uIHRoZSBkaWZmZXJlbmNlcyAoaS5lLiwgYSBvbmUtc2FtcGxlIHQtdGVzdCkKICBbSCxQXSA9IHR0ZXN0KGRpZmZzKTsKICBpZiBQIDwgMC4wNSAKICAgICAgZGlzcCgnVGhlcmUgaXMgYSBzaWduaWZpY2FudCBkaWZmZXJlbmNlIGJldHdlZW4geCBhbmQgeScpCiAgICAgIGlzX3NpZyA9IDE7CiAgZWxzZQogICAgICBkaXNwKCdUaGVyZSBpcyBOT1QgYSBzaWduaWZpY2FudCBkaWZmZXJlbmNlIGJldHdlZW4geCBhbmQgeScpCiAgICAgIGlzX3NpZyA9IDA7CiAgZW5kCgoKZW5kCg==" download="my_ttest.m">Download my_ttest.m</a>
-</span>
-</span>
-</details>`{=html} -->
+<p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="function [is_sig] = my_ttest(xvar, yvar)&#10;&#10;  % first let&#39;s work out the differences between the two variables&#10;  diffs = xvar - yvar;&#10;&#10;  % now let&#39;s run a t-test on the differences (i.e., a one-sample t-test)&#10;  [H,P] = ttest(diffs);&#10;  if P &lt; 0.05 &#10;      disp(&#39;There is a significant difference between x and y&#39;)&#10;      is_sig = 1;&#10;  else&#10;      disp(&#39;There is NOT a significant difference between x and y&#39;)&#10;      is_sig = 0;&#10;  end&#10;&#10;&#10;end"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,ZnVuY3Rpb24gW2lzX3NpZ10gPSBteV90dGVzdCh4dmFyLCB5dmFyKQoKICAlIGZpcnN0IGxldCdzIHdvcmsgb3V0IHRoZSBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRoZSB0d28gdmFyaWFibGVzCiAgZGlmZnMgPSB4dmFyIC0geXZhcjsKCiAgJSBub3cgbGV0J3MgcnVuIGEgdC10ZXN0IG9uIHRoZSBkaWZmZXJlbmNlcyAoaS5lLiwgYSBvbmUtc2FtcGxlIHQtdGVzdCkKICBbSCxQXSA9IHR0ZXN0KGRpZmZzKTsKICBpZiBQIDwgMC4wNSAKICAgICAgZGlzcCgnVGhlcmUgaXMgYSBzaWduaWZpY2FudCBkaWZmZXJlbmNlIGJldHdlZW4geCBhbmQgeScpCiAgICAgIGlzX3NpZyA9IDE7CiAgZWxzZQogICAgICBkaXNwKCdUaGVyZSBpcyBOT1QgYSBzaWduaWZpY2FudCBkaWZmZXJlbmNlIGJldHdlZW4geCBhbmQgeScpCiAgICAgIGlzX3NpZyA9IDA7CiAgZW5kCgoKZW5kCg==" download="my_ttest.m">Download my_ttest.m</a> </span> </span> </details></p>
 <h4 class="ex2" id="ex-8">Ex</h4>
 <p>Remember the <code>berry_broadbent.m</code> script from above. You should now know enough
 to understand most of it. Read over it again, and see if it makes more sense.</p>
@@ -2359,7 +2454,7 @@ to understand most of it. Read over it again, and see if it makes more sense.</p
 <p>Now let’s play with some loops.</p>
 <p>First, let’s create some dummy data and store it in a struct array called
 <code>people</code></p>
-<p><span class="a_snippet"> <snippet code="% this will just create some dummy data for us to work on&#10;% let&#39;s create an struct array with some data&#10;&#10;person.name = &#39;Lincoln&#39;;&#10;person.has_pets = 0;&#10;people = person;&#10;person.name = &#39;Laura&#39;;&#10;person.has_pets = 1;&#10;people = [people person];&#10;person.name = &#39;Edwin&#39;;&#10;person.has_pets = 1;&#10;people = [people person];&#10;person.name = &#39;Clara&#39;;&#10;person.has_pets = 0;&#10;people = [people person];&#10;clear person;"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSB0aGlzIHdpbGwganVzdCBjcmVhdGUgc29tZSBkdW1teSBkYXRhIGZvciB1cyB0byB3b3JrIG9uCiUgbGV0J3MgY3JlYXRlIGFuIHN0cnVjdCBhcnJheSB3aXRoIHNvbWUgZGF0YQoKcGVyc29uLm5hbWUgPSAnTGluY29sbic7CnBlcnNvbi5oYXNfcGV0cyA9IDA7CnBlb3BsZSA9IHBlcnNvbjsKcGVyc29uLm5hbWUgPSAnTGF1cmEnOwpwZXJzb24uaGFzX3BldHMgPSAxOwpwZW9wbGUgPSBbcGVvcGxlIHBlcnNvbl07CnBlcnNvbi5uYW1lID0gJ0Vkd2luJzsKcGVyc29uLmhhc19wZXRzID0gMTsKcGVvcGxlID0gW3Blb3BsZSBwZXJzb25dOwpwZXJzb24ubmFtZSA9ICdDbGFyYSc7CnBlcnNvbi5oYXNfcGV0cyA9IDA7CnBlb3BsZSA9IFtwZW9wbGUgcGVyc29uXTsKY2xlYXIgcGVyc29uOw==" download="dummy_data.m">Download dummy_data.m</a> </span> </span></p>
+<p><span class="a_snippet"> <snippet code="% this will just create some dummy data for us to work on&#10;% let&#39;s create an struct array with some data&#10;&#10;person1.name = &#39;Lincoln&#39;;&#10;person1.has_pets = 0;&#10;&#10;person2.name = &#39;Laura&#39;;&#10;person2.has_pets = 1;&#10;&#10;person3.name = &#39;Edwin&#39;;&#10;person3.has_pets = 1;&#10;&#10;person4.name = &#39;Clara&#39;;&#10;person4.has_pets = 0;&#10;&#10;people = [person1, person2, person3, person4];&#10;&#10;clear person1 person2 person3 person4"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSB0aGlzIHdpbGwganVzdCBjcmVhdGUgc29tZSBkdW1teSBkYXRhIGZvciB1cyB0byB3b3JrIG9uCiUgbGV0J3MgY3JlYXRlIGFuIHN0cnVjdCBhcnJheSB3aXRoIHNvbWUgZGF0YQoKcGVyc29uMS5uYW1lID0gJ0xpbmNvbG4nOwpwZXJzb24xLmhhc19wZXRzID0gMDsKCnBlcnNvbjIubmFtZSA9ICdMYXVyYSc7CnBlcnNvbjIuaGFzX3BldHMgPSAxOwoKcGVyc29uMy5uYW1lID0gJ0Vkd2luJzsKcGVyc29uMy5oYXNfcGV0cyA9IDE7CgpwZXJzb240Lm5hbWUgPSAnQ2xhcmEnOwpwZXJzb240Lmhhc19wZXRzID0gMDsKCnBlb3BsZSA9IFtwZXJzb24xLCBwZXJzb24yLCBwZXJzb24zLCBwZXJzb240XTsKCmNsZWFyIHBlcnNvbjEgcGVyc29uMiBwZXJzb24zIHBlcnNvbjQ=" download="dummy_data.m">Download dummy_data.m</a> </span> </span></p>
 <p>This will create a variable called <code>people</code> in your workspace.</p>
 <p>If you type <code>people</code> at the command prompt, then you’ll see the following:</p>
 <output code="&gt;&gt; people
@@ -2371,7 +2466,7 @@ people =
     name
     has_pets">
 </output>
-<p>You can index this data structure as follows:</p>
+<p>You can access this data structure as follows:</p>
 <output code="&gt;&gt; people(1)
 
 ans = 
@@ -2387,17 +2482,57 @@ ans =
 
     &#39;Lincoln&#39;">
 </output>
-<p>Write some code (either a script or a function) that loops through <code>people</code> and
-prints out the name of any person who has a pet!</p>
-<!-- `<details>
-<summary>Solution Code</summary>
-<span class="a_snippet">
-<snippet code="% this will just create some dummy data for us to work on&#10;% let&#39;s create an struct array with some data&#10;&#10;% ---- This section is copied from the handount -------------&#10;% ---- All it does is create the struct array ---------------&#10;&#10;person.name = &#39;Lincoln&#39;;&#10;person.has_pets = 0;&#10;people = person;&#10;person.name = &#39;Laura&#39;;&#10;person.has_pets = 1;&#10;people = [people person];&#10;person.name = &#39;Edwin&#39;;&#10;person.has_pets = 1;&#10;people = [people person];&#10;person.name = &#39;Clara&#39;;&#10;person.has_pets = 0;&#10;people = [people person];&#10;clear person;&#10;&#10;% ------------------------------------------&#10;&#10;% solution for Exercise 3.3&#10;for p = 1:length(people)&#10;    if people(p).has_pets == 1&#10;        disp(people(p).name)&#10;    end&#10;end"></snippet>
-<span class="download">
-<a href="data:application/octet-stream;base64,JSB0aGlzIHdpbGwganVzdCBjcmVhdGUgc29tZSBkdW1teSBkYXRhIGZvciB1cyB0byB3b3JrIG9uCiUgbGV0J3MgY3JlYXRlIGFuIHN0cnVjdCBhcnJheSB3aXRoIHNvbWUgZGF0YQoKJSAtLS0tIFRoaXMgc2VjdGlvbiBpcyBjb3BpZWQgZnJvbSB0aGUgaGFuZG91bnQgLS0tLS0tLS0tLS0tLQolIC0tLS0gQWxsIGl0IGRvZXMgaXMgY3JlYXRlIHRoZSBzdHJ1Y3QgYXJyYXkgLS0tLS0tLS0tLS0tLS0tCgpwZXJzb24ubmFtZSA9ICdMaW5jb2xuJzsKcGVyc29uLmhhc19wZXRzID0gMDsKcGVvcGxlID0gcGVyc29uOwpwZXJzb24ubmFtZSA9ICdMYXVyYSc7CnBlcnNvbi5oYXNfcGV0cyA9IDE7CnBlb3BsZSA9IFtwZW9wbGUgcGVyc29uXTsKcGVyc29uLm5hbWUgPSAnRWR3aW4nOwpwZXJzb24uaGFzX3BldHMgPSAxOwpwZW9wbGUgPSBbcGVvcGxlIHBlcnNvbl07CnBlcnNvbi5uYW1lID0gJ0NsYXJhJzsKcGVyc29uLmhhc19wZXRzID0gMDsKcGVvcGxlID0gW3Blb3BsZSBwZXJzb25dOwpjbGVhciBwZXJzb247CgolIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKJSBzb2x1dGlvbiBmb3IgRXhlcmNpc2UgMy4zCmZvciBwID0gMTpsZW5ndGgocGVvcGxlKQogICAgaWYgcGVvcGxlKHApLmhhc19wZXRzID09IDEKICAgICAgICBkaXNwKHBlb3BsZShwKS5uYW1lKQogICAgZW5kCmVuZAo=" download="has_pets.m">Download has_pets.m</a>
-</span>
-</span>
-</details>`{=html} -->
+<p>Write some code (either a script or a function) that goes through each entry in the structure ‘people’ and
+prints out the name of any person who has a pet.</p>
+<p>To complete this exercise, you will need to repeat the same lines of code 4 times.
+The things you will have to do repeatedly are:</p>
+<output code="% pick an entry of &#39;people&#39;
+% access the associated &#39;has_pets&#39; field
+
+% if &#39;has_pets&#39; is equal to 1, display the name in the &#39;name&#39; field
+">
+</output>
+<p>For example, if I want to do this for the first entry in the structure, I’ll write:</p>
+<output code="&gt;&gt; % pick an entry of &#39;people&#39;
+n = 1;
+
+% access the associated &#39;has_pets&#39; field
+has_pets = people(n).has_pets;
+
+% if &#39;has_pets&#39; is equal to 1, display the name in the &#39;name&#39; field
+
+if has_pets==1
+  disp(people(n).name)
+end
+">
+</output>
+<p>For brevity, I can also shorten this as follows:</p>
+<output code="% pick an entry of &#39;people&#39;
+n = 1;
+
+% access the associated &#39;has_pets&#39; field
+% if &#39;has_pets&#39; is equal to 1, display the name in the &#39;name&#39; field
+
+if people(n).has_pets==1
+  disp(people(n).name)
+end
+">
+</output>
+<p>Now, if I want to check the second entry of the <code>people</code> structure, I’ll have to repeat the code above, and change the value of <code>n</code> to 2:</p>
+<output code="% pick an entry of &#39;people&#39;
+n = 2;
+
+% access the associated &#39;has_pets&#39; field
+% if &#39;has_pets&#39; is equal to 1, display the name in the &#39;name&#39; field
+
+if people(n).has_pets==1
+  disp(people(n).name)
+end
+">
+</output>
+<p>Our structure has only 4 entries, but this approach would be terribly inefficient if our structure had 100 entries. So, instead of repeating the same code over and over again, we can put the code inside a <code>for</code> loop. The <code>for</code> loop will repeat 4 times, each time taking a different value for <code>n</code>. The first time, <code>n</code> will have a value of 1, the second - a value of 2, and so on.</p>
+<p>Now, put the repeating code from the examples above in a <code>for</code> loop. For a clue how to do this, look at slide 8, <em>The for loop</em>.</p>
+<p><details> <summary>Solution Code</summary> <span class="a_snippet"> <snippet code="% this will just create some dummy data for us to work on&#10;% let&#39;s create an struct array with some data&#10;&#10;% ---- This section is copied from the handount -------------&#10;% ---- All it does is create the struct array ---------------&#10;&#10;person1.name = &#39;Lincoln&#39;;&#10;person1.has_pets = 0;&#10;&#10;person2.name = &#39;Laura&#39;;&#10;person2.has_pets = 1;&#10;&#10;person3.name = &#39;Edwin&#39;;&#10;person3.has_pets = 1;&#10;&#10;person4.name = &#39;Clara&#39;;&#10;person4.has_pets = 0;&#10;&#10;people = [person1, person2, person3, person4];&#10;&#10;clear person1 person2 person3 person4&#10;% ------------------------------------------&#10;&#10;% solution for Exercise 3.3&#10;for p = 1:length(people)&#10;    if people(p).has_pets == 1&#10;        disp(people(p).name)&#10;    end&#10;end"></snippet> <span class="download"> <a href="data:application/octet-stream;base64,JSB0aGlzIHdpbGwganVzdCBjcmVhdGUgc29tZSBkdW1teSBkYXRhIGZvciB1cyB0byB3b3JrIG9uCiUgbGV0J3MgY3JlYXRlIGFuIHN0cnVjdCBhcnJheSB3aXRoIHNvbWUgZGF0YQoKJSAtLS0tIFRoaXMgc2VjdGlvbiBpcyBjb3BpZWQgZnJvbSB0aGUgaGFuZG91bnQgLS0tLS0tLS0tLS0tLQolIC0tLS0gQWxsIGl0IGRvZXMgaXMgY3JlYXRlIHRoZSBzdHJ1Y3QgYXJyYXkgLS0tLS0tLS0tLS0tLS0tCgpwZXJzb24xLm5hbWUgPSAnTGluY29sbic7CnBlcnNvbjEuaGFzX3BldHMgPSAwOwoKcGVyc29uMi5uYW1lID0gJ0xhdXJhJzsKcGVyc29uMi5oYXNfcGV0cyA9IDE7CgpwZXJzb24zLm5hbWUgPSAnRWR3aW4nOwpwZXJzb24zLmhhc19wZXRzID0gMTsKCnBlcnNvbjQubmFtZSA9ICdDbGFyYSc7CnBlcnNvbjQuaGFzX3BldHMgPSAwOwoKcGVvcGxlID0gW3BlcnNvbjEsIHBlcnNvbjIsIHBlcnNvbjMsIHBlcnNvbjRdOwoKY2xlYXIgcGVyc29uMSBwZXJzb24yIHBlcnNvbjMgcGVyc29uNAolIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKJSBzb2x1dGlvbiBmb3IgRXhlcmNpc2UgMy4zCmZvciBwID0gMTpsZW5ndGgocGVvcGxlKQogICAgaWYgcGVvcGxlKHApLmhhc19wZXRzID09IDEKICAgICAgICBkaXNwKHBlb3BsZShwKS5uYW1lKQogICAgZW5kCmVuZAo=" download="has_pets.m">Download has_pets.m</a> </span> </span> </details></p>
 <h1 id="problem-solving-task">Problem-solving task</h1>
 <p>At this point, you should know enough Matlab to solve a small problem.
 The problem that you’ll be solving is based on the children’s game called
